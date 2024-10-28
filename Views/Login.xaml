@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutorLink_Client.Views.Login"
+             Title="Login">
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+        <Label
+        FontFamily="WinterDrink"
+        FontSize="50"
+        HorizontalOptions="Center"
+        Text="Login Page"
+        TextColor="LightSkyBlue" />
+
+        <Entry
+        Placeholder="הכנס שם"
+        PlaceholderColor="MidnightBlue"
+        />
+        <Entry
+        IsPassword="True"
+        Placeholder="הכנס סיסמה"
+        PlaceholderColor="MidnightBlue"
+        Text="{Binding Password}" />
+        <Button
+        x:Name="login"
+        Command="{Binding LoginCommand}"
+        Text="התחבר"
+        WidthRequest="150" />
+
+
+    </VerticalStackLayout>
+</ContentPage>
