@@ -1,4 +1,4 @@
-namespace TutorLink_Client.ViewModels;
+namespace TutorLinkClient.ViewModels;
 
 public class LoginViewModel : ViewModelBase
 {

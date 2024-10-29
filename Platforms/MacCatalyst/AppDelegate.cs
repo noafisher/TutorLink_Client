@@ -1,6 +1,7 @@
 ﻿using Foundation;
 
-namespace TutorLink_Client
+namespace TutorLinkClient
+
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

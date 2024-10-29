@@ -1,7 +1,7 @@
-﻿using TutorLink_Client.ViewModels;
-using TutorLink_Client.Views;
+﻿using TutorLinkClient.ViewModels;
+using TutorLinkClient.Views;
 
-namespace TutorLink_Client
+namespace TutorLinkClient
 {
     public partial class App : Application
     {

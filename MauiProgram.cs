@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using TutorLink_Client.Views;
-using TutorLink_Client.ViewModels;
+using TutorLinkClient.Views;
+using TutorLinkClient.ViewModels;
 
-namespace TutorLink_Client
+
+namespace TutorLinkClient
 {
     public static class MauiProgram
     {
@@ -15,6 +16,10 @@ namespace TutorLink_Client
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Kalam-Regular.ttf", "Kalam-Regular");
+                    fonts.AddFont("miriwin-webfont.ttf", "miriwin-webfont");
+
+
                 });
 
             //login

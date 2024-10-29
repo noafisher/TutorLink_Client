@@ -1,6 +1,6 @@
-using TutorLink_Client.ViewModels;
+using TutorLinkClient.ViewModels;
 
-namespace TutorLink_Client.Views;
+namespace TutorLinkClient.Views;
 
 public partial class Login : ContentPage
 {

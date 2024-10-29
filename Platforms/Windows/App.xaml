@@ -1,8 +1,8 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="TutorLink_Client.WinUI.App"
+    x:Class="TutorLinkClient.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:TutorLink_Client.WinUI">
+    xmlns:local="using:TutorLinkClient.WinUI">
 
 </maui:MauiWinUIApplication>

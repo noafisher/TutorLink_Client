@@ -2,7 +2,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 using System;
 
-namespace TutorLink_Client
+namespace TutorLinkClient
 {
     internal class Program : MauiApplication
     {

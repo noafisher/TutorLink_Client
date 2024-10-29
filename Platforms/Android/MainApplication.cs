@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace TutorLink_Client
+namespace TutorLinkClient
 {
     [Application]
     public class MainApplication : MauiApplication

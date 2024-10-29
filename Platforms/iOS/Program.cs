@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace TutorLink_Client
+namespace TutorLinkClient
 {
     public class Program
     {

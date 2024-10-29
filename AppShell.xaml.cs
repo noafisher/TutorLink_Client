@@ -1,4 +1,5 @@
-﻿namespace TutorLink_Client
+﻿namespace TutorLinkClient 
+
 {
     public partial class AppShell : Shell
     {
