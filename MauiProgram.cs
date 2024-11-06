@@ -25,6 +25,8 @@ namespace TutorLinkClient
             //login
             builder.Services.AddSingleton<Login>();
             builder.Services.AddSingleton<LoginViewModel>();
+            builder.Services.AddSingleton<Register>();
+            builder.Services.AddSingleton<RegisterViewModel>();
 
 
 #if DEBUG
