@@ -16,7 +16,7 @@
         FontSize="50"
         HorizontalOptions="Center"
         Text="Sign In"
-        TextColor="LightSkyBlue" />
+        TextColor="MidnightBlue" />
 
 
                 <Label
@@ -33,76 +33,107 @@
             VerticalOptions="FillAndExpand"
             VerticalScrollBarVisibility="Always">
 
-            <Grid ColumnDefinitions="*,1.5*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
+            <Grid HorizontalOptions="Center" VerticalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
                 <Label
                     x:Name="name_lbl"
-                    Grid.Column="0"
+                    Grid.Column="1"
+                    Grid.Row="0"
                     Margin="15"
                     Text="שם פרטי"
                     TextColor="MidnightBlue" 
-                                        HorizontalOptions="Center"
-
-
-                />
-                
-
-                <Entry
-                    Grid.Column="1"
-                    TextColor="MidnightBlue" 
                     HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                />
+                <Entry
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    TextColor="MidnightBlue" 
                     Placeholder="הקלד שם פרטי"
-                    
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
                      />
                 <!--Text="{Binding Name, Mode=TwoWay}"-->
-
                 <Label
-                    Grid.Row="2"
-                    Grid.ColumnSpan="2"
+                    Text="שם משפחה"
+                    Grid.Row="1"
+                    Grid.Column="1"
                     Margin="1"
                     HorizontalOptions="Center"
+                    VerticalOptions="Center"
                     TextColor="MidnightBlue" />
                 <!--Text="{Binding User_Error}"-->
-
-                <Label
-                    x:Name="email_lbl"
-                    Grid.Row="3"
-                    Margin="15"
-                    Text="אימייל" />
-
                 <Entry
-                    Grid.Row="3"
-                    Grid.Column="1"
+                    Grid.Row="1"
+                    Grid.Column="0"
                     Keyboard="Email"
                     Placeholder="הקלד אימייל"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                     />
+                <Label
+                    x:Name="email_lbl"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="15"
+                    Text="אימייל"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+                <Entry
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Keyboard="Email"
+                    Placeholder="הקלד אימייל"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
                      />
                 <!--Text="{Binding Email, Mode=TwoWay}"-->
-
                 <Label
                     x:Name="password_lbl"
-                    Grid.Row="4"
+                    Grid.Row="3"
+                    Grid.Column="1"
                     Margin="15"
                     FlowDirection="RightToLeft"
-                    Text="סיסמא" />
+                    Text="סיסמא"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
                 <Entry
-                    Grid.Row="4"
-                    Grid.Column="1"
+                    Grid.Row="3"
+                    Grid.Column="0"
                     Keyboard="Chat"
                     Placeholder="הקלד סיסמא"
-                    />
-                <!--Text="{Binding Password, Mode=TwoWay}" -->
-
-                <Label
-                    Grid.Row="5"
-                    Grid.ColumnSpan="2"
                     HorizontalOptions="Center"
-                    TextColor="red" />
+                    VerticalOptions="Center"/>
+                <!--Text="{Binding Password, Mode=TwoWay}" -->
 
                 <!--  בחירת סוג משתמש  -->
                 <Label
-                    Grid.Row="6"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     Margin="15"
-                    Text="בחר את סוג המשתמש:" />
+                    Text="בחר את סוג המשתמש:"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+
+                <RadioButton>
+                    
+                </RadioButton>
+            </Grid>
+
+
 
                 <!--<StackLayout
                     Grid.Row="7"
@@ -130,7 +161,7 @@
                     IsEnabled="{Binding CanRegister}"
                     Text="המשך" />-->
 
-            </Grid>
+            
 
         </ScrollView>
 
