@@ -128,9 +128,20 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center"/>
 
-                <RadioButton>
-                    
-                </RadioButton>
+                <RadioButton
+                    x:Name="Teacher"
+                    Margin="5"
+                    Checked="HandleCheck"
+                    GroupName="Role Selection"
+                    Content="מורה" />
+                <RadioButton
+                    x:Name="Student"
+                    Margin="5"
+                    Checked="HandleCheck"
+                    GroupName="Role Selection"
+                    Content="תלמיד" />
+
+                
             </Grid>
 
 
