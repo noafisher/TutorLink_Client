@@ -15,7 +15,7 @@
         FontFamily="Kalam-Regular"
         FontSize="50"
         HorizontalOptions="Center"
-        Text="Sign In"
+        Text="Sign Up"
         TextColor="MidnightBlue" />
 
 
@@ -35,6 +35,8 @@
 
             <Grid HorizontalOptions="Center" VerticalOptions="StartAndExpand">
                 <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -129,48 +131,51 @@
                     VerticalOptions="Center"/>
 
                 <RadioButton
+                    Grid.Row="5"
+                    Grid.Column="0"
                     x:Name="Teacher"
                     Margin="5"
-                    Checked="HandleCheck"
+
                     GroupName="Role Selection"
                     Content="מורה" />
                 <RadioButton
+                    Grid.Row="5"
+                    Grid.Column="1"
                     x:Name="Student"
                     Margin="5"
-                    Checked="HandleCheck"
+
                     GroupName="Role Selection"
                     Content="תלמיד" />
 
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="MidnightBlue"
+                    Command="{Binding RegistrationCommand}"
+                    IsEnabled="{Binding CanRegister}"
+                   Text="צור משתמש" 
+                    Margin="5"
+                    />
                 
+
+                <Button
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="יש לך משתמש? הקש כדי להתחבר!"
+                    BackgroundColor="MidnightBlue"
+                    Margin="5"
+                    />
+
             </Grid>
 
 
 
-                <!--<StackLayout
-                    Grid.Row="7"
-                    Grid.ColumnSpan="2"
-                    HorizontalOptions="Center"
-                    Orientation="Horizontal">
-                    --><!--  RadioButton למוכר  --><!--
-                    <RadioButton
-                        Content="מוכר"
-                        GroupName="UserType"
-                        IsChecked="{Binding IsSellerChecked}" />
-
-                    --><!--  RadioButton לקונה  --><!--
-                    <RadioButton
-                        Content="קונה"
-                        GroupName="UserType"
-                        IsChecked="{Binding IsBuyerChecked}" />
-                </StackLayout>-->
+                
 
 
-                <!--<Button
-                    Grid.Row="10"
-                    Grid.ColumnSpan="2"
-                    Command="{Binding RegistrationCommand}"
-                    IsEnabled="{Binding CanRegister}"
-                    Text="המשך" />-->
+                
 
             
 

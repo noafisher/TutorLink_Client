@@ -22,7 +22,7 @@
         <Entry FontFamily="miriwin-webfont"
         Placeholder="הכנס שם"
         PlaceholderColor="MidnightBlue"
-        />
+        Text="{Binding Name}"/>
         <Entry FontFamily="miriwin-webfont"
         IsPassword="True"
         Placeholder="הכנס סיסמה"
