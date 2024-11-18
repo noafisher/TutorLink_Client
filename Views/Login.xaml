@@ -20,9 +20,10 @@
         TextColor="LightSkyBlue" />
 
         <Entry FontFamily="miriwin-webfont"
-        Placeholder="הכנס שם"
+        Placeholder="הכנס אימייל"
         PlaceholderColor="MidnightBlue"
-        Text="{Binding Name}"/>
+        Text="{Binding Email}"/>
+        
         <Entry FontFamily="miriwin-webfont"
         IsPassword="True"
         Placeholder="הכנס סיסמה"

@@ -1,17 +1,19 @@
 ﻿using TutorLinkClient.ViewModels;
 using TutorLinkClient.Views;
 
+
 namespace TutorLinkClient
 {
     public partial class App : Application
     {
-        public App(RegisterViewModel vm)
+        public App(LoginViewModel vm)
         {
-            InitializeComponent();
 
             //MainPage = new AppShell();
-            MainPage = new Register(vm);
-            ////
+            MainPage = new Login(vm);
+            ////  
+            InitializeComponent();
+
         }
     }
 }
