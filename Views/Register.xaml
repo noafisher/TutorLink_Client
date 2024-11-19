@@ -51,27 +51,27 @@
 
                 <Label
                     x:Name="name_lbl"
-                    Grid.Column="1"
+                    Grid.Column="0"
                     Grid.Row="0"
                     Margin="15"
-                    Text="שם פרטי"
+                    Text="First Name:"
                     TextColor="MidnightBlue" 
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                 />
                 <Entry
-                    Grid.Column="0"
+                    Grid.Column="1"
                     Grid.Row="0"
                     TextColor="MidnightBlue" 
-                    Placeholder="הקלד שם פרטי"
+                    Placeholder="Enter first name"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                      />
                 <!--Text="{Binding Name, Mode=TwoWay}"-->
                 <Label
-                    Text="שם משפחה"
+                    Text="Last name:"
                     Grid.Row="1"
-                    Grid.Column="1"
+                    Grid.Column="0"
                     Margin="1"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
@@ -79,25 +79,25 @@
                 <!--Text="{Binding User_Error}"-->
                 <Entry
                     Grid.Row="1"
-                    Grid.Column="0"
+                    Grid.Column="1"
                     Keyboard="Email"
-                    Placeholder="הקלד אימייל"
+                    Placeholder="Enter last name"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                      />
                 <Label
                     x:Name="email_lbl"
                     Grid.Row="2"
-                    Grid.Column="1"
+                    Grid.Column="0"
                     Margin="15"
-                    Text="אימייל"
+                    Text="Email:"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"/>
                 <Entry
                     Grid.Row="2"
-                    Grid.Column="0"
+                    Grid.Column="1"
                     Keyboard="Email"
-                    Placeholder="הקלד אימייל"
+                    Placeholder="Enter email"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                      />
@@ -105,17 +105,17 @@
                 <Label
                     x:Name="password_lbl"
                     Grid.Row="3"
-                    Grid.Column="1"
+                    Grid.Column="0"
                     Margin="15"
                     FlowDirection="RightToLeft"
-                    Text="סיסמא"
+                    Text="Password:"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"/>
                 <Entry
                     Grid.Row="3"
-                    Grid.Column="0"
+                    Grid.Column="1"
                     Keyboard="Chat"
-                    Placeholder="הקלד סיסמא"
+                    Placeholder="Enter password"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"/>
                 <!--Text="{Binding Password, Mode=TwoWay}" -->
@@ -126,7 +126,7 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Margin="15"
-                    Text="בחר את סוג המשתמש:"
+                    Text="Choose user type:"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"/>
 
@@ -137,7 +137,8 @@
                     Margin="5"
 
                     GroupName="Role Selection"
-                    Content="מורה" />
+                    Content="Teacher" />
+                
                 <RadioButton
                     Grid.Row="5"
                     Grid.Column="1"
@@ -145,7 +146,7 @@
                     Margin="5"
 
                     GroupName="Role Selection"
-                    Content="תלמיד" />
+                    Content="Student" />
 
                 <Button
                     Grid.Row="6"
@@ -154,7 +155,7 @@
                     BackgroundColor="MidnightBlue"
                     Command="{Binding RegistrationCommand}"
                     IsEnabled="{Binding CanRegister}"
-                   Text="צור משתמש" 
+                   Text="Create user" 
                     Margin="5"
                     />
                 
@@ -163,7 +164,7 @@
                     Grid.Row="7"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Text="יש לך משתמש? הקש כדי להתחבר!"
+                    Text="Already have an account? login!"
                     BackgroundColor="MidnightBlue"
                     Margin="5"
                     />

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:TutorLinkClient.ViewModels"
              x:Class="TutorLinkClient.Views.Login"
+             x:DataType="viewmodels:LoginViewModel"
              Title="Login">
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
 
@@ -19,23 +21,30 @@
         Text="Login Page"
         TextColor="LightSkyBlue" />
 
-        <Entry FontFamily="miriwin-webfont"
-        Placeholder="הכנס אימייל"
+        <Entry FontFamily="Overlock-Regular"
+        Placeholder="Enter email"
         PlaceholderColor="MidnightBlue"
-        Text="{Binding Email}"/>
-        
-        <Entry FontFamily="miriwin-webfont"
+        Text="{Binding Email}"
+        IsEnabled="{Binding NotInServerCall}"       
+        />
+
+        <Entry FontFamily="Overlock-Regular"
         IsPassword="True"
-        Placeholder="הכנס סיסמה"
+        Placeholder="Enter password"
         PlaceholderColor="MidnightBlue"
-        Text="{Binding Password}" />
-        <Button
-            
-         BackgroundColor="LightSteelBlue"   
+        Text="{Binding Password}"
+          IsEnabled="{Binding NotInServerCall}"      
+               />
+        <Button  
+        BackgroundColor="MidnightBlue"   
         x:Name="login"
         Command="{Binding LoginCommand}"
-        Text="התחבר"
-        WidthRequest="150" />
+        Text="Login"
+        WidthRequest="150"
+        IsEnabled="{Binding NotInServerCall}"
+            Margin="5"
+            />
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="RoyalBlue"></ActivityIndicator>
 
 
     </VerticalStackLayout>

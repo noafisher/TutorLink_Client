@@ -1,18 +1,20 @@
 using Microsoft.Extensions.DependencyInjection;
 using TutorLinkClient.Services;
+using TutorLinkClient.Models;
 
 namespace TutorLinkClient.ViewModels;
 
 public class LoginViewModel : ViewModelBase
 {
-	private string name;
+	private string email;
 	private string password;
 
-	public string Name{ get { return name; } set { name = value; OnPropertyChanged(); } }
+	public string Email{ get { return email; } set { email = value; OnPropertyChanged(); } }
 	public string Password{ get { return password; } set { password = value; OnPropertyChanged(); } }
     public Command LoginCommand { get; set; }
 
 	private TutorLinkWebAPIProxy proxy;
+    private IServiceProvider serviceProvider;
 	public LoginViewModel(TutorLinkWebAPIProxy proxy)
 	{
 		this.proxy = proxy;
@@ -28,8 +30,8 @@ public class LoginViewModel : ViewModelBase
         InServerCall = true;
         ErrorMsg = "";
         //Call the server to login
-        LoginInfo loginInfo = new LoginInfo { Email = Email, Password = Password };
-        AppUser? u = await this.proxy.LoginAsync(loginInfo);
+        LoginInfoDTO loginInfo = new LoginInfoDTO { Email = Email, Password = Password };
+        UserDTO? u = await this.proxy.LoginAsync(loginInfo);
 
         InServerCall = false;
 
@@ -44,11 +46,11 @@ public class LoginViewModel : ViewModelBase
             ErrorMsg = "";
             //Navigate to the main page
             AppShell shell = serviceProvider.GetService<AppShell>();
-            TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
-            tasksViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
+            //TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
+            //tasksViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
             ((App)Application.Current).MainPage = shell;
             Shell.Current.FlyoutIsPresented = false; //close the flyout
-            Shell.Current.GoToAsync("Tasks"); //Navigate to the Tasks tab page
+            //Shell.Current.GoToAsync("Tasks"); //Navigate to the Tasks tab page
         }
     }
 

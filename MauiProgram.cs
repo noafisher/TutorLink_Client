@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using TutorLinkClient.Views;
 using TutorLinkClient.ViewModels;
+using TutorLinkClient.Services;
 
 
 namespace TutorLinkClient
@@ -18,15 +19,19 @@ namespace TutorLinkClient
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("Kalam-Regular.ttf", "Kalam-Regular");
                     fonts.AddFont("miriwin-webfont.ttf", "miriwin-webfont");
+                    fonts.AddFont("Overlock-Regular.ttf", "Overlock-Regular");
+
 
 
                 });
 
             //login
-            builder.Services.AddSingleton<Login>();
-            builder.Services.AddSingleton<LoginViewModel>();
-            builder.Services.AddSingleton<Register>();
-            builder.Services.AddSingleton<RegisterViewModel>();
+            builder.Services.AddTransient<Login>();
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<Register>();
+            builder.Services.AddTransient<RegisterViewModel>();
+
+            builder.Services.AddSingleton<TutorLinkWebAPIProxy>();
 
 
 #if DEBUG

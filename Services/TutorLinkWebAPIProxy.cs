@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using TutorLinkClient.Models;
 
 namespace TutorLinkClient.Services
 {
@@ -41,7 +42,7 @@ namespace TutorLinkClient.Services
             this.baseUrl = BaseAddress;
         }
 
-        public async Task<AppUser?> LoginAsync(LoginInfoDTO userInfo)
+        public async Task<UserDTO?> LoginAsync(LoginInfoDTO userInfo)
         {
             //Set URI to the specific function API
             string url = $"{this.baseUrl}login";
@@ -61,7 +62,7 @@ namespace TutorLinkClient.Services
                     {
                         PropertyNameCaseInsensitive = true
                     };
-                    AppUser? result = JsonSerializer.Deserialize<AppUser>(resContent, options);
+                    UserDTO? result = JsonSerializer.Deserialize<UserDTO>(resContent, options);
                     return result;
                 }
                 else
