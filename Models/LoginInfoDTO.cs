@@ -9,6 +9,6 @@ namespace TutorLinkClient.Models
     public class LoginInfoDTO
     {
         public string Email { get; set; }
-        public string Password { get; set; }
+        public string Pass { get; set; }
     }
 }

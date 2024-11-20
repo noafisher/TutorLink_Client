@@ -42,8 +42,12 @@
         Text="Login"
         WidthRequest="150"
         IsEnabled="{Binding NotInServerCall}"
+            
             Margin="5"
             />
+
+        <Label Text="{Binding ErrorMsg}" TextColor="Red" HorizontalOptions="Center"></Label>
+
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="RoyalBlue"></ActivityIndicator>
 
 

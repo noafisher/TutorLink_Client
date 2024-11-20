@@ -22,15 +22,18 @@ public class LoginViewModel : ViewModelBase
 	}
 
     private string errorMsg;
-    public string ErrorMsg { get => errorMsg; set { if (errorMsg != value) { errorMsg = value; OnPropertyChanged(nameof(ErrorMsg));} } }
-
-    private async void OnLogin()
+    public string ErrorMsg
     {
+        get { return email; }
+        set { email = value; OnPropertyChanged(); }
+    }
+    private async void OnLogin()
+        {
         //Choose the way you want to blobk the page while indicating a server call
         InServerCall = true;
         ErrorMsg = "";
         //Call the server to login
-        LoginInfoDTO loginInfo = new LoginInfoDTO { Email = Email, Password = Password };
+        LoginInfoDTO loginInfo = new LoginInfoDTO { Email = Email, Pass = Password };
         UserDTO? u = await this.proxy.LoginAsync(loginInfo);
 
         InServerCall = false;

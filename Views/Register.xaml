@@ -55,7 +55,7 @@
                     Grid.Row="0"
                     Margin="15"
                     Text="First Name:"
-                    TextColor="MidnightBlue" 
+                    
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                 />
@@ -75,7 +75,7 @@
                     Margin="1"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    TextColor="MidnightBlue" />
+                     />
                 <!--Text="{Binding User_Error}"-->
                 <Entry
                     Grid.Row="1"

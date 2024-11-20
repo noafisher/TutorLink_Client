@@ -9,11 +9,11 @@ namespace TutorLinkClient
     {
         public UserDTO? LoggedInUser { get; set; }
 
-        public App(RegisterViewModel vm)
+        public App( LoginViewModel vm)
         {
 
             //MainPage = new AppShell();
-            MainPage = new Register(vm);
+            MainPage = new Login(vm);
             LoggedInUser = null;
             InitializeComponent();
 
