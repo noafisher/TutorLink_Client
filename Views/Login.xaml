@@ -46,6 +46,16 @@
             Margin="5"
             />
 
+        <Button
+    Grid.Row="7"
+    Grid.Column="0"
+    Grid.ColumnSpan="2"
+    Text="Don't have an account? create!"
+        Command="{Binding RegisterCommand}"
+    BackgroundColor="MidnightBlue"
+    Margin="5"
+    />
+
         <Label Text="{Binding ErrorMsg}" TextColor="Red" HorizontalOptions="Center"></Label>
 
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="RoyalBlue"></ActivityIndicator>

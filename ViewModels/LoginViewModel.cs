@@ -1,6 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using TutorLinkClient.Services;
 using TutorLinkClient.Models;
+using System.Windows.Input;
+using Microsoft.Win32;
+using TutorLinkClient.Views;
 
 namespace TutorLinkClient.ViewModels;
 
@@ -12,14 +15,22 @@ public class LoginViewModel : ViewModelBase
 	public string Email{ get { return email; } set { email = value; OnPropertyChanged(); } }
 	public string Password{ get { return password; } set { password = value; OnPropertyChanged(); } }
     public Command LoginCommand { get; set; }
+    public ICommand RegisterCommand { get; }
 
-	private TutorLinkWebAPIProxy proxy;
+
+    private TutorLinkWebAPIProxy proxy;
     private IServiceProvider serviceProvider;
-	public LoginViewModel(TutorLinkWebAPIProxy proxy)
+	public LoginViewModel(TutorLinkWebAPIProxy proxy, IServiceProvider serviceProvider)
 	{
-		this.proxy = proxy;
+        this.serviceProvider = serviceProvider;
+        this.proxy = proxy;
 		LoginCommand = new Command(OnLogin);
-	}
+        RegisterCommand = new Command(OnRegister);
+        ErrorMsg = "";
+        Email = "";
+        Password = "";
+        InServerCall = false;
+    }
 
     private string errorMsg;
     public string ErrorMsg
@@ -56,6 +67,16 @@ public class LoginViewModel : ViewModelBase
             //Shell.Current.GoToAsync("Tasks"); //Navigate to the Tasks tab page
         }
     }
+
+    private void OnRegister()
+    {
+        ErrorMsg = "";
+        Email = "";
+        Password = "";
+        // Navigate to the Register View page
+        ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<Register>());
+    }
+
 
 
 }
