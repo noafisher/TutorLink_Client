@@ -5,7 +5,7 @@
              x:Class="TutorLinkClient.Views.Login"
              x:DataType="viewmodels:LoginViewModel"
              Title="Login">
-    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" RadioButtonGroup.GroupName="Role Selection" RadioButtonGroup.SelectedValue="{Binding TeacherOrStudent}">
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" RadioButtonGroup.GroupName="Role Selection" RadioButtonGroup.SelectedValue="{Binding IsStudent}">
 
         <Label
         FontFamily="Kalam-Regular"

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TutorLinkClient.ViewModels
 {
-    public class ViewModelBase
+    public class ViewModelBase : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
 

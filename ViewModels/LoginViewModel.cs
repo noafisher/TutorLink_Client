@@ -11,12 +11,12 @@ public class LoginViewModel : ViewModelBase
 {
 	private string email;
 	private string password;
-    private bool teacherOrStudent;
+    private bool isStudent;
 
 
     public string Email{ get { return email; } set { email = value; OnPropertyChanged(); } }
 	public string Password{ get { return password; } set { password = value; OnPropertyChanged(); } }
-    public bool TeacherOrStudent { get { return teacherOrStudent; } set { teacherOrStudent = value; OnPropertyChanged(); } }
+    public bool IsStudent { get { return isStudent; } set { isStudent = value; OnPropertyChanged(); } }
     public ICommand LoginCommand { get; set; }
     public ICommand RegisterCommand { get; }
 
@@ -44,7 +44,7 @@ public class LoginViewModel : ViewModelBase
         InServerCall = true;
         ErrorMsg = "";
         //Call the server to login - teacher 
-        if (!TeacherOrStudent)
+        if (!isStudent)
         {
             LoginInfoDTO loginInfo = new LoginInfoDTO { Email = Email, Password = Password };
             TeacherDTO? u = await this.proxy.LoginTeacherAsync(loginInfo);
