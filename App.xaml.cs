@@ -7,14 +7,17 @@ namespace TutorLinkClient
 {
     public partial class App : Application
     {
-        public UserDTO? LoggedInUser { get; set; }
+        public TeacherDTO? LoggedInTeacher { get; set; }
+        public StudentDTO? LoggedInStudent { get; set; }
 
-        public App( LoginViewModel vm)
+
+        public App(LoginViewModel vm)
         {
 
             //MainPage = new AppShell();
             MainPage = new Login(vm);
-            LoggedInUser = null;
+            LoggedInTeacher = null;
+            LoggedInStudent = null;
             InitializeComponent();
 
         }

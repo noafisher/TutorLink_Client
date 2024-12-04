@@ -5,7 +5,7 @@
              x:Class="TutorLinkClient.Views.Login"
              x:DataType="viewmodels:LoginViewModel"
              Title="Login">
-    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" RadioButtonGroup.GroupName="Role Selection" RadioButtonGroup.SelectedValue="{Binding TeacherOrStudent}">
 
         <Label
         FontFamily="Kalam-Regular"
@@ -21,20 +21,39 @@
         Text="Login Page"
         TextColor="LightSkyBlue" />
 
-        <Entry FontFamily="Overlock-Regular"
+        <Entry 
         Placeholder="Enter email"
         PlaceholderColor="MidnightBlue"
         Text="{Binding Email}"
         IsEnabled="{Binding NotInServerCall}"       
         />
 
-        <Entry FontFamily="Overlock-Regular"
+        <Entry 
         IsPassword="True"
         Placeholder="Enter password"
         PlaceholderColor="MidnightBlue"
         Text="{Binding Password}"
           IsEnabled="{Binding NotInServerCall}"      
                />
+
+        <RadioButton
+            x:Name="Teacher"
+            Margin="5"
+            GroupName="Role Selection"
+            Content="Teacher" 
+            Value="false"
+            />
+
+        <RadioButton
+            x:Name="Student"
+            Margin="5"
+            GroupName="Role Selection"
+            Content="Student" 
+            Value="true"
+
+            />    
+
+
         <Button  
         BackgroundColor="MidnightBlue"   
         x:Name="login"

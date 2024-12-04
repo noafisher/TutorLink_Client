@@ -28,7 +28,7 @@ namespace TutorLinkClient.Services
         private static string serverIP = "https://05smzxlj-5049.euw.devtunnels.ms";
         private HttpClient client;
         private string baseUrl;
-        public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms//api/";
+        public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/api/";
         private static string ImageBaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/";
         #endregion
 
@@ -42,13 +42,13 @@ namespace TutorLinkClient.Services
             this.baseUrl = BaseAddress;
         }
 
-        public async Task<UserDTO?> LoginAsync(LoginInfoDTO userInfo)
+        public async Task<TeacherDTO?> LoginTeacherAsync(LoginInfoDTO userInfo)
         {
-            //Set URI to the specific function API
-            string url = $"{this.baseUrl}login";
+            //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
+            string url = $"{this.baseUrl}loginTeacher";
             try
             {
-                //Call the server API
+                //Call the server API - מעביר את האובייקט לשרת
                 string json = JsonSerializer.Serialize(userInfo);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync(url, content);
@@ -62,7 +62,112 @@ namespace TutorLinkClient.Services
                     {
                         PropertyNameCaseInsensitive = true
                     };
-                    UserDTO? result = JsonSerializer.Deserialize<UserDTO>(resContent, options);
+                    TeacherDTO? result = JsonSerializer.Deserialize<TeacherDTO>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<StudentDTO?> LoginStudentAsync(LoginInfoDTO userInfo)
+        {
+            //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
+            string url = $"{this.baseUrl}loginStudent";
+            try
+            {
+                //Call the server API - מעביר את האובייקט לשרת 
+                string json = JsonSerializer.Serialize(userInfo);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    StudentDTO? result = JsonSerializer.Deserialize<StudentDTO>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+                }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<TeacherDTO?> RegisterTeacherAsync(TeacherDTO teacher)
+        {
+            //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
+            string url = $"{this.baseUrl}registerTeacher";
+            try
+            {
+                //Call the server API - מעביר את האובייקט לשרת
+                string json = JsonSerializer.Serialize(teacher);
+                //
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    TeacherDTO? result = JsonSerializer.Deserialize<TeacherDTO>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<StudentDTO?> RegisterStudentAsync(StudentDTO student)
+        {
+            //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
+            string url = $"{this.baseUrl}RegisterStudent";
+            try
+            {
+                //Call the server API - מעביר את האובייקט לשרת
+                string json = JsonSerializer.Serialize(student);
+                //
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    StudentDTO? result = JsonSerializer.Deserialize<StudentDTO>(resContent, options);
                     return result;
                 }
                 else
@@ -77,5 +182,6 @@ namespace TutorLinkClient.Services
         }
 
     }
+
 
 }
