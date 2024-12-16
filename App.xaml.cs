@@ -11,11 +11,11 @@ namespace TutorLinkClient
         public StudentDTO? LoggedInStudent { get; set; }
 
 
-        public App(RegisterViewModel vm)
+        public App(IServiceProvider serviceProvider)
         {
 
             //MainPage = new AppShell();
-            MainPage = new Register(vm);
+            MainPage = new NavigationPage(serviceProvider.GetService<Login>());
             LoggedInTeacher = null;
             LoggedInStudent = null;
             InitializeComponent();

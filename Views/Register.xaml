@@ -42,12 +42,6 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -69,8 +63,11 @@
                     HorizontalOptions="Center"
                     Placeholder="Enter first name"
                     TextColor="MidnightBlue"
-                    VerticalOptions="Center" />
-                <!--  Text="{Binding Name, Mode=TwoWay}"  -->
+                    VerticalOptions="Center" 
+                    Text="{Binding FirstName}"
+                    />
+
+                
                 <Label
                     Grid.Row="1"
                     Grid.Column="0"
@@ -78,14 +75,17 @@
                     HorizontalOptions="Center"
                     Text="Last name:"
                     VerticalOptions="Center" />
-                <!--  Text="{Binding User_Error}"  -->
+
                 <Entry
                     Grid.Row="1"
                     Grid.Column="1"
                     HorizontalOptions="Center"
                     Keyboard="Email"
                     Placeholder="Enter last name"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center"
+                    Text="{Binding LasttName}"
+
+                    />
                 <Label
                     x:Name="email_lbl"
                     Grid.Row="2"
@@ -100,8 +100,10 @@
                     HorizontalOptions="Center"
                     Keyboard="Email"
                     Placeholder="Enter email"
-                    VerticalOptions="Center" />
-                <!--  Text="{Binding Email, Mode=TwoWay}"  -->
+                    VerticalOptions="Center"
+                    Text="{Binding Email}"
+                    />
+
                 <Label
                     x:Name="password_lbl"
                     Grid.Row="3"
@@ -110,15 +112,17 @@
                     FlowDirection="RightToLeft"
                     HorizontalOptions="Center"
                     Text="Password:"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center"
+                    />
                 <Entry
                     Grid.Row="3"
                     Grid.Column="1"
                     HorizontalOptions="Center"
                     Keyboard="Chat"
                     Placeholder="Enter password"
-                    VerticalOptions="Center" />
-                <!--  Text="{Binding Password, Mode=TwoWay}"  -->
+                    VerticalOptions="Center"
+                    Text="{Binding Password}"
+                    />
 
                 <Label
                     Grid.Row="4"
@@ -134,7 +138,9 @@
                     Grid.Column="1"
                     HorizontalOptions="Center"
                     Placeholder="Enter Address"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center"                     
+                    Text="{Binding Address}"
+                        />
 
                 <!--  בחירת סוג משתמש  -->
                 <Label
@@ -148,89 +154,26 @@
 
                 <RadioButton
                     x:Name="Teacher"
-                    Grid.Row="7"
+                    Grid.Row="6"
                     Grid.Column="0"
                     Margin="5"
                     Content="Teacher"
-                    GroupName="Role Selection" />
+                    GroupName="Role Selection"
+                    
+                    />
 
                 <RadioButton
                     x:Name="Student"
-                    Grid.Row="7"
+                    Grid.Row="6"
                     Grid.Column="1"
                     Margin="5"
                     Content="Student"
                     GroupName="Role Selection" />
 
-                <Label
-                    Grid.Row="7"
-                    Grid.Column="0"
-                    Margin="5"
-                    HorizontalOptions="Center"
-                    IsVisible="{Binding IsTeacherChecked}"
-                    Text="Distance"
-                    VerticalOptions="Center" />
-
-                <Entry
-                    Grid.Row="7"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    IsVisible="{Binding IsTeacherChecked}"
-                    Placeholder="Enter The Maximum Distance For You "
-                    VerticalOptions="Center" />
-
-
-                <Label
-                    Grid.Row="8"
-                    Grid.Column="0"
-                    Margin="5"
-                    HorizontalOptions="Center"
-                    IsVisible="{Binding IsTeacherChecked}"
-                    Text="Are you going to"
-                    VerticalOptions="Center" />
-
-                <Entry
-                    Grid.Row="8"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    IsVisible="{Binding IsTeacherChecked}"
-                    Placeholder="Enter The Maximum Distance For You "
-                    VerticalOptions="Center" />
-
-                <Button
-                    Grid.Row="11"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="5"
-                    BackgroundColor="MidnightBlue"
-                    Command="{Binding RegistrationCommand}"
-                    IsEnabled="{Binding CanRegister}"
-                    Text="Create user" />
-
-
-                <Button
-                    Grid.Row="12"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="5"
-                    BackgroundColor="MidnightBlue"
-                    Text="Already have an account? login!" />
-
             </Grid>
 
 
-
-
-
-
-
-
-
-
         </ScrollView>
-
-
-
-
     </StackLayout>
+
 </ContentPage>
