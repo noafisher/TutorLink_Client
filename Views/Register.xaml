@@ -9,7 +9,6 @@
 
     <StackLayout VerticalOptions="FillAndExpand">
 
-        <Image Source="imagepage.jpeg" WidthRequest="100" />
 
 
         <Label
@@ -32,146 +31,162 @@
             HorizontalScrollBarVisibility="Always"
             VerticalOptions="FillAndExpand"
             VerticalScrollBarVisibility="Always">
-
-            <Grid HorizontalOptions="Center" VerticalOptions="StartAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <Label
-                    x:Name="name_lbl"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="15"
-                    HorizontalOptions="Center"
-                    Text="First Name:"
-                    VerticalOptions="Center" />
-                <Entry
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    Placeholder="Enter first name"
-                    TextColor="MidnightBlue"
-                    VerticalOptions="Center" 
-                    Text="{Binding FirstName}"
+            <VerticalStackLayout>
+                <HorizontalStackLayout RadioButtonGroup.GroupName="RoleSelection" RadioButtonGroup.SelectedValue="{Binding IsStudent}">
+                <Label Text="I am a "  Style="{StaticResource labelNameStyle}" />
+                <RadioButton
+                x:Name="Teacher"
+                Margin="5"
+                GroupName="RoleSelection"
+                Content="Teacher" 
+                Value="False"
                     />
-
-                
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Margin="1"
-                    HorizontalOptions="Center"
-                    Text="Last name:"
-                    VerticalOptions="Center" />
-
-                <Entry
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    Keyboard="Email"
-                    Placeholder="Enter last name"
-                    VerticalOptions="Center"
-                    Text="{Binding LasttName}"
-
-                    />
-                <Label
-                    x:Name="email_lbl"
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Margin="15"
-                    HorizontalOptions="Center"
-                    Text="Email:"
-                    VerticalOptions="Center" />
-                <Entry
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    Keyboard="Email"
-                    Placeholder="Enter email"
-                    VerticalOptions="Center"
-                    Text="{Binding Email}"
-                    />
-
-                <Label
-                    x:Name="password_lbl"
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Margin="15"
-                    FlowDirection="RightToLeft"
-                    HorizontalOptions="Center"
-                    Text="Password:"
-                    VerticalOptions="Center"
-                    />
-                <Entry
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    Keyboard="Chat"
-                    Placeholder="Enter password"
-                    VerticalOptions="Center"
-                    Text="{Binding Password}"
-                    />
-
-                <Label
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Margin="15"
-                    HorizontalOptions="Center"
-                    Text="Address:"
-                    VerticalOptions="Center" />
-
-
-                <Entry
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    Placeholder="Enter Address"
-                    VerticalOptions="Center"                     
-                    Text="{Binding Address}"
-                        />
-
-                <!--  בחירת סוג משתמש  -->
-                <Label
-                    Grid.Row="5"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="15"
-                    HorizontalOptions="Center"
-                    Text="Choose user type:"
-                    VerticalOptions="Center" />
 
                 <RadioButton
-                    x:Name="Teacher"
-                    Grid.Row="6"
-                    Grid.Column="0"
-                    Margin="5"
-                    Content="Teacher"
-                    GroupName="Role Selection"
+                 x:Name="Student"
+                 Margin="5"
+                 GroupName="RoleSelection"
+                 Content="Student" 
+                 Value="True"
+                    />
                     
-                    />
-
-                <RadioButton
-                    x:Name="Student"
-                    Grid.Row="6"
-                    Grid.Column="1"
-                    Margin="5"
-                    Content="Student"
-                    GroupName="Role Selection" />
-
+                    
+                </HorizontalStackLayout>
+                <!-- First Name -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="First Name:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                <Label Text="{Binding FirstNameError}" IsVisible="{Binding ShowFirstNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
             </Grid>
+            <Entry Placeholder="Type First Name" Text="{Binding FirstName}" Style="{StaticResource entryStyle}" />
 
+             <!-- Last Name -->
+            <Grid>
+                 <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                 </Grid.ColumnDefinitions>
+                  <Label Text="Last Name:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                  <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                </Grid>
+                <Entry Placeholder="Type Last Name" Text="{Binding LastName}" Style="{StaticResource entryStyle}" />
+
+                <!-- Email -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Email:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                    <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                </Grid>
+                <Entry Placeholder="Type Email" Text="{Binding Email}" Style="{StaticResource entryStyle}" />
+
+                <!-- Password -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Password:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                    <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                </Grid>
+                <Entry Placeholder="Type Password" Text="{Binding Password}" Style="{StaticResource entryStyle}" />
+
+                <!-- Address -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Address:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                    <Label Text="{Binding AddressError}" IsVisible="{Binding ShowAddressError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                </Grid>
+                <Entry Placeholder="Type Address" Text="{Binding Address}" Style="{StaticResource entryStyle}" />
+
+                <!-- These filds are visible for students only -->
+                <VerticalStackLayout IsVisible="{Binding IsStudent}">
+                    <!-- current class -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Class:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                        <Label Text="{Binding CurrentClassError}" IsVisible="{Binding ShowCurrentClassError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    </Grid>
+                    <Entry Placeholder="Type class" Text="{Binding CurrentClass}" Style="{StaticResource entryStyle}" />
+                </VerticalStackLayout>
+
+                <!-- These filds are visible for teachers only -->
+
+                <VerticalStackLayout IsVisible="{Binding IsTeacher}">
+                    
+                    <!-- Max Distance -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Distance:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                        <Label Text="{Binding MaxDistanceError}" IsVisible="{Binding ShowMaxDistanceError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    </Grid>
+                    <Entry Placeholder="Type the max distance" Text="{Binding MaxDistance}" Style="{StaticResource entryStyle}" />
+                    
+                    
+                    <!--Vetek -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Seniority:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                        <Label Text="{Binding VetekError}" IsVisible="{Binding ShowVetekError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    </Grid>
+                    <Entry Placeholder="Type seniority" Text="{Binding Vetek}" Style="{StaticResource entryStyle}" />
+
+
+                    <!--price per hour  -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Price per hour::" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                        <Label Text="{Binding PricePerHourError}" IsVisible="{Binding ShowPricePerHourError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    </Grid>
+                    <Entry Placeholder="Type price" Text="{Binding PricePerHour}" Style="{StaticResource entryStyle}" />
+
+                    <!--price per hour  -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="I Teach at:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
+                        <Label Text="{Binding TeachAtError}" IsVisible="{Binding ShowTeachAtError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    </Grid>
+                    <HorizontalStackLayout>
+                        <Label Text="My Home" Style="{StaticResource labelNameStyle}"/>
+                        <CheckBox IsChecked="{Binding TeachAtHome}"/>
+                         <Label Text="Student Home" Style="{StaticResource labelNameStyle}"/>
+                    <CheckBox IsChecked="{Binding GoToStudent}"/>
+                        </HorizontalStackLayout>
+                </VerticalStackLayout>
+                <Button  
+Command="{Binding RegisterCommand}"
+Text="Create Account"
+WidthRequest="250"
+IsEnabled="{Binding NotInServerCall}"
+        Style="{StaticResource buttonStyle}"
+
+    
+ 
+    />
+            </VerticalStackLayout>
 
         </ScrollView>
     </StackLayout>

@@ -13,12 +13,12 @@ namespace TutorLinkClient
 
         public App(IServiceProvider serviceProvider)
         {
-
+            InitializeComponent();
             //MainPage = new AppShell();
             MainPage = new NavigationPage(serviceProvider.GetService<Login>());
             LoggedInTeacher = null;
             LoggedInStudent = null;
-            InitializeComponent();
+            
 
         }
     }

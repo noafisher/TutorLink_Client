@@ -5,7 +5,7 @@
              x:Class="TutorLinkClient.Views.Login"
              x:DataType="viewmodels:LoginViewModel"
              Title="Login">
-    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" RadioButtonGroup.GroupName="Role Selection" RadioButtonGroup.SelectedValue="{Binding IsStudent}">
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" RadioButtonGroup.GroupName="RoleSelection" RadioButtonGroup.SelectedValue="{Binding IsStudent}">
 
         <Label
         FontFamily="Kalam-Regular"
@@ -39,7 +39,7 @@
         <RadioButton
             x:Name="Teacher"
             Margin="5"
-            GroupName="Role Selection"
+            GroupName="RoleSelection"
             Content="Teacher" 
             Value="false"
             />
@@ -47,7 +47,7 @@
         <RadioButton
             x:Name="Student"
             Margin="5"
-            GroupName="Role Selection"
+            GroupName="RoleSelection"
             Content="Student" 
             Value="true"
 
@@ -55,14 +55,15 @@
 
 
         <Button  
-        BackgroundColor="MidnightBlue"   
         x:Name="login"
         Command="{Binding LoginCommand}"
         Text="Login"
         WidthRequest="150"
         IsEnabled="{Binding NotInServerCall}"
+                Style="{StaticResource buttonStyle}"
+
             
-            Margin="5"
+         
             />
 
         <Button
@@ -70,12 +71,13 @@
     Grid.Column="0"
     Grid.ColumnSpan="2"
     Text="Don't have an account? create!"
-        Command="{Binding RegisterCommand}"
-    BackgroundColor="MidnightBlue"
-    Margin="5"
+    Command="{Binding RegisterCommand}"
+    Style="{StaticResource buttonStyle}"
     />
 
-        <Label Text="{Binding ErrorMsg}" TextColor="Red" HorizontalOptions="Center"></Label>
+        <Label Text="{Binding ErrorMsg}"     Style="{StaticResource labelErrorStyle}" />
+
+
 
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="RoyalBlue"></ActivityIndicator>
 

@@ -49,6 +49,7 @@ public class RegisterViewModel : ViewModelBase
 
     private void ValidateFirstName()
     {
+        this.FirstNameError = "First Name is required!";
         this.ShowFirstNameError = string.IsNullOrEmpty(FirstName);
     }
     #endregion
@@ -93,6 +94,7 @@ public class RegisterViewModel : ViewModelBase
 
     private void ValidateLastName()
     {
+        this.LastNameError = "Last Name is required!";
         this.ShowLastNameError = string.IsNullOrEmpty(LastName);
     }
     #endregion
@@ -138,6 +140,24 @@ public class RegisterViewModel : ViewModelBase
     private void ValidateEmail()
     {
         this.ShowEmailError = string.IsNullOrEmpty(Email);
+        if (!ShowEmailError)
+        {
+            //check if email is in the correct format using regular expression
+            if (!System.Text.RegularExpressions.Regex.IsMatch(Email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            {
+                EmailError = "Email is not valid";
+                ShowEmailError = true;
+            }
+            else
+            {
+                EmailError = "";
+                ShowEmailError = false;
+            }
+        }
+        else
+        {
+            EmailError = "Email is required";
+        }
     }
     #endregion
 
@@ -181,7 +201,17 @@ public class RegisterViewModel : ViewModelBase
 
     private void ValidatePassword()
     {
-        this.ShowPasswordError = string.IsNullOrEmpty(Password);
+
+        //Password must include characters and numbers and be longer than 4 characters
+        if (string.IsNullOrEmpty(password) ||
+            password.Length < 4 ||
+            !password.Any(char.IsDigit) ||
+            !password.Any(char.IsLetter))
+        {
+            this.ShowPasswordError = true;
+        }
+        else
+            this.ShowPasswordError = false;
     }
     #endregion
 
@@ -225,6 +255,7 @@ public class RegisterViewModel : ViewModelBase
 
     private void ValidateAddress()
     {
+        this.AddressError = "Addres is required ";
         this.ShowAddressError = string.IsNullOrEmpty(Address);
     }
     #endregion  
@@ -256,9 +287,9 @@ public class RegisterViewModel : ViewModelBase
         }
     }
 
-    private int currentClassError;
+    private string currentClassError;
 
-    public int CurrentClassError
+    public string CurrentClassError
     {
         get => currentClassError;
         set
@@ -271,10 +302,12 @@ public class RegisterViewModel : ViewModelBase
     private void ValidateCurrentClass()
     {
         if (currentClass < 1 || currentClass > 12)
-            this.showCurrentClassError = true;
-
+        {
+            this.ShowCurrentClassError = true;
+            this.CurrentClassError = "Class must be between 1 to 12!";
+        }
         else
-            this.showCurrentClassError = false; }
+            this.ShowCurrentClassError = false; }
 
     #endregion
 
@@ -321,27 +354,19 @@ public class RegisterViewModel : ViewModelBase
     private void ValidateMaxDistance()
     {
         if (maxDistance < 0)
-            this.showMaxDistanceError = true;
+        {
+            this.ShowMaxDistanceError = true;
+            this.MaxDistanceError = "Distance is not valid";
+        }
 
-        else 
+        else
             this.ShowMaxDistanceError = false;
         
     }
     #endregion
 
-    //ולדיציה טיפוס בוליאני
     #region GoToStudent
-    private bool showGoToStudentError;
-
-    public bool ShowGoToStudentError
-    {
-        get => showGoToStudentError;
-        set
-        {
-            showGoToStudentError = value;
-            OnPropertyChanged("ShowGoToStudentError");
-        }
-    }
+    
 
     private bool goToStudent;
 
@@ -351,40 +376,24 @@ public class RegisterViewModel : ViewModelBase
         set
         {
             goToStudent = value;
-            ValidateGoToStudent();
+            ValidateTeachAt();
             OnPropertyChanged("GoToStudent");
         }
     }
 
-    private bool goToStudentError;
-
-    public bool GoToStudentError
-    {
-        get => goToStudentError;
-        set
-        {
-            goToStudentError = value;
-            OnPropertyChanged("GoToStudentError");
-        }
-    }
-
-    private void ValidateGoToStudent()
-    {
-        this.ShowGoToStudentError = false;
-
-    }
+    
     #endregion
 
     #region TeachAtHome
-    private bool showTeachAtHomeError;
+    private bool showTeachAtError;
 
-    public bool ShowTeachAtHomeError
+    public bool ShowTeachAtError
     {
-        get => showTeachAtHomeError;
+        get => showTeachAtError;
         set
         {
-            showTeachAtHomeError = value;
-            OnPropertyChanged("ShowTeachAtHomeError");
+            showTeachAtError = value;
+            OnPropertyChanged();
         }
     }
 
@@ -396,26 +405,30 @@ public class RegisterViewModel : ViewModelBase
         set
         {
             teachAtHome = value;
-            ValidateTeachAtHome();
+            ValidateTeachAt();
             OnPropertyChanged("TeachAtHome");
         }
     }
 
-    private bool teachAtHomeError;
+    private string teachAtError;
 
-    public bool TeachAtHomeError
+    public string TeachAtError
     {
-        get => teachAtHomeError;
+        get => teachAtError;
         set
         {
-            teachAtHomeError = value;
-            OnPropertyChanged("TeachAtHomeError");
+            teachAtError = value;
+            OnPropertyChanged("TeachAtError");
         }
     }
 
-    private void ValidateTeachAtHome()
+    private void ValidateTeachAt()
     {
-        this.TeachAtHome = false;
+        TeachAtError = "You must choose one of the options";
+        if (this.TeachAtHome == false && this.GoToStudent == false)
+            ShowTeachAtError = true;
+        else
+            ShowTeachAtError = false;
 
     }
     #endregion
@@ -446,9 +459,9 @@ public class RegisterViewModel : ViewModelBase
         }
     }
 
-    private int vetekError;
+    private string vetekError;
 
-    public int VetekError
+    public string VetekError
     {
         get => vetekError;
         set
@@ -460,11 +473,13 @@ public class RegisterViewModel : ViewModelBase
 
     private void ValidateVetek()
     {
-        if (vetek < 0 || vetek > 50)
-            this.showVetekError = true;
-
+        if (vetek < 0 || vetek > 70)
+        {
+            this.ShowVetekError = true;
+            this.VetekError = "Check the years that you entered again";
+        }
         else
-            this.showVetekError = false;
+            this.ShowVetekError = false;
     }
 
     #endregion
@@ -495,9 +510,9 @@ public class RegisterViewModel : ViewModelBase
         }
     }
 
-    private int pricePerHourError;
+    private string pricePerHourError;
 
-    public int PricePerHourError
+    public string PricePerHourError
     {
         get => pricePerHourError;
         set
@@ -510,10 +525,13 @@ public class RegisterViewModel : ViewModelBase
     private void ValidatePricePerHour()
     {
         if (pricePerHour < 0 || pricePerHour > 250)
-            this.showPricePerHourError = true;
+        {
+            this.ShowPricePerHourError = true;
+            this.PricePerHourError = "The price you enter is out of rage";
+        }
 
         else
-            this.showPricePerHourError = false;
+            this.ShowPricePerHourError = false;
     }
 
     #endregion
