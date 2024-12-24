@@ -60,6 +60,11 @@
 	  <None Remove="Resources\Fonts\Kalam-Regular.ttf" />
 	  <None Remove="Resources\Fonts\miriwin-webfont.ttf" />
 	  <None Remove="Resources\Fonts\Overlock-Regular.ttf" />
+	  <None Remove="Resources\Images\calander.png" />
+	  <None Remove="Resources\Images\chat.png" />
+	  <None Remove="Resources\Images\list.png" />
+	  <None Remove="Resources\Images\rate.png" />
+	  <None Remove="Resources\Images\report.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -69,10 +74,31 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\Calendar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ChatStudent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ChatTeacher.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Login.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\RateTeacher.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Register.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ReportUser.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TeachersList.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UsersList.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

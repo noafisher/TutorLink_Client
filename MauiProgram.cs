@@ -2,6 +2,7 @@
 using TutorLinkClient.Views;
 using TutorLinkClient.ViewModels;
 using TutorLinkClient.Services;
+using System.Globalization;
 
 
 namespace TutorLinkClient
@@ -25,11 +26,27 @@ namespace TutorLinkClient
 
                 });
 
-            //login
+            
             builder.Services.AddTransient<Login>();
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<Register>();
             builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<ChatStudent>();
+            builder.Services.AddTransient<ChatStudentViewModel>();
+            builder.Services.AddTransient<ChatTeacher>();
+            builder.Services.AddTransient<ChatTeacherViewModel>();
+            builder.Services.AddTransient<Views.Calendar>();
+            builder.Services.AddTransient<CalendarViewModel>();
+            builder.Services.AddTransient<RateTeacher>();
+            builder.Services.AddTransient<RateTeacherViewModel>();
+            builder.Services.AddTransient<ReportUser>();
+            builder.Services.AddTransient<ReportUserViewModel>(); 
+            builder.Services.AddTransient<TeachersList>();
+            builder.Services.AddTransient<TeachersListViewModel>();
+            builder.Services.AddTransient<AppShell>();
+            builder.Services.AddTransient<AppShellViewModel>();
+
+
 
             builder.Services.AddSingleton<TutorLinkWebAPIProxy>();
 

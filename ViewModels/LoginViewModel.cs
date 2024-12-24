@@ -62,13 +62,10 @@ public class LoginViewModel : ViewModelBase
             {
                 ErrorMsg = "";
                 //Navigate to the main page
-                //AppShell shell = serviceProvider.GetService<AppShell>();
-                //TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
-                ////tasksViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
-                //((App)Application.Current).MainPage = shell;
-                //Shell.Current.FlyoutIsPresented = false;
-                //close the flyout
-                //Shell.Current.GoToAsync("Tasks"); //Navigate to the Tasks tab page
+                AppShell shell = serviceProvider.GetService<AppShell>();
+                ((App)Application.Current).MainPage = shell;
+                Shell.Current.FlyoutIsPresented = false;
+                
             }
         }
 
@@ -87,13 +84,9 @@ public class LoginViewModel : ViewModelBase
             {
                 ErrorMsg = "";
                 //Navigate to the main page
-                //AppShell shell = serviceProvider.GetService<AppShell>();
-                //TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
-                ////tasksViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
-                //((App)Application.Current).MainPage = shell;
-                //Shell.Current.FlyoutIsPresented = false;
-                //close the flyout
-                //Shell.Current.GoToAsync("Tasks"); //Navigate to the Tasks tab page
+                AppShell shell = serviceProvider.GetService<AppShell>();
+                ((App)Application.Current).MainPage = shell;
+                Shell.Current.FlyoutIsPresented = false;
             }
 
         }

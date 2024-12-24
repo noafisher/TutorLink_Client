@@ -4,12 +4,53 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TutorLinkClient"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:views="clr-namespace:TutorLinkClient.Views"
+    Shell.FlyoutBehavior="Flyout"
     Title="TutorLinkClient">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
+        <ShellContent
+            IsVisible="{Binding IsTeacher}"
+            Title="Chat" Icon="chat.png"
+            ContentTemplate="{DataTemplate views:ChatTeacher}"
+            Route="ChatTeacher" />
+        <ShellContent 
+         IsVisible="{Binding IsStudent}"
+         Title="Teachers" Icon="list.png"
+         ContentTemplate="{DataTemplate views:TeachersList}"
+         Route="TeachersList"
+       />
+        <ShellContent
+             Title="Report" Icon="report.ong"
+             ContentTemplate="{DataTemplate views:ReportUser}"
+            Route="Report"
+                     />
 
+        <ShellContent
+            IsVisible="{Binding IsTeacher}"
+            Title="Calendar" Icon="calender.png"
+            ContentTemplate="{DataTemplate views:Calendar}"
+            Route="Calendar"
+            />
+
+        <ShellContent 
+             IsVisible="{Binding IsStudent}"
+             Title="Chat" Icon="chat.png"
+                ContentTemplate="{DataTemplate views:ChatStudent}"
+                Route="ChatStudent"
+            />
+
+
+   
+        
+        <ShellContent 
+            IsVisible="{Binding IsStudent}"
+            Title="Rate" Icon="rate.png"
+            ContentTemplate="{DataTemplate views:RateTeacher}"
+            Route="RateTeacher"
+          />
+        
+    </FlyoutItem>
+    <MenuItem Text="Logout" Command="{Binding LogoutCommand}"  />
+    
 </Shell>
