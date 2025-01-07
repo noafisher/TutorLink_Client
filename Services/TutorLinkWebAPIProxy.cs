@@ -181,6 +181,38 @@ namespace TutorLinkClient.Services
             }
         }
 
+        public async Task<List <TeacherDTO>> GetAllTeachers()
+        {
+            //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
+            string url = $"{this.baseUrl}GetAllTeachers";
+            try
+            {
+               
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<TeacherDTO>? result = JsonSerializer.Deserialize< List<TeacherDTO>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 
 
