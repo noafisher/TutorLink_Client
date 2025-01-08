@@ -5,14 +5,39 @@
              Title="TeachersList">
     <VerticalStackLayout>
         <ScrollView>
-            
-            
-            
-            
-            
-            
-            
-            
+            <CollectionView  x:Name="cv" ItemsSource="{Binding TeachersList}"
+                    SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                            Command="{Binding BindingContext.GotoChatCommand, Source={x:Reference cv}}"
+                                            CommandParameter="{Binding}"
+                                            IconImageSource="chat.png"
+                                            Text="Chat" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <StackLayout Padding="10">
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding FirstName}" FontSize="Medium" FontAttributes="Bold" Padding="5,0"/>
+                            <Label Text="{Binding LastName}" FontSize="Medium" FontAttributes="Bold"/>
+                        </HorizontalStackLayout>
+                        <Label Text="{Binding Subjects, StringFormat='Subjects: {0}'}" FontSize="Small" FontAttributes="Italic"/>
+                        <Label Text="{Binding PricePerHour, StringFormat='Price per hour: {0}'}" FontSize="Small" FontAttributes="Italic"/>
+                        </StackLayout>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+
+
+
+
+
         </ScrollView>
     </VerticalStackLayout>
 </ContentPage>

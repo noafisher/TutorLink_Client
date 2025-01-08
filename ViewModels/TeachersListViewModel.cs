@@ -1,6 +1,7 @@
 using TutorLinkClient.Services;
 using TutorLinkClient.Models;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 
 namespace TutorLinkClient.ViewModels;
@@ -12,19 +13,30 @@ public class TeachersListViewModel : ViewModelBase
 
     public ObservableCollection<TeacherDTO> TeachersList { get; set; }
 
-    public TeachersListViewModel()
+    public TeachersListViewModel(TutorLinkWebAPIProxy proxy, IServiceProvider serviceProvider)
     {
+        this.serviceProvider = serviceProvider;
+        this.proxy = proxy;
+        this.GotoChatCommand = new Command<TeacherDTO>(OnGotoChat);
+        TeachersList = new ObservableCollection<TeacherDTO>();
         GetAllTeachers();
     }
     private async void GetAllTeachers()
     {
         List<TeacherDTO> l   = await proxy.GetAllTeachers();
-        TeachersList = new ObservableCollection<TeacherDTO>();
+        
 
         foreach (TeacherDTO t in l)
         {
             TeachersList.Add(t);
         }
+    }
+
+    public ICommand GotoChatCommand { get; set; }
+    private async void OnGotoChat(TeacherDTO t)
+    {
+        await Shell.Current.GoToAsync("/ChatStudent");
+
     }
 
 

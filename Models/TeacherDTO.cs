@@ -1,5 +1,5 @@
 ﻿using System;
-
+namespace TutorLinkClient.Models;
 public class TeacherDTO
 {
 
@@ -16,6 +16,29 @@ public class TeacherDTO
     public bool TeachAtHome { get; set; }
     public int Vetek { get; set; }
     public int PricePerHour { get; set; }
+    public List<TeacherSubject> TeacherSubjects { get; set; }
+
+    public string Subjects
+    {
+        get
+        {
+            if (TeacherSubjects == null)
+            {
+                return "None";
+            }
+            else
+            {
+                string str = "";
+                for (int i = 0; i < TeacherSubjects.Count; i++)
+                {
+                    str += TeacherSubjects[i].SubjectName;
+                    if (i < TeacherSubjects.Count - 1)
+                        str += ", ";
+                }
+                return str;
+            }  
+        }
+    }
 
     public TeacherDTO() { }
 }
