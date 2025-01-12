@@ -16,7 +16,17 @@
                                             Command="{Binding BindingContext.GotoChatCommand, Source={x:Reference cv}}"
                                             CommandParameter="{Binding}"
                                             IconImageSource="chat.png"
-                                            Text="Chat" />
+                                            Text="Chat" /> 
+                                    <SwipeItem
+                                            Command="{Binding BindingContext.GotoRateCommand, Source={x:Reference cv}}"
+                                            CommandParameter="{Binding}"
+                                            IconImageSource="rate.png"
+                                            Text="Rate" />
+                                    <SwipeItem
+                                            Command="{Binding BindingContext.GotoReportCommand, Source={x:Reference cv}}"
+                                            CommandParameter="{Binding}"
+                                            IconImageSource="report.png"
+                                            Text="Report" />
                                 </SwipeItems>
                             </SwipeView.LeftItems>
                             <StackLayout Padding="10">

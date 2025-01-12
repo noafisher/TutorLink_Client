@@ -18,6 +18,8 @@ public class TeachersListViewModel : ViewModelBase
         this.serviceProvider = serviceProvider;
         this.proxy = proxy;
         this.GotoChatCommand = new Command<TeacherDTO>(OnGotoChat);
+        this.GotoRateCommand = new Command<TeacherDTO>(OnGotoRate);
+        this.GotoReportCommand = new Command<TeacherDTO>(OnGotoReport);
         TeachersList = new ObservableCollection<TeacherDTO>();
         GetAllTeachers();
     }
@@ -39,7 +41,18 @@ public class TeachersListViewModel : ViewModelBase
 
     }
 
+    public ICommand GotoRateCommand { get; set; }
+    private async void OnGotoRate(TeacherDTO t)
+    {
+        await Shell.Current.GoToAsync("/RateTeacher");
 
+    } 
+    public ICommand GotoReportCommand { get; set; }
+    private async void OnGotoReport(TeacherDTO t)
+    {
+        await Shell.Current.GoToAsync("/ReportUser");
+
+    }
 
 
 }
