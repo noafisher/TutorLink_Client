@@ -1,53 +1,83 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutorLinkClient.Views.TeachersList"
-             Title="TeachersList">
-    <VerticalStackLayout>
-        <ScrollView>
-            <CollectionView  x:Name="cv" ItemsSource="{Binding TeachersList}"
-                    SelectionMode="None">
+<ContentPage
+    x:Class="TutorLinkClient.Views.TeachersList"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="TeachersList">
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <HorizontalStackLayout>
+            <Label
+                Text="Filter by Subjet:"
+                TextColor="MidnightBlue"
+                />
+            <Picker
+                ItemsSource="{Binding SubjectsList}"
+                SelectedItem="{Binding SelectedSubject}" />
+            
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label
+                Text="Filter by Price:"
+                TextColor="MidnightBlue"
+                />
+                <Slider
+                Minimum="0"
+                    Maximum="300"
+                    Value="{Binding MaxPrice}"
+                /> 
+            </HorizontalStackLayout>
+
+            <CollectionView
+                x:Name="cv"
+                ItemsSource="{Binding FilteredTeachersList}"
+                SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <SwipeView>
                             <SwipeView.LeftItems>
                                 <SwipeItems>
                                     <SwipeItem
-                                            Command="{Binding BindingContext.GotoChatCommand, Source={x:Reference cv}}"
-                                            CommandParameter="{Binding}"
-                                            IconImageSource="chat.png"
-                                            Text="Chat" /> 
+                                        Command="{Binding BindingContext.GotoChatCommand, Source={x:Reference cv}}"
+                                        CommandParameter="{Binding}"
+                                        IconImageSource="chat.png"
+                                        Text="Chat" />
                                     <SwipeItem
-                                            Command="{Binding BindingContext.GotoRateCommand, Source={x:Reference cv}}"
-                                            CommandParameter="{Binding}"
-                                            IconImageSource="rate.png"
-                                            Text="Rate" />
+                                        Command="{Binding BindingContext.GotoRateCommand, Source={x:Reference cv}}"
+                                        CommandParameter="{Binding}"
+                                        IconImageSource="rate.png"
+                                        Text="Rate" />
                                     <SwipeItem
-                                            Command="{Binding BindingContext.GotoReportCommand, Source={x:Reference cv}}"
-                                            CommandParameter="{Binding}"
-                                            IconImageSource="report.png"
-                                            Text="Report" />
+                                        Command="{Binding BindingContext.GotoReportCommand, Source={x:Reference cv}}"
+                                        CommandParameter="{Binding}"
+                                        IconImageSource="report.png"
+                                        Text="Report" />
                                 </SwipeItems>
                             </SwipeView.LeftItems>
                             <StackLayout Padding="10">
-                        <HorizontalStackLayout>
-                            <Label Text="{Binding FirstName}" FontSize="Medium" FontAttributes="Bold" Padding="5,0"/>
-                            <Label Text="{Binding LastName}" FontSize="Medium" FontAttributes="Bold"/>
-                        </HorizontalStackLayout>
-                        <Label Text="{Binding Subjects, StringFormat='Subjects: {0}'}" FontSize="Small" FontAttributes="Italic"/>
-                        <Label Text="{Binding PricePerHour, StringFormat='Price per hour: {0}'}" FontSize="Small" FontAttributes="Italic"/>
-                        </StackLayout>
+                                <HorizontalStackLayout>
+                                    <Label
+                                        Padding="5,0"
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        Text="{Binding FirstName}" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        Text="{Binding LastName}" />
+                                </HorizontalStackLayout>
+                                <Label
+                                    FontAttributes="Italic"
+                                    FontSize="Small"
+                                    Text="{Binding Subjects, StringFormat='Subjects: {0}'}" />
+                                <Label
+                                    FontAttributes="Italic"
+                                    FontSize="Small"
+                                    Text="{Binding PricePerHour, StringFormat='Price per hour: {0}'}" />
+                            </StackLayout>
                         </SwipeView>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-
-
-
-
-
-
-        </ScrollView>
-    </VerticalStackLayout>
-</ContentPage>
+       

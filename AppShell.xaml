@@ -5,52 +5,53 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TutorLinkClient"
     xmlns:views="clr-namespace:TutorLinkClient.Views"
-    Shell.FlyoutBehavior="Flyout"
-    Title="TutorLinkClient">
+    Title="TutorLinkClient"
+    Shell.FlyoutBehavior="Flyout">
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
         <ShellContent
-            IsVisible="{Binding IsTeacher}"
-            Title="Chat" Icon="chat.png"
+            Title="Chat"
             ContentTemplate="{DataTemplate views:ChatTeacher}"
-            Route="ChatTeacher" />
-        <ShellContent 
-         IsVisible="{Binding IsStudent}"
-         Title="Teachers" Icon="list.png"
-         ContentTemplate="{DataTemplate views:TeachersList}"
-         Route="TeachersList"
-       />
-        <ShellContent
-             Title="Report" Icon="report.ong"
-             ContentTemplate="{DataTemplate views:ReportUser}"
-            Route="Report"
-                     />
-
-        <ShellContent
+            Icon="chat.png"
             IsVisible="{Binding IsTeacher}"
-            Title="Calendar" Icon="calender.png"
-            ContentTemplate="{DataTemplate views:Calendar}"
-            Route="Calendar"
-            />
-
-        <ShellContent 
-             IsVisible="{Binding IsStudent}"
-             Title="Chat" Icon="chat.png"
-                ContentTemplate="{DataTemplate views:ChatStudent}"
-                Route="ChatStudent"
-            />
-
-
-   
-        
-        <ShellContent 
+            Route="ChatTeacher" />
+        <ShellContent
+            Title="Teachers"
+            ContentTemplate="{DataTemplate views:TeachersList}"
+            Icon="list.png"
             IsVisible="{Binding IsStudent}"
-            Title="Rate" Icon="rate.png"
+            Route="TeachersList" />
+        <ShellContent
+            Title="Report"
+            ContentTemplate="{DataTemplate views:ReportUser}"
+            Icon="report.ong"
+            Route="ReportUser" />
+
+        <ShellContent
+            Title="Calendar"
+            ContentTemplate="{DataTemplate views:Calendar}"
+            Icon="calender.png"
+            IsVisible="{Binding IsTeacher}"
+            Route="Calendar" />
+
+        <ShellContent
+            Title="Chat"
+            ContentTemplate="{DataTemplate views:ChatStudent}"
+            Icon="chat.png"
+            IsVisible="{Binding IsStudent}"
+            Route="ChatStudent" />
+
+
+
+
+        <ShellContent
+            Title="Rate"
             ContentTemplate="{DataTemplate views:RateTeacher}"
-            Route="RateTeacher"
-          />
-        
+            Icon="rate.png"
+            IsVisible="{Binding IsStudent}"
+            Route="RateTeacher" />
+
     </FlyoutItem>
-    <MenuItem Text="Logout" Command="{Binding LogoutCommand}"  />
-    
+    <MenuItem Command="{Binding LogoutCommand}" Text="Logout" />
+
 </Shell>

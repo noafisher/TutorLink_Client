@@ -12,17 +12,59 @@ public class TeachersListViewModel : ViewModelBase
     private IServiceProvider serviceProvider;
 
     public ObservableCollection<TeacherDTO> TeachersList { get; set; }
+    public ObservableCollection<TeacherDTO> FilteredTeachersList { get; set; }
+    public ObservableCollection<SubjectDTO> SubjectList { get; set; }
+
+    private int maxPrice;
+    public int MaxPrice
+    {
+        get
+        {
+            return maxPrice;
+        }
+        set
+        {
+            maxPrice = value;
+            OnPropertyChanged();
+        }
+    }
 
     public TeachersListViewModel(TutorLinkWebAPIProxy proxy, IServiceProvider serviceProvider)
     {
         this.serviceProvider = serviceProvider;
         this.proxy = proxy;
         this.GotoChatCommand = new Command<TeacherDTO>(OnGotoChat);
+        this.FilterCommand = new Command(Filter);
         this.GotoRateCommand = new Command<TeacherDTO>(OnGotoRate);
         this.GotoReportCommand = new Command<TeacherDTO>(OnGotoReport);
         TeachersList = new ObservableCollection<TeacherDTO>();
+        FilteredTeachersList = new ObservableCollection<TeacherDTO>();
+        SubjectList = new ObservableCollection<SubjectDTO>();
+        SubjectList.Add(new SubjectDTO()
+        {
+            SubjectId = 0,
+            SubjectName = "All"
+        });
+        
+        MaxPrice = 0;
         GetAllTeachers();
     }
+
+    private SubjectDTO selectedSubject;
+    public SubjectDTO SelectedSubject
+    {
+        get
+        {
+            return selectedSubject;
+        }
+        set
+        {
+            selectedSubject = value;
+            OnPropertyChanged();
+        }
+    }
+
+
     private async void GetAllTeachers()
     {
         List<TeacherDTO> l   = await proxy.GetAllTeachers();
@@ -31,26 +73,64 @@ public class TeachersListViewModel : ViewModelBase
         foreach (TeacherDTO t in l)
         {
             TeachersList.Add(t);
+            FilteredTeachersList.Add(t);
+
+            foreach (TeacherSubject s in t.TeacherSubjects)
+            {
+                int subjectID = s.SubjectId;
+                if (SubjectList.Where(ss => ss.SubjectId == subjectID).FirstOrDefault() == null)
+                {
+                    SubjectList.Add(new SubjectDTO
+                    {
+                        SubjectId = subjectID,
+                        SubjectName = s.SubjectName
+                    });
+                }
+            }
         }
     }
 
+    public ICommand FilterCommand { get; set; }
+    private void Filter()
+    {
+        FilteredTeachersList.Clear();
+        foreach(TeacherDTO t in TeachersList)
+        {
+            if (SelectedSubject.SubjectId == 0 || t.TeacherSubjects.Where(ss => ss.SubjectId == SelectedSubject.SubjectId).Count() > 0)
+            {
+                if (MaxPrice == 0 || t.PricePerHour <= MaxPrice)
+                {
+                    FilteredTeachersList.Add(t);
+                }
+            }
+        }
+    }
     public ICommand GotoChatCommand { get; set; }
     private async void OnGotoChat(TeacherDTO t)
     {
-        await Shell.Current.GoToAsync("/ChatStudent");
+        try
+        {
+            await Shell.Current.GoToAsync("//ChatStudent");
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        
 
     }
 
     public ICommand GotoRateCommand { get; set; }
     private async void OnGotoRate(TeacherDTO t)
     {
-        await Shell.Current.GoToAsync("/RateTeacher");
+        await Shell.Current.GoToAsync("//RateTeacher");
 
     } 
     public ICommand GotoReportCommand { get; set; }
     private async void OnGotoReport(TeacherDTO t)
     {
-        await Shell.Current.GoToAsync("/ReportUser");
+        await Shell.Current.GoToAsync("//ReportUser");
 
     }
 

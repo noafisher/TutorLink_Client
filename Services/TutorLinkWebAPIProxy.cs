@@ -25,11 +25,11 @@ namespace TutorLinkClient.Services
 
         #region with tunnel
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        private static string serverIP = "https://05smzxlj-5049.euw.devtunnels.ms";
+        private static string serverIP = "https://sv55lpkp-5049.uks1.devtunnels.ms/";
         private HttpClient client;
         private string baseUrl;
-        public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/";
+        public static string BaseAddress = "https://sv55lpkp-5049.uks1.devtunnels.ms/api/";
+        private static string ImageBaseAddress = "https://sv55lpkp-5049.uks1.devtunnels.ms/";
         #endregion
 
         public TutorLinkWebAPIProxy()
