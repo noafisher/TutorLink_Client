@@ -7,6 +7,9 @@ public partial class TeachersList : ContentPage
 	public TeachersList(TeachersListViewModel vm)
 	{
 		this.BindingContext = vm;
-		InitializeComponent();
-	}
+        InitializeComponent();
+    }
+
+   
+
 }

@@ -96,7 +96,7 @@ public class TeachersListViewModel : ViewModelBase
         FilteredTeachersList.Clear();
         foreach(TeacherDTO t in TeachersList)
         {
-            if (SelectedSubject.SubjectId == 0 || t.TeacherSubjects.Where(ss => ss.SubjectId == SelectedSubject.SubjectId).Count() > 0)
+            if (SelectedSubject.SubjectId == 0 || t.TeacherSubjects.Where(ss => ss.SubjectId == SelectedSubject.SubjectId).ToList().Count() > 0)
             {
                 if (MaxPrice == 0 || t.PricePerHour <= MaxPrice)
                 {

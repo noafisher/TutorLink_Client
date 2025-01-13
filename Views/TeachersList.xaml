@@ -3,34 +3,45 @@
     x:Class="TutorLinkClient.Views.TeachersList"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:TutorLinkClient.Models"
     Title="TeachersList">
 
-    <ScrollView>
+    <ScrollView x:Name="scrlview">
         <VerticalStackLayout>
 
             <HorizontalStackLayout>
-            <Label
-                Text="Filter by Subjet:"
-                TextColor="MidnightBlue"
-                />
-            <Picker
-                ItemsSource="{Binding SubjectsList}"
-                SelectedItem="{Binding SelectedSubject}" />
-            
+                <Label
+                    Margin="5"
+                    Text="Filter by Subjet:"
+                    TextColor="MidnightBlue" />
+                <Picker
+                    ItemDisplayBinding="{Binding SubjectName}"
+                    ItemsSource="{Binding BindingContext.SubjectsList}"
+                    SelectedItem="{Binding BindingContext.SelectedSubject}" />
+
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
                 <Label
-                Text="Filter by Price:"
-                TextColor="MidnightBlue"
-                />
+                    Margin="5"
+                    Text="Filter by Price:"
+                    TextColor="MidnightBlue" />
                 <Slider
-                Minimum="0"
-                    Maximum="300"
-                    Value="{Binding MaxPrice}"
-                /> 
+                    Maximum="400"
+                    Minimum="0"
+                    WidthRequest="200"
+                    Value="{Binding MaxPrice}" />
+                <Label
+                    Margin="5"
+                    Text="{Binding MaxPrice}"
+                    TextColor="MidnightBlue" />
             </HorizontalStackLayout>
 
+            <Button
+                BackgroundColor="MediumPurple"
+                Command="{Binding FilterCommand}"
+                Text="Filter"
+                WidthRequest="200" />
             <CollectionView
                 x:Name="cv"
                 ItemsSource="{Binding FilteredTeachersList}"
@@ -80,4 +91,9 @@
                             </StackLayout>
                         </SwipeView>
                     </DataTemplate>
-       
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+
