@@ -4,6 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:TutorLinkClient.Models"
+    xmlns:vm="clr-namespace:TutorLinkClient.ViewModels"
+    x:DataType="vm:TeachersListViewModel"
     Title="TeachersList">
 
     <ScrollView x:Name="scrlview">
@@ -15,9 +17,10 @@
                     Text="Filter by Subjet:"
                     TextColor="MidnightBlue" />
                 <Picker
+                    x:DataType="model:SubjectDTO"
                     ItemDisplayBinding="{Binding SubjectName}"
-                    ItemsSource="{Binding BindingContext.SubjectsList}"
-                    SelectedItem="{Binding BindingContext.SelectedSubject}" />
+                    ItemsSource="{Binding BindingContext.SubjectsList, Source={x:Reference scrlview}}"
+                    SelectedItem="{Binding BindingContext.SelectedSubject, Source={x:Reference scrlview}}" />
 
             </HorizontalStackLayout>
 
@@ -46,7 +49,8 @@
                 x:Name="cv"
                 ItemsSource="{Binding FilteredTeachersList}"
                 SelectionMode="None">
-                <CollectionView.ItemTemplate>
+                <CollectionView.ItemTemplate
+                    x:DataType="model:TeacherDTO">
                     <DataTemplate>
                         <SwipeView>
                             <SwipeView.LeftItems>
@@ -68,7 +72,7 @@
                                         Text="Report" />
                                 </SwipeItems>
                             </SwipeView.LeftItems>
-                            <StackLayout Padding="10">
+                            <StackLayout Padding="10" x:DataType="model:TeacherDTO">
                                 <HorizontalStackLayout>
                                     <Label
                                         Padding="5,0"

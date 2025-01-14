@@ -48,6 +48,7 @@ public class TeachersListViewModel : ViewModelBase
         
         MaxPrice = 0;
         GetAllTeachers();
+        GetAllSubjects();
     }
 
     private SubjectDTO selectedSubject;
@@ -64,7 +65,14 @@ public class TeachersListViewModel : ViewModelBase
         }
     }
 
-
+    private async void GetAllSubjects()
+    {
+        List<SubjectDTO> l = await proxy.GetAllSubjects();
+        foreach (SubjectDTO s in l)
+        {
+            SubjectList.Add(s);
+        }
+    }
     private async void GetAllTeachers()
     {
         List<TeacherDTO> l   = await proxy.GetAllTeachers();
@@ -75,18 +83,18 @@ public class TeachersListViewModel : ViewModelBase
             TeachersList.Add(t);
             FilteredTeachersList.Add(t);
 
-            foreach (TeacherSubject s in t.TeacherSubjects)
-            {
-                int subjectID = s.SubjectId;
-                if (SubjectList.Where(ss => ss.SubjectId == subjectID).FirstOrDefault() == null)
-                {
-                    SubjectList.Add(new SubjectDTO
-                    {
-                        SubjectId = subjectID,
-                        SubjectName = s.SubjectName
-                    });
-                }
-            }
+            //foreach (TeacherSubject s in t.TeacherSubjects)
+            //{
+            //    int subjectID = s.SubjectId;
+            //    if (SubjectList.Where(ss => ss.SubjectId == subjectID).FirstOrDefault() == null)
+            //    {
+            //        SubjectList.Add(new SubjectDTO
+            //        {
+            //            SubjectId = subjectID,
+            //            SubjectName = s.SubjectName
+            //        });
+            //    }
+            //}
         }
     }
 

@@ -212,6 +212,37 @@ namespace TutorLinkClient.Services
                 return null;
             }
         }
+        public async Task<List<SubjectDTO>> GetAllSubjects()
+        {
+            //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
+            string url = $"{this.baseUrl}GetAllSubjects";
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<SubjectDTO>? result = JsonSerializer.Deserialize<List<SubjectDTO>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
     }
 
