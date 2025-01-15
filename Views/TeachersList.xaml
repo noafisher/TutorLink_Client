@@ -19,7 +19,7 @@
                 <Picker
                     x:DataType="model:SubjectDTO"
                     ItemDisplayBinding="{Binding SubjectName}"
-                    ItemsSource="{Binding BindingContext.SubjectsList, Source={x:Reference scrlview}}"
+                    ItemsSource="{Binding BindingContext.SubjectList, Source={x:Reference scrlview}}"
                     SelectedItem="{Binding BindingContext.SelectedSubject, Source={x:Reference scrlview}}" />
 
             </HorizontalStackLayout>
