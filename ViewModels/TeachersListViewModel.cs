@@ -29,6 +29,20 @@ public class TeachersListViewModel : ViewModelBase
         }
     }
 
+    private int senority;
+    public int Senority
+    {
+        get
+        {
+            return senority;
+        }
+        set
+        {
+            senority = value;
+            OnPropertyChanged();
+        }
+    }
+
     public TeachersListViewModel(TutorLinkWebAPIProxy proxy, IServiceProvider serviceProvider)
     {
         this.serviceProvider = serviceProvider;
@@ -108,11 +122,15 @@ public class TeachersListViewModel : ViewModelBase
             {
                 if (MaxPrice == 0 || t.PricePerHour <= MaxPrice)
                 {
-                    FilteredTeachersList.Add(t);
+                    if(senority == 0 || t.Vetek <= senority)
+                    { 
+                        FilteredTeachersList.Add(t);
+                    }
                 }
             }
         }
     }
+    
     public ICommand GotoChatCommand { get; set; }
     private async void OnGotoChat(TeacherDTO t)
     {

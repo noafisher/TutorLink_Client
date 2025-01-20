@@ -40,6 +40,18 @@
                     TextColor="MidnightBlue" />
             </HorizontalStackLayout>
 
+            <HorizontalStackLayout>
+                <Label Text="Filter by senority:"
+                       Margin="5"
+                       TextColor="MidnightBlue"
+                />
+
+                <Entry
+                        Placeholder="Enter senority"
+                    Text="{Binding Vetek}"
+                    />
+            </HorizontalStackLayout>
+
             <Button
                 BackgroundColor="MediumPurple"
                 Command="{Binding FilterCommand}"

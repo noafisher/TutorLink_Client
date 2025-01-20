@@ -244,6 +244,38 @@ namespace TutorLinkClient.Services
             }
         }
 
+        public async Task<ReviewDTO> RateTeacher(ReviewDTO reviewDTO)
+        {
+            string url = $"{this.baseUrl}RateTeacher";
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    ReviewDTO? result = JsonSerializer.Deserialize<ReviewDTO>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
     }
 
 
