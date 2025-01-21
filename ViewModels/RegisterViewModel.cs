@@ -567,7 +567,7 @@ public class RegisterViewModel : ViewModelBase
     private async void OnRegister()
     {
         InServerCall = true;
-        //Call the server to login - teacher 
+        //Call the server to login - student 
         if (IsStudent)
         {
             StudentDTO studentDTO = new StudentDTO()
