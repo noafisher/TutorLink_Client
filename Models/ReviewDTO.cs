@@ -13,5 +13,6 @@ namespace TutorLinkClient.Models
         public int StudentId { get; set; }
         public DateTime TimeOfReview { get; set; }
         public string ReviewText { get; set; }
+        public int Stars {  get; set; }
     }
 }

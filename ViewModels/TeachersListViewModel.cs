@@ -2,6 +2,7 @@ using TutorLinkClient.Services;
 using TutorLinkClient.Models;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Threading.Tasks;
 
 
 namespace TutorLinkClient.ViewModels;
@@ -150,7 +151,15 @@ public class TeachersListViewModel : ViewModelBase
     public ICommand GotoRateCommand { get; set; }
     private async void OnGotoRate(TeacherDTO t)
     {
-        await Shell.Current.GoToAsync("//RateTeacher");
+        if (t != null)
+        {
+            var navParam = new Dictionary<string, object>
+            {
+                    { "selectedTeacher", t }
+            };
+            await Shell.Current.GoToAsync("//RateTeacher", navParam);
+        }
+        
 
     } 
     public ICommand GotoReportCommand { get; set; }

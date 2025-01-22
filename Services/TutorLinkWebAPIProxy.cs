@@ -25,11 +25,11 @@ namespace TutorLinkClient.Services
 
         #region with tunnel
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        private static string serverIP = "https://sv55lpkp-5049.uks1.devtunnels.ms/";
+        private static string serverIP = "https://05smzxlj-5049.euw.devtunnels.ms/";
         private HttpClient client;
         private string baseUrl;
-        public static string BaseAddress = "https://sv55lpkp-5049.uks1.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://sv55lpkp-5049.uks1.devtunnels.ms/";
+        public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/api/";
+        private static string ImageBaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/";
         #endregion
 
         public TutorLinkWebAPIProxy()
@@ -244,13 +244,17 @@ namespace TutorLinkClient.Services
             }
         }
 
-        public async Task<ReviewDTO> RateTeacher(ReviewDTO reviewDTO)
+        public async Task<ReviewDTO> RateTeacherAsync(ReviewDTO reviewDTO)
         {
             string url = $"{this.baseUrl}RateTeacher";
             try
             {
-
-                HttpResponseMessage response = await client.GetAsync(url);
+                //Call the server API - מעביר את האובייקט לשרת
+                string json = JsonSerializer.Serialize(reviewDTO);
+                //
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                
                 //Check status
                 if (response.IsSuccessStatusCode)
                 {

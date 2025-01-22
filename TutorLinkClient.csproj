@@ -65,6 +65,8 @@
 	  <None Remove="Resources\Images\list.png" />
 	  <None Remove="Resources\Images\rate.png" />
 	  <None Remove="Resources\Images\report.png" />
+	  <None Remove="Resources\Images\starempty.png" />
+	  <None Remove="Resources\Images\starfilled.png" />
 	</ItemGroup>
 
 	<ItemGroup>
