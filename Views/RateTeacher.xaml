@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:model="clr-namespace:TutorLinkClient.Models"
-             x:Class="TutorLinkClient.Views.RateTeacher"
-             Title="RateTeacher">
-    <VerticalStackLayout
-        x:Name="stck">
-        <Label Text="Rate your teacher!"
-               TextColor="MidnightBlue"
-               FontSize="50"
-               FontFamily="Kalam-Regular"
-               HorizontalOptions="Center"
-          />
+<ContentPage
+    x:Class="TutorLinkClient.Views.RateTeacher"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:TutorLinkClient.Models"
+    Title="RateTeacher">
+    <VerticalStackLayout x:Name="stck">
+        <Label
+            FontFamily="Kalam-Regular"
+            FontSize="50"
+            HorizontalOptions="Center"
+            Text="Rate your teacher!"
+            TextColor="MidnightBlue" />
 
         <HorizontalStackLayout>
-            <Label
-                 Text="Teacher name:"
-                 Margin="5"
-            />
+            <Label Margin="5" Text="Teacher name:" />
 
-             <Picker
-                 x:DataType="model:TeacherDTO"
-                 ItemDisplayBinding="{Binding FirstName}"
-            ItemsSource="{Binding BindingContext.TeachersList, Source={x:Reference stck}}"
-            SelectedItem="{Binding BindingContext.SelectedTeacher, Source={x:Reference stck}}"
-            />
+            <Picker
+                x:DataType="model:TeacherDTO"
+                ItemDisplayBinding="{Binding FirstName}"
+                ItemsSource="{Binding BindingContext.TeachersList, Source={x:Reference stck}}"
+                SelectedItem="{Binding BindingContext.SelectedTeacher, Source={x:Reference stck}}" />
+
+            <Label
+                IsVisible="{Binding ShowTeacherNameError}"
+                Style="{StaticResource labelErrorStyle}"
+                Text="{Binding TeacherNameError}" />
         </HorizontalStackLayout>
 
         <HorizontalStackLayout>
-            <Label
-                Text="Rate your teacher:"
-                Margin="5"
-                
-            />
+            <Label Margin="5" Text="Rate your teacher:" />
 
-            <Entry
-                Placeholder="Enter your rate, a number between 1-5"
-                Text="{Binding Stars}"
-                />
+            <Entry Placeholder="Enter your rate, a number between 1-5" Text="{Binding Stars}" />
+
+            <Label
+                IsVisible="{Binding ShowStarsError}"
+                Style="{StaticResource labelErrorStyle}"
+                Text="{Binding StarsError}" />
 
         </HorizontalStackLayout>
 
         <HorizontalStackLayout>
-            <Label
-              Text="Write your review:"
-                Margin="5"  
-                />
+            <Label Margin="5" Text="Write your review:" />
 
             <Editor
                 AutoSize="TextChanges"
                 Placeholder="what is on your mind...?"
-                Text="{Binding ReviewText}"   
-                />
-            
+                Text="{Binding ReviewText}" />
+
+            <Label
+                IsVisible="{Binding ShowTextError}"
+                Style="{StaticResource labelErrorStyle}"
+                Text="{Binding TextError}" />
+
         </HorizontalStackLayout>
 
         <Button
-             BackgroundColor="MediumPurple"
-             Command="{Binding rateTeacher}"
+            BackgroundColor="MediumPurple"
+            Command="{Binding rateTeacher}"
             Text="Submit Rate"
             WidthRequest="200" />
-            
+
 
     </VerticalStackLayout>
 </ContentPage>

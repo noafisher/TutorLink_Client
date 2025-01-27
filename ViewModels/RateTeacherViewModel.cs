@@ -132,8 +132,8 @@ public class RateTeacherViewModel : ViewModelBase
 
     private void ValidateStars()
     {
-        this.TeacherNameError = "Stars must be selected";
-        this.ShowTeacherNameError = stars < 1 || stars > 5;
+        this.StarsError = "Stars must be selected";
+        this.ShowStarsError = stars < 1 || stars > 5;
     }
     #endregion
 
@@ -164,8 +164,8 @@ public class RateTeacherViewModel : ViewModelBase
 
     private void ValidateText()
     {
-        this.TeacherNameError = "You must write a review";
-        this.ShowTeacherNameError = string.IsNullOrEmpty(ReviewText);
+        this.TextError = "You must write a review";
+        this.ShowTextError = string.IsNullOrEmpty(ReviewText);
     }
     #endregion
 
