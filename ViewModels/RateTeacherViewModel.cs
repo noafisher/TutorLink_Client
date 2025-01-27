@@ -13,6 +13,19 @@ public class RateTeacherViewModel : ViewModelBase
 
 
     private ICommand rateTeacher;
+    public ICommand RateTeacher
+    {
+        get
+        {
+            return rateTeacher;
+        }
+        set
+        {
+            rateTeacher = value;
+            OnPropertyChanged();
+        }
+
+    }
     private string errorMsg;
     private int stars;
     public int Stars 
@@ -24,6 +37,7 @@ public class RateTeacherViewModel : ViewModelBase
         set
         {
             this.stars = value;
+            ValidateStars();
             OnPropertyChanged();
         }
     }
@@ -37,6 +51,7 @@ public class RateTeacherViewModel : ViewModelBase
         set
         {
             this.reviewText = value;
+            ValidateText();
             OnPropertyChanged();
         }
     }
@@ -53,6 +68,7 @@ public class RateTeacherViewModel : ViewModelBase
         set
         {
             selectedTeacher = value;
+            ValidateTeacher();
             OnPropertyChanged();
         }
     }
@@ -82,7 +98,7 @@ public class RateTeacherViewModel : ViewModelBase
         set
         {
             showTeacherNameError = value;
-            OnPropertyChanged("ShowFirstNameError");
+            OnPropertyChanged();
         }
     }
     private string teacherNameError;
@@ -94,7 +110,7 @@ public class RateTeacherViewModel : ViewModelBase
         set
         {
             teacherNameError = value;
-            OnPropertyChanged("TeacherNameError");
+            OnPropertyChanged();
         }
     }
 
@@ -114,7 +130,7 @@ public class RateTeacherViewModel : ViewModelBase
         set
         {
             showStarsError = value;
-            OnPropertyChanged("ShowStarsError");
+            OnPropertyChanged();
         }
     }
     private string starsError;
@@ -126,7 +142,7 @@ public class RateTeacherViewModel : ViewModelBase
         set
         {
             starsError = value;
-            OnPropertyChanged("StarsError");
+            OnPropertyChanged();
         }
     }
 
@@ -146,7 +162,7 @@ public class RateTeacherViewModel : ViewModelBase
         set
         {
             showTextError = value;
-            OnPropertyChanged("    public bool ShowTextError\r\n");
+            OnPropertyChanged();
         }
     }
     private string textError;
@@ -157,8 +173,8 @@ public class RateTeacherViewModel : ViewModelBase
         get => textError;
         set
         {
-            teacherNameError = value;
-            OnPropertyChanged("TextError");
+            textError = value;
+            OnPropertyChanged();
         }
     }
 
@@ -178,7 +194,10 @@ public class RateTeacherViewModel : ViewModelBase
         rateTeacher = new Command(OnRate);
         TeachersList = new ObservableCollection<TeacherDTO>();
         ErrorMsg = "";
-        GetAllTeachers();        
+        GetAllTeachers();
+        ValidateStars();
+        ValidateTeacher();
+        ValidateText();
     }
 
     private async void GetAllTeachers()
@@ -189,7 +208,7 @@ public class RateTeacherViewModel : ViewModelBase
         foreach (TeacherDTO t in l)
         {
             TeachersList.Add(t);
-            if (t.TeacherId == teacherParam.TeacherId)
+            if (teacherParam != null && t.TeacherId == teacherParam.TeacherId)
                 SelectedTeacher = t;
 
         }
@@ -218,6 +237,9 @@ public class RateTeacherViewModel : ViewModelBase
         else
         {
             await Application.Current.MainPage.DisplayAlert("Success", "The Rate was saved successfully!", "Ok");
+            SelectedTeacher = null;
+            Stars = 0;
+            ReviewText = "";
         }
         
 

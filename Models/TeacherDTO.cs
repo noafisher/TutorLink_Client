@@ -40,6 +40,13 @@ public class TeacherDTO
         }
     }
 
+    public string DisplayName
+    {
+        get
+        {
+            return $"{LastName}, {FirstName}";
+        }
+    }
     public TeacherDTO() { }
 }
 

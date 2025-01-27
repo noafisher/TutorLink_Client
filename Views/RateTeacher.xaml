@@ -18,7 +18,7 @@
 
             <Picker
                 x:DataType="model:TeacherDTO"
-                ItemDisplayBinding="{Binding FirstName}"
+                ItemDisplayBinding="{Binding DisplayName}"
                 ItemsSource="{Binding BindingContext.TeachersList, Source={x:Reference stck}}"
                 SelectedItem="{Binding BindingContext.SelectedTeacher, Source={x:Reference stck}}" />
 
@@ -57,7 +57,7 @@
 
         <Button
             BackgroundColor="MediumPurple"
-            Command="{Binding rateTeacher}"
+            Command="{Binding RateTeacher}"
             Text="Submit Rate"
             WidthRequest="200" />
 
