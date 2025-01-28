@@ -1,4 +1,5 @@
 ﻿using System;
+using TutorLinkClient.Services;
 namespace TutorLinkClient.Models;
 public class TeacherDTO
 {
@@ -16,6 +17,15 @@ public class TeacherDTO
     public bool TeachAtHome { get; set; }
     public int Vetek { get; set; }
     public int PricePerHour { get; set; }
+    public string ProfileImagePath { get; set; }
+
+    public string ImageURL
+    {
+        get
+        {
+            return TutorLinkWebAPIProxy.BaseAddress + this.ProfileImagePath;
+        }
+    }
     public List<TeacherSubject> TeacherSubjects { get; set; }
 
     public string Subjects

@@ -24,7 +24,7 @@
         <ShellContent
             Title="Report"
             ContentTemplate="{DataTemplate views:ReportUser}"
-            Icon="report.ong"
+            Icon="report.png"
             Route="ReportUser" />
 
         <ShellContent

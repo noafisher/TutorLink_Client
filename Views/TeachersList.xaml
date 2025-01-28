@@ -5,8 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:TutorLinkClient.Models"
     xmlns:vm="clr-namespace:TutorLinkClient.ViewModels"
-    x:DataType="vm:TeachersListViewModel"
-    Title="TeachersList">
+    Title="TeachersList"
+    x:DataType="vm:TeachersListViewModel">
 
     <ScrollView x:Name="scrlview">
         <VerticalStackLayout>
@@ -41,15 +41,12 @@
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
-                <Label Text="Filter by senority:"
-                       Margin="5"
-                       TextColor="MidnightBlue"
-                />
+                <Label
+                    Margin="5"
+                    Text="Filter by senority:"
+                    TextColor="MidnightBlue" />
 
-                <Entry
-                        Placeholder="Enter senority"
-                    Text="{Binding Senority}"
-                    />
+                <Entry Placeholder="Enter senority" Text="{Binding Senority}" />
             </HorizontalStackLayout>
 
             <Button
@@ -61,8 +58,7 @@
                 x:Name="cv"
                 ItemsSource="{Binding FilteredTeachersList}"
                 SelectionMode="None">
-                <CollectionView.ItemTemplate
-                    x:DataType="model:TeacherDTO">
+                <CollectionView.ItemTemplate x:DataType="model:TeacherDTO">
                     <DataTemplate>
                         <SwipeView>
                             <SwipeView.LeftItems>
@@ -86,6 +82,7 @@
                             </SwipeView.LeftItems>
                             <StackLayout Padding="10" x:DataType="model:TeacherDTO">
                                 <HorizontalStackLayout>
+                                    <Image Source="{Binding ImageURL}" />
                                     <Label
                                         Padding="5,0"
                                         FontAttributes="Bold"

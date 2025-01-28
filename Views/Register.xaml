@@ -33,159 +33,266 @@
             VerticalScrollBarVisibility="Always">
             <VerticalStackLayout>
                 <HorizontalStackLayout RadioButtonGroup.GroupName="RoleSelection" RadioButtonGroup.SelectedValue="{Binding IsStudent}">
-                <Label Text="I am a "  Style="{StaticResource labelNameStyle}" />
-                <RadioButton
-                x:Name="Teacher"
-                Margin="5"
-                GroupName="RoleSelection"
-                Content="Teacher" 
-                Value="False"
-                    />
+                    <Label Style="{StaticResource labelNameStyle}" Text="I am a " />
+                    <RadioButton
+                        x:Name="Teacher"
+                        Margin="5"
+                        Content="Teacher"
+                        GroupName="RoleSelection"
+                        Value="False" />
 
-                <RadioButton
-                 x:Name="Student"
-                 Margin="5"
-                 GroupName="RoleSelection"
-                 Content="Student" 
-                 Value="True"
-                    />
-                    
-                    
+                    <RadioButton
+                        x:Name="Student"
+                        Margin="5"
+                        Content="Student"
+                        GroupName="RoleSelection"
+                        Value="True" />
+
+
                 </HorizontalStackLayout>
-                <!-- First Name -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Text="First Name:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                <Label Text="{Binding FirstNameError}" IsVisible="{Binding ShowFirstNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-            </Grid>
-            <Entry Placeholder="Type First Name" Text="{Binding FirstName}" Style="{StaticResource entryStyle}" />
-
-             <!-- Last Name -->
-            <Grid>
-                 <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                 </Grid.ColumnDefinitions>
-                  <Label Text="Last Name:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                  <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-                </Grid>
-                <Entry Placeholder="Type Last Name" Text="{Binding LastName}" Style="{StaticResource entryStyle}" />
-
-                <!-- Email -->
+                <!--  First Name  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Email:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="First Name:" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowFirstNameError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding FirstNameError}" />
                 </Grid>
-                <Entry Placeholder="Type Email" Text="{Binding Email}" Style="{StaticResource entryStyle}" />
+                <Entry
+                    Placeholder="Type First Name"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding FirstName}" />
 
-                <!-- Password -->
+                <!--  Last Name  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Password:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="Last Name:" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowLastNameError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding LastNameError}" />
                 </Grid>
-                <Entry Placeholder="Type Password" Text="{Binding Password}" Style="{StaticResource entryStyle}" />
+                <Entry
+                    Placeholder="Type Last Name"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding LastName}" />
 
-                <!-- Address -->
+                <!--  Email  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Address:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                    <Label Text="{Binding AddressError}" IsVisible="{Binding ShowAddressError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="Email:" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowEmailError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding EmailError}" />
                 </Grid>
-                <Entry Placeholder="Type Address" Text="{Binding Address}" Style="{StaticResource entryStyle}" />
+                <Entry
+                    Placeholder="Type Email"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Email}" />
 
-                <!-- These filds are visible for students only -->
+                <!--  Password  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="Password:" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowPasswordError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding PasswordError}" />
+                </Grid>
+                <Entry
+                    Placeholder="Type Password"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Password}" />
+
+                <!--  Address  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelNameStyle}"
+                        Text="Address:" />
+                    <Label
+                        Grid.Column="1"
+                        IsVisible="{Binding ShowAddressError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding AddressError}" />
+                </Grid>
+                <Entry
+                    Placeholder="Type Address"
+                    Style="{StaticResource entryStyle}"
+                    Text="{Binding Address}" />
+
+                <!--  These filds are visible for students only  -->
                 <VerticalStackLayout IsVisible="{Binding IsStudent}">
-                    <!-- current class -->
+                    <!--  current class  -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Text="Class:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                        <Label Text="{Binding CurrentClassError}" IsVisible="{Binding ShowCurrentClassError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource labelNameStyle}"
+                            Text="Class:" />
+                        <Label
+                            Grid.Column="1"
+                            IsVisible="{Binding ShowCurrentClassError}"
+                            Style="{StaticResource labelErrorStyle}"
+                            Text="{Binding CurrentClassError}" />
                     </Grid>
-                    <Entry Placeholder="Type class" Text="{Binding CurrentClass}" Style="{StaticResource entryStyle}" />
+                    <Entry
+                        Placeholder="Type class"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding CurrentClass}" />
                 </VerticalStackLayout>
 
-                <!-- These filds are visible for teachers only -->
+                <!--  These filds are visible for teachers only  -->
 
                 <VerticalStackLayout IsVisible="{Binding IsTeacher}">
-                    
-                    <!-- Max Distance -->
+
+                    <!--  Max Distance  -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Text="Distance:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                        <Label Text="{Binding MaxDistanceError}" IsVisible="{Binding ShowMaxDistanceError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource labelNameStyle}"
+                            Text="Distance:" />
+                        <Label
+                            Grid.Column="1"
+                            IsVisible="{Binding ShowMaxDistanceError}"
+                            Style="{StaticResource labelErrorStyle}"
+                            Text="{Binding MaxDistanceError}" />
                     </Grid>
-                    <Entry Placeholder="Type the max distance" Text="{Binding MaxDistance}" Style="{StaticResource entryStyle}" />
-                    
-                    
-                    <!--Vetek -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="Seniority:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                        <Label Text="{Binding VetekError}" IsVisible="{Binding ShowVetekError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
-                    </Grid>
-                    <Entry Placeholder="Type seniority" Text="{Binding Vetek}" Style="{StaticResource entryStyle}" />
+                    <Entry
+                        Placeholder="Type the max distance"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding MaxDistance}" />
 
 
-                    <!--price per hour  -->
+                    <!--  Vetek  -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Text="Price per hour::" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                        <Label Text="{Binding PricePerHourError}" IsVisible="{Binding ShowPricePerHourError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource labelNameStyle}"
+                            Text="Seniority:" />
+                        <Label
+                            Grid.Column="1"
+                            IsVisible="{Binding ShowVetekError}"
+                            Style="{StaticResource labelErrorStyle}"
+                            Text="{Binding VetekError}" />
                     </Grid>
-                    <Entry Placeholder="Type price" Text="{Binding PricePerHour}" Style="{StaticResource entryStyle}" />
+                    <Entry
+                        Placeholder="Type seniority"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding Vetek}" />
 
-                    <!--price per hour  -->
+
+                    <!--  price per hour  -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Text="I Teach at:" Grid.Column="0" Style="{StaticResource labelNameStyle}" />
-                        <Label Text="{Binding TeachAtError}" IsVisible="{Binding ShowTeachAtError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}" />
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource labelNameStyle}"
+                            Text="Price per hour::" />
+                        <Label
+                            Grid.Column="1"
+                            IsVisible="{Binding ShowPricePerHourError}"
+                            Style="{StaticResource labelErrorStyle}"
+                            Text="{Binding PricePerHourError}" />
+                    </Grid>
+                    <Entry
+                        Placeholder="Type price"
+                        Style="{StaticResource entryStyle}"
+                        Text="{Binding PricePerHour}" />
+
+                    <!--  price per hour  -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource labelNameStyle}"
+                            Text="I Teach at:" />
+                        <Label
+                            Grid.Column="1"
+                            IsVisible="{Binding ShowTeachAtError}"
+                            Style="{StaticResource labelErrorStyle}"
+                            Text="{Binding TeachAtError}" />
                     </Grid>
                     <HorizontalStackLayout>
-                        <Label Text="My Home" Style="{StaticResource labelNameStyle}"/>
-                        <CheckBox IsChecked="{Binding TeachAtHome}"/>
-                         <Label Text="Student Home" Style="{StaticResource labelNameStyle}"/>
-                    <CheckBox IsChecked="{Binding GoToStudent}"/>
-                        </HorizontalStackLayout>
+                        <Label Style="{StaticResource labelNameStyle}" Text="My Home" />
+                        <CheckBox IsChecked="{Binding TeachAtHome}" />
+                        <Label Style="{StaticResource labelNameStyle}" Text="Student Home" />
+                        <CheckBox IsChecked="{Binding GoToStudent}" />
+                    </HorizontalStackLayout>
                 </VerticalStackLayout>
-                <Button  
-Command="{Binding RegisterCommand}"
-Text="Create Account"
-WidthRequest="250"
-IsEnabled="{Binding NotInServerCall}"
-        Style="{StaticResource buttonStyle}"
 
-    
- 
-    />
+
+                <Image
+                    x:Name="theImageBug"
+                    HeightRequest="150"
+                    Source="{Binding PhotoURL}" />
+                <Label
+                    HorizontalOptions="Center"
+                    Text="Click Here To Upload Photo!"
+                    TextColor="MidnightBlue"
+                    VerticalOptions="End">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UploadPictureCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Button
+                    Command="{Binding RegisterCommand}"
+                    IsEnabled="{Binding NotInServerCall}"
+                    Style="{StaticResource buttonStyle}"
+                    Text="Create Account"
+                    WidthRequest="250" />
             </VerticalStackLayout>
 
         </ScrollView>

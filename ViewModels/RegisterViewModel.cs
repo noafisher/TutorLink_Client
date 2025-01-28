@@ -538,12 +538,40 @@ public class RegisterViewModel : ViewModelBase
     //Other properties
     private bool isStudent;
 
+    #region Photo
+
+    private string photoURL;
+
+    public string PhotoURL
+    {
+        get => photoURL;
+        set
+        {
+            photoURL = value;
+            OnPropertyChanged("PhotoURL");
+        }
+    }
+
+    private string localPhotoPath;
+
+    public string LocalPhotoPath
+    {
+        get => localPhotoPath;
+        set
+        {
+            localPhotoPath = value;
+            OnPropertyChanged("LocalPhotoPath");
+        }
+    }
+    #endregion
+
 
     public bool IsStudent { get { return isStudent; } set { isStudent = value; OnPropertyChanged(); OnPropertyChanged("IsTeacher"); } }
     public bool IsTeacher { get { return !isStudent; } }
 
     public ICommand GoBackCommand;
     public ICommand RegisterCommand { get; }
+    public ICommand UploadPictureCommand { get; }
 
 
     private TutorLinkWebAPIProxy proxy;
@@ -554,6 +582,7 @@ public class RegisterViewModel : ViewModelBase
         this.proxy = proxy;
         GoBackCommand = new Command(OnGoBack);
         RegisterCommand = new Command(OnRegister);
+        UploadPictureCommand = new Command(OnUploadPhoto);
         ErrorMsg = "";
         Email = "";
         Password = "";
@@ -570,80 +599,142 @@ public class RegisterViewModel : ViewModelBase
         //Call the server to login - student 
         if (IsStudent)
         {
-            StudentDTO studentDTO = new StudentDTO()
-            {
-                FirstName = FirstName,
-                LastName = LastName,
-                Email = Email,
-                UserAddress = Address,
-                Pass = Password,
-                CurrentClass = CurrentClass
-            };
-
-            StudentDTO? theStudent = await proxy.RegisterStudentAsync(studentDTO);
-            InServerCall = false;
-            
-            ((App)Application.Current).LoggedInStudent = theStudent;
-
-            //Set the application logged in user to be whatever user returned (null or real user)
-
-            if (theStudent == null)
-            {
-                ErrorMsg = "Registration Failed! Are you sure you are not registered with this email?";
-            }
-            else
-            {
-                ErrorMsg = "";
-                OnGoBack();
-            }
+            await OnRegisterStudent();
         }
-
         //Call the server to register teacher
         else
         {
-            TeacherDTO teacherDTO = new TeacherDTO()
-            {
-                FirstName = FirstName,
-                LastName = LastName,
-                Email = Email,
-                UserAddress = Address,
-                Pass = Password,
-                MaxDistance = MaxDistance,
-                GoToStudent = GoToStudent,
-                TeachAtHome = TeachAtHome,
-                Vetek = Vetek,
-                PricePerHour = PricePerHour
-
-            };
-
-            TeacherDTO? theTeacher = await proxy.RegisterTeacherAsync(teacherDTO);
-            InServerCall = false;
-
-            ((App)Application.Current).LoggedInTeacher = theTeacher;
-
-            //Set the application logged in user to be whatever user returned (null or real user)
-
-            if (theTeacher == null)
-            {
-                ErrorMsg = "Registration Failed! Are you sure you are not registered with this email?";
-            }
-            else
-            {
-                ErrorMsg = "";
-                OnGoBack();
-            }
+            await OnRegisterTeacher();
 
         }
+        InServerCall = false;
+    }
+
+    private async Task OnRegisterStudent()
+    {
+        StudentDTO studentDTO = new StudentDTO()
+        {
+            FirstName = FirstName,
+            LastName = LastName,
+            Email = Email,
+            UserAddress = Address,
+            Pass = Password,
+            CurrentClass = CurrentClass
+        };
+
+        StudentDTO? theStudent = await proxy.RegisterStudentAsync(studentDTO);
+        
+
+        ((App)Application.Current).LoggedInStudent = theStudent;
 
         //Set the application logged in user to be whatever user returned (null or real user)
 
+        if (theStudent == null)
+        {
+            ErrorMsg = "Registration Failed! Are you sure you are not registered with this email?";
+        }
+        else
+        {
+            ErrorMsg = "";
+            //check if photo was selected
+            if (!string.IsNullOrEmpty(LocalPhotoPath)) 
+            {
+                theStudent = await proxy.UploadProfileImageStudent(LocalPhotoPath);
+                if (theStudent == null)
+                {
+                    ErrorMsg = "Registration Succeeded but the profile image was not updated!";
+                }
+                else
+                {
+                    ((App)Application.Current).LoggedInStudent = theStudent;
+                }
+            }
+            OnGoBack();
+        }
+    }
 
+    private async Task OnRegisterTeacher()
+    {
+        TeacherDTO teacherDTO = new TeacherDTO()
+        {
+            FirstName = FirstName,
+            LastName = LastName,
+            Email = Email,
+            UserAddress = Address,
+            Pass = Password,
+            MaxDistance = MaxDistance,
+            GoToStudent = GoToStudent,
+            TeachAtHome = TeachAtHome,
+            Vetek = Vetek,
+            PricePerHour = PricePerHour
+
+        };
+
+        TeacherDTO? theTeacher = await proxy.RegisterTeacherAsync(teacherDTO);
+        InServerCall = false;
+
+        ((App)Application.Current).LoggedInTeacher = theTeacher;
+
+        //Set the application logged in user to be whatever user returned (null or real user)
+
+        if (theTeacher == null)
+        {
+            ErrorMsg = "Registration Failed! Are you sure you are not registered with this email?";
+        }
+        else
+        {
+            ErrorMsg = "";
+            //check if photo was selected
+            if (!string.IsNullOrEmpty(LocalPhotoPath))
+            {
+                theTeacher = await proxy.UploadProfileImageTeacher(LocalPhotoPath);
+                if (theTeacher == null)
+                {
+                    ErrorMsg = "Registration Succeeded but the profile image was not updated!";
+                }
+                else
+                {
+                    ((App)Application.Current).LoggedInTeacher = theTeacher;
+                }
+            }
+            OnGoBack();
+        }
     }
 
     private void OnGoBack()
     {
         // Navigate to the Register View page
         ((App)Application.Current).MainPage.Navigation.PopAsync();
+    }
+
+    //upload profile picture on the register page
+    private async void OnUploadPhoto()
+    {
+        try
+        {
+            var result = await MediaPicker.Default.CapturePhotoAsync(new MediaPickerOptions
+            {
+                Title = "Please select a photo",
+            });
+
+            if (result != null)
+            {
+                // The user picked a file
+                this.LocalPhotoPath = result.FullPath;
+                this.PhotoURL = result.FullPath;
+            }
+        }
+        catch (Exception ex)
+        {
+        }
+
+    }
+
+    private void UpdatePhotoURL(string virtualPath)
+    {
+        Random r = new Random();
+        PhotoURL = proxy.GetImagesBaseAddress() + virtualPath + "?v=" + r.Next();
+        LocalPhotoPath = "";
     }
 
 

@@ -11,28 +11,28 @@ namespace TutorLinkClient.Services
     public class TutorLinkWebAPIProxy
     {
         #region without tunnel
-        
-        //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        private static string serverIP = "localhost";
-        private HttpClient client;
-        private string baseUrl;
-        public static string BaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
-            DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5049/api/" : $"http://{serverIP}:5049/api/";
-        private static string ImageBaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
-            DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5049" : $"http://{serverIP}:5049";
-        
+
+        ////Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
+        //private static string serverIP = "localhost";
+        //private HttpClient client;
+        //private string baseUrl;
+        //public static string BaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
+        //    DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5049/api/" : $"http://{serverIP}:5049/api/";
+        //private static string ImageBaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
+        //    DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5049" : $"http://{serverIP}:5049";
+
         #endregion
 
         #region with tunnel
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        //private static string serverIP = "https://05smzxlj-5049.euw.devtunnels.ms/";
-        //private HttpClient client;
-        //private string baseUrl;
-        //public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/api/";
-        //private static string ImageBaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/";
-        #endregion
+        private static string serverIP = "https://05smzxlj-5049.euw.devtunnels.ms/";
+        private HttpClient client;
+        private string baseUrl;
+        public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/api/";
+        private static string ImageBaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/";
+          #endregion
 
-        public TutorLinkWebAPIProxy()
+    public TutorLinkWebAPIProxy()
         {
             //Set client handler to support cookies!!
             HttpClientHandler handler = new HttpClientHandler();
@@ -278,6 +278,86 @@ namespace TutorLinkClient.Services
                 return null;
             }
 
+        }
+
+        //This method call the UploadProfileImage web API on the server and return the AppUser object with the given URL
+        //of the profile image or null if the call fails
+        //when registering a user it is better first to call the register command and right after that call this function
+        public async Task<StudentDTO?> UploadProfileImageStudent(string imagePath)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}uploadprofileimage";
+            try
+            {
+                //Create the form data
+                MultipartFormDataContent form = new MultipartFormDataContent();
+                var fileContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
+                form.Add(fileContent, "file", imagePath);
+                //Call the server API
+                HttpResponseMessage response = await client.PostAsync(url, form);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    StudentDTO? result = JsonSerializer.Deserialize<StudentDTO>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<TeacherDTO?> UploadProfileImageTeacher(string imagePath)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}uploadprofileimage";
+            try
+            {
+                //Create the form data
+                MultipartFormDataContent form = new MultipartFormDataContent();
+                var fileContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
+                form.Add(fileContent, "file", imagePath);
+                //Call the server API
+                HttpResponseMessage response = await client.PostAsync(url, form);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    TeacherDTO? result = JsonSerializer.Deserialize<TeacherDTO>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public string GetImagesBaseAddress()
+        {
+            return TutorLinkWebAPIProxy.ImageBaseAddress;
         }
 
     }
