@@ -73,11 +73,7 @@
                                         CommandParameter="{Binding}"
                                         IconImageSource="rate.png"
                                         Text="Rate" />
-                                    <SwipeItem
-                                        Command="{Binding BindingContext.GotoReportCommand, Source={x:Reference cv}}"
-                                        CommandParameter="{Binding}"
-                                        IconImageSource="report.png"
-                                        Text="Report" />
+                                    
                                 </SwipeItems>
                             </SwipeView.LeftItems>
                             <StackLayout Padding="10" x:DataType="model:TeacherDTO">

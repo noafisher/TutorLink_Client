@@ -360,6 +360,42 @@ namespace TutorLinkClient.Services
             return TutorLinkWebAPIProxy.ImageBaseAddress;
         }
 
+        public async Task<ReportDTO> ReportUserAsync(ReportDTO reportDTO)
+        {
+            string url = $"{this.baseUrl}ReportUser";
+            try
+            {
+                //Call the server API - מעביר את האובייקט לשרת
+                string json = JsonSerializer.Serialize(reportDTO);
+                //
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    ReportDTO? result = JsonSerializer.Deserialize<ReportDTO>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
     }
 
 
