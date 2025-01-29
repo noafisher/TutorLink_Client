@@ -619,7 +619,8 @@ public class RegisterViewModel : ViewModelBase
             Email = Email,
             UserAddress = Address,
             Pass = Password,
-            CurrentClass = CurrentClass
+            CurrentClass = CurrentClass,
+            ProfileImagePath = ""
         };
 
         StudentDTO? theStudent = await proxy.RegisterStudentAsync(studentDTO);
@@ -639,6 +640,11 @@ public class RegisterViewModel : ViewModelBase
             //check if photo was selected
             if (!string.IsNullOrEmpty(LocalPhotoPath)) 
             {
+                await proxy.LoginStudentAsync(new LoginInfoDTO()
+                {
+                    Email = theStudent.Email,
+                    Password = theStudent.Pass
+                });
                 theStudent = await proxy.UploadProfileImageStudent(LocalPhotoPath);
                 if (theStudent == null)
                 {
@@ -666,7 +672,8 @@ public class RegisterViewModel : ViewModelBase
             GoToStudent = GoToStudent,
             TeachAtHome = TeachAtHome,
             Vetek = Vetek,
-            PricePerHour = PricePerHour
+            PricePerHour = PricePerHour,
+            ProfileImagePath = ""
 
         };
 
@@ -687,6 +694,11 @@ public class RegisterViewModel : ViewModelBase
             //check if photo was selected
             if (!string.IsNullOrEmpty(LocalPhotoPath))
             {
+                await proxy.LoginTeacherAsync(new LoginInfoDTO()
+                {
+                    Email = theTeacher.Email,
+                    Password = theTeacher.Pass
+                });
                 theTeacher = await proxy.UploadProfileImageTeacher(LocalPhotoPath);
                 if (theTeacher == null)
                 {
