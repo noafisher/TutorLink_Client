@@ -49,6 +49,7 @@ namespace TutorLinkClient
 
 
             builder.Services.AddSingleton<TutorLinkWebAPIProxy>();
+            builder.Services.AddSingleton<ChatProxy>();
 
 
 #if DEBUG

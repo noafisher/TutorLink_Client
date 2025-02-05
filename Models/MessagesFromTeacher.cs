@@ -1,9 +1,11 @@
-﻿namespace TutorLinkClient.Models
+﻿using System.Collections.ObjectModel;
+
+namespace TutorLinkClient.Models
 {
     public class MessagesFromTeacher
     {
         public TeacherDTO Teacher { get; set; }
-        public List<ChatMessageDTO> Messages { get; set; }
+        public ObservableCollection<ChatMessageDTO> Messages { get; set; }
 
     }
 }
