@@ -4,9 +4,16 @@
              x:Class="TutorLinkClient.Views.ReportUser"
              Title="ReportUser">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label
+         FontFamily="MarkaziText-VariableFont_wght"
+         FontSize="50"
+         HorizontalOptions="Center"
+         Text="Report User:"
+         TextColor="MidnightBlue" />
+        
+        
+
+
+
     </VerticalStackLayout>
 </ContentPage>

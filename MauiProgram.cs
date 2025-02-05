@@ -21,6 +21,8 @@ namespace TutorLinkClient
                     fonts.AddFont("Kalam-Regular.ttf", "Kalam-Regular");
                     fonts.AddFont("miriwin-webfont.ttf", "miriwin-webfont");
                     fonts.AddFont("Overlock-Regular.ttf", "Overlock-Regular");
+                    fonts.AddFont("MarkaziText-VariableFont_wght.ttf", "MarkaziText-VariableFont_wght");
+
 
 
 
