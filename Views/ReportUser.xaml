@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:TutorLinkClient.Models"
              x:Class="TutorLinkClient.Views.ReportUser"
              Title="ReportUser">
     <VerticalStackLayout>
@@ -10,10 +11,29 @@
          HorizontalOptions="Center"
          Text="Report User:"
          TextColor="MidnightBlue" />
-        
-        
+
+        <HorizontalStackLayout>
+            <Label Margin="5" Text="Teacher name:" />
 
 
+
+            <Picker
+        x:DataType="model:TeacherDTO"
+        ItemDisplayBinding="{Binding DisplayName}"
+        ItemsSource="{Binding BindingContext.TeachersList, Source={x:Reference stck}}"
+        SelectedItem="{Binding BindingContext.SelectedTeacher, Source={x:Reference stck}}" />
+        </HorizontalStackLayout>
+
+
+        <HorizontalStackLayout>
+            <Label Margin="5" Text="Student name:" />
+
+        <Picker
+        
+         ItemDisplayBinding="{Binding DisplayName}"
+         ItemsSource="{Binding BindingContext.TeachersList, Source={x:Reference stck}}"
+        SelectedItem="{Binding BindingContext.SelectedTeacher, Source={x:Reference stck}}" />
+        </HorizontalStackLayout>
 
     </VerticalStackLayout>
 </ContentPage>

@@ -7,5 +7,14 @@ namespace TutorLinkClient.Models
         public TeacherDTO Teacher { get; set; }
         public ObservableCollection<ChatMessageDTO> Messages { get; set; }
 
+        public int NumMessages
+        {
+            get
+            {
+                if (Messages == null) { return 0; }
+                else return Messages.Count;
+            }
+        }
+
     }
 }
