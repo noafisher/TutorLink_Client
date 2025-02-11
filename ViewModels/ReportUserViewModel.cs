@@ -87,8 +87,19 @@ public class ReportUserViewModel : ViewModelBase
 
     //????? ???? ?? ????? ????????
     #region teacher name
-    public ObservableCollection<TeacherDTO> TeachersList { get; set; }
-
+    private ObservableCollection<TeacherDTO> teachersList;
+    public ObservableCollection<TeacherDTO> TeachersList
+    {
+        get
+        {
+            return teachersList;
+        }
+        set
+        {
+            teachersList = value;
+            OnPropertyChanged();
+        }
+    }
     private bool showTeacherNameError;
 
     public bool ShowTeacherNameError
@@ -138,7 +149,20 @@ public class ReportUserViewModel : ViewModelBase
     #endregion
 
     #region student name
-    public ObservableCollection<StudentDTO> StudentsliST { get; set; }
+
+    private ObservableCollection<StudentDTO> studentsList;
+    public ObservableCollection<StudentDTO> StudentsList 
+    {
+        get
+        {
+            return studentsList;
+        }
+        set
+        {
+            studentsList = value;
+            OnPropertyChanged();
+        }
+    }
 
     private bool showStudentNameError;
 
@@ -194,6 +218,8 @@ public class ReportUserViewModel : ViewModelBase
 	{
         this.proxy = proxy;
         this.serviceProvider = serviceProvider;
+        GetAllStudents();
+        GetAllTeachers();
      
 
     }
@@ -238,5 +264,27 @@ public class ReportUserViewModel : ViewModelBase
     }
 
     // ?????? ?????? ??????? ?? ?????? ?? ?????? ????????? - ?????? GET 
+
+    private async void GetAllTeachers()
+    {
+        List<TeacherDTO> l = await proxy.GetAllTeachers();
+
+
+        foreach (TeacherDTO t in l)
+        {
+            TeachersList.Add(t);
+        }
+    }
+
+    private async void GetAllStudents()
+    {
+        List<StudentDTO> l = await proxy.GetAllStudents();
+
+
+        foreach (StudentDTO t in l)
+        {
+            StudentsList.Add(t);
+        }
+    }
 
 }

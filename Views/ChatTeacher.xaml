@@ -4,9 +4,43 @@
              x:Class="TutorLinkClient.Views.ChatTeacher"
              Title="ChatTeacher">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label 
+        Text="Chat"
+        />
+
+            <CollectionView Grid.Row="1"
+                 x:Name="cv"
+                 ItemsSource="{Binding Messages}"
+                  SelectionMode="Single">    
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackLayout Padding="10">
+                            <Image Source="{Binding Student.ImageURL}" />
+                            <Label
+                             Padding="5,0"
+                             FontAttributes="Bold"
+                             FontSize="Medium"
+                             Text="{Binding Student.FirstName}" />
+                            <Label
+                             FontAttributes="Bold"
+                             FontSize="Medium"
+                             Text="{Binding Teacher.LastName}" />
+                            <Label
+                             FontAttributes="Italic"
+                             FontSize="Small"
+                             Text="{Binding NumMessages, StringFormat='({0})'}" />
+
+                        </StackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

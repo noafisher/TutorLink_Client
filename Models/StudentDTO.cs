@@ -1,22 +1,25 @@
 ﻿using System;
 using TutorLinkClient.Services;
 
-public class StudentDTO
+namespace TutorLinkClient.Models
 {
-    public int StudentId { get; set; }
-    public string Email { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Pass { get; set; }
-    public int CurrentClass { get; set; }
-    public string UserAddress { get; set; }
-    public string ProfileImagePath { get; set; }
-    public string ImageURL
+    public class StudentDTO
     {
-        get
+        public int StudentId { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Pass { get; set; }
+        public int CurrentClass { get; set; }
+        public string UserAddress { get; set; }
+        public string ProfileImagePath { get; set; }
+        public string ImageURL
         {
-            return TutorLinkWebAPIProxy.BaseAddress + this.ProfileImagePath;
+            get
+            {
+                return TutorLinkWebAPIProxy.BaseAddress + this.ProfileImagePath;
+            }
         }
+        public StudentDTO() { }
     }
-    public StudentDTO() { }
 }

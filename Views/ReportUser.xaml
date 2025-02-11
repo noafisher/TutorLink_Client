@@ -29,7 +29,7 @@
             <Label Margin="5" Text="Student name:" />
 
         <Picker
-        
+         x:DataType="model:StudentDTO"
          ItemDisplayBinding="{Binding DisplayName}"
          ItemsSource="{Binding BindingContext.TeachersList, Source={x:Reference stck}}"
         SelectedItem="{Binding BindingContext.SelectedTeacher, Source={x:Reference stck}}" />

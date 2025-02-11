@@ -98,18 +98,7 @@ public class TeachersListViewModel : ViewModelBase
             TeachersList.Add(t);
             FilteredTeachersList.Add(t);
 
-            //foreach (TeacherSubject s in t.TeacherSubjects)
-            //{
-            //    int subjectID = s.SubjectId;
-            //    if (SubjectList.Where(ss => ss.SubjectId == subjectID).FirstOrDefault() == null)
-            //    {
-            //        SubjectList.Add(new SubjectDTO
-            //        {
-            //            SubjectId = subjectID,
-            //            SubjectName = s.SubjectName
-            //        });
-            //    }
-            //}
+            
         }
     }
 
