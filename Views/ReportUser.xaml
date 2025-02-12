@@ -3,14 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:TutorLinkClient.Models"
              x:Class="TutorLinkClient.Views.ReportUser"
+             xmlns:viewmodel="clr-namespace:TutorLinkClient.ViewModels"
+             x:DataType="viewmodel:ReportUserViewModel"
              Title="ReportUser">
-    <VerticalStackLayout>
+    <VerticalStackLayout
+        x:Name="stck">
         <Label
          FontFamily="MarkaziText-VariableFont_wght"
          FontSize="50"
          HorizontalOptions="Center"
          Text="Report User:"
          TextColor="MidnightBlue" />
+
+        
+
+        </HorizontalStackLayout>
 
         <HorizontalStackLayout>
             <Label Margin="5" Text="Teacher name:" />
@@ -22,6 +29,12 @@
         ItemDisplayBinding="{Binding DisplayName}"
         ItemsSource="{Binding BindingContext.TeachersList, Source={x:Reference stck}}"
         SelectedItem="{Binding BindingContext.SelectedTeacher, Source={x:Reference stck}}" />
+
+            <Label
+                 IsVisible="{Binding ShowTeacherNameError}"
+                    Style="{StaticResource labelErrorStyle}"
+                Text="{Binding TeacherNameError}"
+               />
         </HorizontalStackLayout>
 
 
@@ -31,9 +44,40 @@
         <Picker
          x:DataType="model:StudentDTO"
          ItemDisplayBinding="{Binding DisplayName}"
-         ItemsSource="{Binding BindingContext.TeachersList, Source={x:Reference stck}}"
-        SelectedItem="{Binding BindingContext.SelectedTeacher, Source={x:Reference stck}}" />
+         ItemsSource="{Binding BindingContext.StudentsList, Source={x:Reference stck}}"
+        SelectedItem="{Binding BindingContext.SelectedStudent, Source={x:Reference stck}}" />
+
+            <Label
+                IsVisible="{Binding ShowStudentNameError}"
+                Style="{StaticResource labelErrorStyle}"
+                Text="{Binding StudentNameError}"
+                />
         </HorizontalStackLayout>
 
+
+        <HorizontalStackLayout>
+            <Label
+                Text="Why are you reporting?"
+            />
+
+            <Editor
+             AutoSize="TextChanges"
+             Placeholder="what is on your mind...?"
+             Text="{Binding ReportText}" />
+
+            <Label
+            IsVisible="{Binding ShowTextError}"
+             Style="{StaticResource labelErrorStyle}"
+                Text="{Binding TextError}" />
+
+
+        </HorizontalStackLayout>
+
+        <Button
+            BackgroundColor="MediumPurple"
+            Command="{Binding ReportUserCommand}"
+            Text="Submit Rate"
+            WidthRequest="200" 
+        />
     </VerticalStackLayout>
 </ContentPage>

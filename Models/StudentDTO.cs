@@ -20,6 +20,13 @@ namespace TutorLinkClient.Models
                 return TutorLinkWebAPIProxy.BaseAddress + this.ProfileImagePath;
             }
         }
+        public string DisplayName
+        {
+            get
+            {
+                return $"{LastName}, {FirstName}";
+            }
+        }
         public StudentDTO() { }
     }
 }

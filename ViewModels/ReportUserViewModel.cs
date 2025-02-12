@@ -8,6 +8,7 @@ using TutorLinkClient.Views;
 
 
 
+
 public class ReportUserViewModel : ViewModelBase
 {
     
@@ -68,15 +69,15 @@ public class ReportUserViewModel : ViewModelBase
     #endregion
 
     #region command 
-    private ICommand reportUserComaand;
-    public ICommand ReportUserComaand {
+    private ICommand reportUserCommand;
+    public ICommand ReportUserCommand {
         get
         {
-            return reportUserComaand;
+            return reportUserCommand;
         }
         set
         {
-            reportUserComaand = value;
+            reportUserCommand = value;
             OnPropertyChanged();
         }
     }
@@ -218,6 +219,8 @@ public class ReportUserViewModel : ViewModelBase
 	{
         this.proxy = proxy;
         this.serviceProvider = serviceProvider;
+        TeachersList = new ObservableCollection<TeacherDTO>();
+        StudentsList = new ObservableCollection<StudentDTO>();
         GetAllStudents();
         GetAllTeachers();
      
