@@ -33,10 +33,7 @@
                     Style="{StaticResource labelErrorStyle}"
                 Text="{Binding TeacherNameError}"
                />
-        </HorizontalStackLayout>
-
-
-        <HorizontalStackLayout>
+       
             <Label Margin="5" Text="Student name:" />
 
         <Picker
@@ -50,9 +47,6 @@
                 Style="{StaticResource labelErrorStyle}"
                 Text="{Binding StudentNameError}"
                 />
-        </HorizontalStackLayout>
-
-
         <HorizontalStackLayout>
             <Label
                 Text="Why are you reporting?"
