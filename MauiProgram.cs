@@ -57,6 +57,7 @@ namespace TutorLinkClient
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            AppContext.SetSwitch("System.Reflection.NullabilityInfoContext.IsSupported", true);
 
             return builder.Build();
         }

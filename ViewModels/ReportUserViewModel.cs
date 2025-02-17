@@ -59,6 +59,13 @@ public class ReportUserViewModel : ViewModelBase
         }
     }
 
+    private void ValidateText()
+    {
+        this.TextError = "You must write a report";
+        this.ShowTextError = string.IsNullOrEmpty(ReportText);
+    }
+
+
 
     #endregion
 
@@ -179,7 +186,6 @@ public class ReportUserViewModel : ViewModelBase
     private string studentNameError;
 
     public string   StudentNameError
-
     {
         get => studentNameError;
         set
@@ -219,8 +225,13 @@ public class ReportUserViewModel : ViewModelBase
 	{
         this.proxy = proxy;
         this.serviceProvider = serviceProvider;
+        IsStudent = ((App)Application.Current).LoggedInStudent != null;
         TeachersList = new ObservableCollection<TeacherDTO>();
         StudentsList = new ObservableCollection<StudentDTO>();
+        ReportUserCommand = new Command(OnReport);
+        ValidateStudent();
+        ValidateTeacher();
+        ValidateText();
         GetAllStudents();
         GetAllTeachers();
      
@@ -272,10 +283,14 @@ public class ReportUserViewModel : ViewModelBase
     {
         List<TeacherDTO> l = await proxy.GetAllTeachers();
 
-
+        TeacherDTO? teacher = ((App)Application.Current).LoggedInTeacher;
         foreach (TeacherDTO t in l)
         {
             TeachersList.Add(t);
+            if (teacher != null && teacher.TeacherId == t.TeacherId)
+            {
+                SelectedTeacher = t;
+            }
         }
     }
 
@@ -283,10 +298,14 @@ public class ReportUserViewModel : ViewModelBase
     {
         List<StudentDTO> l = await proxy.GetAllStudents();
 
-
+        StudentDTO? student = ((App)Application.Current).LoggedInStudent;
         foreach (StudentDTO t in l)
         {
             StudentsList.Add(t);
+            if (student != null && student.StudentId == t.StudentId)
+            {
+                SelectedStudent = t;
+            }
         }
     }
 

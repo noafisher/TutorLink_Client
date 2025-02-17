@@ -1,6 +1,7 @@
 ﻿using TutorLinkClient.ViewModels;
 using TutorLinkClient.Views;
 using TutorLinkClient.Models;
+using System.Reflection;
 
 
 namespace TutorLinkClient
@@ -13,6 +14,8 @@ namespace TutorLinkClient
 
         public App(IServiceProvider serviceProvider)
         {
+            NullabilityInfoContext context = new NullabilityInfoContext();
+            
             InitializeComponent();
             //MainPage = new AppShell();
             MainPage = new NavigationPage(serviceProvider.GetService<Login>());

@@ -26,7 +26,7 @@ public class TeacherDTO
             return TutorLinkWebAPIProxy.BaseAddress + this.ProfileImagePath;
         }
     }
-    public List<TeacherSubject> TeacherSubjects { get; set; }
+    public List<TeacherSubject>? TeacherSubjects { get; set; }
 
     public string Subjects
     {
