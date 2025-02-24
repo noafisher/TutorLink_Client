@@ -22,6 +22,16 @@ public class CalendarViewModel : ViewModelBase
 			OnPropertyChanged();
 		}	
 	}
+	private ObservableCollection<DateTime> dates;
+	public ObservableCollection<DateTime> Dates
+	{
+        get { return dates; }
+        set
+        {
+            dates = value;
+            OnPropertyChanged();
+        }
+    }
 	private ObservableCollection<Lesson> lessonsList;
 
     public ObservableCollection<Lesson> LessonsList 
@@ -34,22 +44,53 @@ public class CalendarViewModel : ViewModelBase
         }
     }
 
-	public ICommand GoToAddLessinCommand { get; set; }
+	public ICommand GoToAddLessonCommand { get; set; }
 	public CalendarViewModel(TutorLinkWebAPIProxy proxy, IServiceProvider serviceProvider)
 	{
 		this.proxy = proxy;
 		this.serviceProvider = serviceProvider;
 		LessonsList = new ObservableCollection<Lesson>();
-		GetAllLessons();
+		Dates = new ObservableCollection<DateTime>();
+		GetAllLessons(DateOnly.FromDateTime(DateTime.Now));
+		GoToAddLessonCommand = new Command(GoToAddLesson);
 	}
 
 	//
-    private async void GetAllLessons()
+    private async void GetAllLessons(DateOnly date)
 	{
 		//create a fictive lesson
-		Lesson fictive = new Lesson()
+		
+		
+		List<Lesson> l = await proxy.GetAllLessonsAsync(date);
+		List<Lesson> result = new List<Lesson>();
+        for (int i = 0; i < 24; i++)
 		{
+            Lesson fictive = new Lesson();
+			Lesson? current = l.Where(s => s.TimeOfLesson.Hour == i).FirstOrDefault();
+
+			if (current == null)
+			{
+				TimeOnly t = new TimeOnly(i, 0);
+				current = new Lesson()
+				{
+
+					TimeOfLesson = new DateTime(date, t)
+				};
+
+            }
+			result.Add(current);
+				
+           
 			
-		};
-	}
+			
+		}
+		LessonsList = new ObservableCollection<Lesson>(result);
+    }
+
+    private void GoToAddLesson()
+    {
+        // Navigate to the add lesson View page
+		((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<AddLesson>());	
+        
+    }
 }
