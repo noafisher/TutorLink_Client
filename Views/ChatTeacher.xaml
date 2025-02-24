@@ -16,7 +16,7 @@
             <CollectionView Grid.Row="1"
                  x:Name="cv"
                  ItemsSource="{Binding Messages}"
-                  SelectionMode="Single">    
+                  SelectionMode="Single" SelectedItem="{Binding SelectedStudent}">    
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 

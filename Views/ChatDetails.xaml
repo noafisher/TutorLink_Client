@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutorLinkClient.Views.ChatDetails"
+             Title="ChatDetails">
+    <VerticalStackLayout>
+        <Label 
+            Text="{Binding ChatWithName}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <CollectionView
+    x:Name="cv"
+    ItemsSource="{Binding Messages}"
+    SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    
+                        
+                        <StackLayout Padding="10">
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding MessageText}" />
+                                <Label Text="{Binding TextTime}" />
+                                
+                            </HorizontalStackLayout>
+                            </StackLayout>
+                   
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <HorizontalStackLayout>
+            <Editor Placeholder="Type Message" Text="{Binding NewMessage}"></Editor>
+            <Button Text="Send" Command="{Binding SendCommand}"></Button>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

@@ -55,9 +55,21 @@ public class ChatStudentViewModel : ViewModelBase
 
 		
 	}
-	private void OnGoToChat()
+	private async void OnGoToChat()
 	{
-		//TODO: Open the chat details page and transfer the selected object
-	}
+		if (SelectedTeacher != null)
+		{
+            var navParam = new Dictionary<string, object>
+            {
+                    { "messages", SelectedTeacher.Messages },
+                    { "teacher", SelectedTeacher.Teacher},
+                    { "student", ((App)Application.Current).LoggedInStudent}
+            };
+            await Shell.Current.GoToAsync("ChatDetails", navParam);
+			SelectedTeacher = null;
+        }
+        //TODO: Open the chat details page and transfer the selected object
+        
+    }
 
 }

@@ -16,6 +16,7 @@ namespace TutorLinkClient.Models
         public string? MessageText { get; set; }
 
         public DateTime TextTime { get; set; }
+        
 
     }
 }

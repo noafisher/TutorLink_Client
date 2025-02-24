@@ -52,17 +52,31 @@ namespace TutorLinkClient.ViewModels
         }
 
         //All Chat Data
+        public async void SendMessage(ChatMessageDTO message)
+        {
+            if (IsStudent)
+            {
+                await this.chatProxy.SendMessageToTeacher(message.StudentId.ToString(), message.TeacherId.ToString(), message.MessageText);
+            }
+            else
+            {
+                await this.chatProxy.SendMessageToStudent(message.StudentId.ToString(), message.TeacherId.ToString(), message.MessageText);
+            }
+
+        }
         private async Task ConnectToChatServer()
         {
             if (IsStudent)
             {
                 List<MessagesFromTeacher> messages = await chatProxy.StudentConnect(this.userId.ToString());
                 MessagesFromTeacher = new ObservableCollection<MessagesFromTeacher>(messages);
+                chatProxy.RegisterToReceiveMessageFromTeacher(ReceiveMessageFromTeacher);
             }
             else
             {
                 List<MessagesFromStudent> messages = await chatProxy.TeacherConnect(this.userId.ToString());
                 MessagesFromStudent = new ObservableCollection<MessagesFromStudent>(messages);
+                chatProxy.RegisterToReceiveMessageFromStudent(ReceiveMessageFromStudent);
             }
         }
 

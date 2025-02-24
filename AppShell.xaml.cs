@@ -1,5 +1,6 @@
 ﻿using TutorLinkClient.Models;
 using TutorLinkClient.ViewModels;
+using TutorLinkClient.Views;
 
 namespace TutorLinkClient 
 
@@ -10,6 +11,7 @@ namespace TutorLinkClient
         {
            this.BindingContext = vm;
             InitializeComponent();
+            Routing.RegisterRoute("ChatDetails", typeof(ChatDetails));
         }
     }
 }

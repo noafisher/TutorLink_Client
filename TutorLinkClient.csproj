@@ -84,6 +84,9 @@
 	  <MauiXaml Update="Views\Calendar.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ChatDetails.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ChatStudent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

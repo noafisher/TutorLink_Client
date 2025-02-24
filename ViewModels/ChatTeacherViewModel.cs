@@ -10,16 +10,10 @@ public class ChatTeacherViewModel : ViewModelBase
 	public ChatTeacherViewModel()
     { }
 
-    private ObservableCollection<MessagesFromStudent> messages;
     public ObservableCollection<MessagesFromStudent> Messages
     {
         get
-        { return messages; }
-        set
-        {
-            messages = value;
-            OnPropertyChanged();
-        }
+        { return ((AppShellViewModel)(Shell.Current.BindingContext)).MessagesFromStudent; }
     }
 
     private MessagesFromStudent selectedStudent;
@@ -52,14 +46,24 @@ public class ChatTeacherViewModel : ViewModelBase
     {
         this.proxy = proxy;
         this.serviceProvider = serviceProvider;
-        Messages = ((AppShellViewModel)(Shell.Current.BindingContext)).MessagesFromStudent;
         SelectedStudent = null;
 
 
     }
-    private void OnGoToChat()
+    private async void OnGoToChat()
     {
         //TODO: Open the chat details page and transfer the selected object
+        if (SelectedStudent != null)
+        {
+            var navParam = new Dictionary<string, object>
+            {
+                    { "messages", SelectedStudent.Messages },
+                    { "student", SelectedStudent.Student},
+                    { "teacher", ((App)Application.Current).LoggedInTeacher}
+            };
+            await Shell.Current.GoToAsync("ChatDetails", navParam);
+        }
+        
     }
 }
 

@@ -49,6 +49,8 @@ namespace TutorLinkClient
             builder.Services.AddTransient<AppShellViewModel>();
             builder.Services.AddTransient<AddLesson>();
             builder.Services.AddTransient<AddLessonViewModel>();
+            builder.Services.AddTransient<ChatDetails>();
+            builder.Services.AddTransient<ChatDetailsViewModel>();
 
 
             builder.Services.AddSingleton<TutorLinkWebAPIProxy>();
