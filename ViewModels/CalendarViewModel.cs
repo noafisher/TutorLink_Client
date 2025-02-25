@@ -19,6 +19,7 @@ public class CalendarViewModel : ViewModelBase
 		set 
 		{
             selectedDate = value;
+			GetAllLessons();
 			OnPropertyChanged();
 		}	
 	}
@@ -44,6 +45,8 @@ public class CalendarViewModel : ViewModelBase
         }
     }
 
+
+
 	public ICommand GoToAddLessonCommand { get; set; }
 	public CalendarViewModel(TutorLinkWebAPIProxy proxy, IServiceProvider serviceProvider)
 	{
@@ -51,14 +54,15 @@ public class CalendarViewModel : ViewModelBase
 		this.serviceProvider = serviceProvider;
 		LessonsList = new ObservableCollection<Lesson>();
 		Dates = new ObservableCollection<DateTime>();
-		GetAllLessons(DateOnly.FromDateTime(DateTime.Now));
+		//GetAllLessons(DateOnly.FromDateTime(DateTime.Now));
 		GoToAddLessonCommand = new Command(GoToAddLesson);
 	}
 
 	//
-    private async void GetAllLessons(DateOnly date)
+    private async void GetAllLessons()
 	{
 		//create a fictive lesson
+		DateOnly date = DateOnly.FromDateTime(SelectedDate);
 		
 		
 		List<Lesson> l = await proxy.GetAllLessonsAsync(date);
