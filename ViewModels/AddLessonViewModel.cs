@@ -14,7 +14,24 @@ namespace TutorLinkClient.ViewModels
         private TutorLinkWebAPIProxy proxy;
         private IServiceProvider serviceProvider;
 
-        private ;
+        public AddLessonViewModel(TutorLinkWebAPIProxy proxy, IServiceProvider serviceProvider)
+        {
+            this.proxy = proxy;
+            this.serviceProvider = serviceProvider;
+        }
+
+        private string lessonName;
+        public string LessonName
+        {
+            get { return lessonName; }
+            set
+            {
+                lessonName = value;
+                OnPropertyChanged();
+            }
+        }
+
+         
 
     }
 }

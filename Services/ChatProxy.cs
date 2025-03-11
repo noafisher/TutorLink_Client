@@ -35,7 +35,10 @@ namespace TutorLinkClient.Services
         public ChatProxy()
         {
             string chatUrl = GetChatUrl();
-            hubConnection = new HubConnectionBuilder().WithUrl(chatUrl).Build();
+            hubConnection = new HubConnectionBuilder().WithUrl(chatUrl)
+                .WithAutomaticReconnect()
+                .WithKeepAliveInterval(TimeSpan.FromSeconds(10))
+                .WithServerTimeout(TimeSpan.FromSeconds(30)).Build();
 
         }
 
