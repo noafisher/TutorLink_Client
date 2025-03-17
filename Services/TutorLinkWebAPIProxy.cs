@@ -13,23 +13,23 @@ namespace TutorLinkClient.Services
         #region without tunnel
 
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        //private static string serverIP = "localhost";
-        //private HttpClient client;
-        //private string baseUrl;
-        //public static string BaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
-        //    DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5049/api/" : $"http://{serverIP}:5049/api/";
-        //private static string ImageBaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
-        //    DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5049" : $"http://{serverIP}:5049";
+        private static string serverIP = "localhost";
+        private HttpClient client;
+        private string baseUrl;
+        public static string BaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
+            DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5049/api/" : $"http://{serverIP}:5049/api/";
+        private static string ImageBaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
+            DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5049" : $"http://{serverIP}:5049";
 
         #endregion
 
         #region with tunnel
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        private static string serverIP = "https://05smzxlj-5049.euw.devtunnels.ms/";
-        private HttpClient client;
-        private string baseUrl;
-        public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/";
+        //private static string serverIP = "https://05smzxlj-5049.euw.devtunnels.ms/";
+        //private HttpClient client;
+        //private string baseUrl;
+        //public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/api/";
+        //private static string ImageBaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/";
 
     #endregion
 
@@ -217,6 +217,38 @@ namespace TutorLinkClient.Services
         {
             //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
             string url = $"{this.baseUrl}GetAllSubjects";
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<SubjectDTO>? result = JsonSerializer.Deserialize<List<SubjectDTO>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<SubjectDTO>> GetTeacherSubjects()
+        {
+            //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
+            string url = $"{this.baseUrl}GetTeacherSubjects";
             try
             {
 
@@ -499,7 +531,36 @@ namespace TutorLinkClient.Services
                 return null;
             }
         }
+        public async Task<List<StudentDTO>>FindStudents(string search)
+        {
+            string url = $"{this.baseUrl}FindStudents?search={search}";
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(url);
 
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    List<StudentDTO>? result = JsonSerializer.Deserialize<List<StudentDTO>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
     }
 
