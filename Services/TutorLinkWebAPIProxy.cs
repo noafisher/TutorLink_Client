@@ -31,9 +31,9 @@ namespace TutorLinkClient.Services
         public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/api/";
         private static string ImageBaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/";
 
-        #endregion
+    #endregion
 
-        public TutorLinkWebAPIProxy()
+    public TutorLinkWebAPIProxy()
         {
             //Set client handler to support cookies!!
             HttpClientHandler handler = new HttpClientHandler();
@@ -464,6 +464,42 @@ namespace TutorLinkClient.Services
             }
 
         }
+
+        public async Task<Lesson> AddLessonAsync(Lesson lesson)
+        {
+            string url = $"{this.baseUrl}AddLesson";
+            try
+            {
+                //Call the server API - מעביר את האובייקט לשרת
+                string json = JsonSerializer.Serialize(lesson);
+                //
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    Lesson? result = JsonSerializer.Deserialize<Lesson>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
 
     }
 
