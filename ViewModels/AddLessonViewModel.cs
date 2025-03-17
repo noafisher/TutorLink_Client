@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TutorLinkClient.Services;
 using TutorLinkClient.Models;
 using TutorLinkClient.Views;
+using System.Windows.Input;
 
 namespace TutorLinkClient.ViewModels
 {
@@ -30,6 +31,44 @@ namespace TutorLinkClient.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private ICommand addLessonCommand;
+        public ICommand AddLessonCommand
+        {
+            get { return addLessonCommand; }
+
+            set
+            {
+                addLessonCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private SubjectDTO subject;
+        public SubjectDTO Subject
+        {
+            get { return subject; }
+            set
+            {
+                subject = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime timeOfLesson; 
+        public DateTime TimeOfLesson
+        {
+            get { return timeOfLesson; }
+            set
+            {
+                timeOfLesson = value;
+                OnPropertyChanged();
+            }
+        } 
+
+        // student 
+
+
 
          
 
