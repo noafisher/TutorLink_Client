@@ -13,7 +13,17 @@ namespace TutorLinkClient.Models
         public int StudentId { get; set; }
         public int SubjectId { get; set; }
         public DateTime TimeOfLesson { get; set; }
+        public StudentDTO Student { get; set; }
 
+        public string Description
+        {
+            get
+            {
+                if (Student != null)
+                    return $"{SubjectName} with {Student.DisplayName}";
+                return $"{SubjectName} with Unknown";
+            }
+        }
         public string SubjectName
         {
             get

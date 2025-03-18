@@ -27,7 +27,19 @@ namespace TutorLinkClient.ViewModels
             Subjects = new List<TeacherSubject>();
             ReadSubjects();
         }
+        #region lesson name
 
+        private bool showLessonNameError;
+
+        public bool ShowLessonNameError
+        {
+            get => showLessonNameError;
+            set
+            {
+                showLessonNameError = value;
+                OnPropertyChanged("ShowLessonNameError");
+            }
+        }
         private string lessonName;
         public string LessonName
         {
@@ -39,6 +51,28 @@ namespace TutorLinkClient.ViewModels
             }
         }
 
+        private string lessonNameError;
+
+        public string LessonNameError
+        {
+            get => lessonNameError;
+            set
+            {
+                lessonNameError = value;
+                OnPropertyChanged("FirstNameError");
+            }
+        }
+
+        private void ValidateLessonName()
+        {
+            this.LessonNameError = "Lesson Name is required!";
+            this.ShowLessonNameError = string.IsNullOrEmpty(LessonName);
+        }
+
+
+        #endregion
+
+        #region command 
         private Command addLessonCommand;
         public Command AddLessonCommand
         {
@@ -50,7 +84,11 @@ namespace TutorLinkClient.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion 
 
+        //subject teacher - 
+
+        
         private List<TeacherSubject> subjects;
         public List<TeacherSubject> Subjects
         {
@@ -61,7 +99,7 @@ namespace TutorLinkClient.ViewModels
                 OnPropertyChanged();
             }
         }
-
+        // add - validation
         private TeacherSubject subject;
         public TeacherSubject Subject
         {
@@ -73,6 +111,7 @@ namespace TutorLinkClient.ViewModels
             }
         }
 
+        // validation - date is in the future 
         private DateTime timeOfLesson; 
         public DateTime TimeOfLesson
         {
@@ -84,7 +123,7 @@ namespace TutorLinkClient.ViewModels
             }
         }
 
-        // student 
+        // student - add validation
         private StudentDTO student;
         public StudentDTO Student
         {
@@ -134,7 +173,7 @@ namespace TutorLinkClient.ViewModels
 
         private async void Save()
         {
-            //Add validations here!!!
+            // validation actions 
 
             if (Student != null)
             {
