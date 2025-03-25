@@ -21,7 +21,7 @@ namespace TutorLinkClient.Models
             {
                 if (Student != null)
                     return $"{SubjectName} with {Student.DisplayName}";
-                return $"{SubjectName} with Unknown";
+                return $"Free Slot";
             }
         }
         public string SubjectName

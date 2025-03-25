@@ -66,28 +66,28 @@ public class CalendarViewModel : ViewModelBase
 		
 		
 		List<Lesson> l = await proxy.GetAllLessonsAsync(date);
-		List<Lesson> result = new List<Lesson>();
-        for (int i = 0; i < 24; i++)
+        List<Lesson> result = new List<Lesson>();
+        if (l != null)
 		{
-            Lesson fictive = new Lesson();
-			Lesson? current = l.Where(s => s.TimeOfLesson.Hour == i).FirstOrDefault();
+            for (int i = 0; i < 24; i++)
+            {
+                Lesson fictive = new Lesson();
+                Lesson? current = l.Where(s => s.TimeOfLesson.Hour == i).FirstOrDefault();
 
-			if (current == null)
-			{
-				TimeOnly t = new TimeOnly(i, 0);
-				current = new Lesson()
-				{
+                if (current == null)
+                {
+                    TimeOnly t = new TimeOnly(i, 0);
+                    current = new Lesson()
+                    {
 
-					TimeOfLesson = new DateTime(date, t)
-				};
+                        TimeOfLesson = new DateTime(date, t)
+                    };
 
+                }
+                result.Add(current);
             }
-			result.Add(current);
-				
-           
-			
-			
-		}
+        }
+		
 		LessonsList = new ObservableCollection<Lesson>(result);
     }
 

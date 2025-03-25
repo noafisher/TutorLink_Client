@@ -5,28 +5,33 @@
              xmlns:vm="clr-namespace:TutorLinkClient.ViewModels"
              Title="Calendar">
 
- 
 
-    <VerticalStackLayout Padding="10">
+    
+    <VerticalStackLayout Padding="10" VerticalOptions="FillAndExpand">
 
         <!-- Date Picker -->
         <DatePicker Date="{Binding SelectedDate}" />
-
         <!-- Lessons Grid -->
-        <ScrollView>
-            <CollectionView ItemsSource="{Binding LessonsList}">
+        
+            <CollectionView ItemsSource="{Binding LessonsList}" HeightRequest="400">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame Padding="10" Margin="5" BackgroundColor="LightGray">
-                            <Label Text="{Binding TimeOfLesson, StringFormat='{}{0:HH:mm}'}" />
+                        <Grid>
+                            <Label Text="{Binding TimeOfLesson, StringFormat='{}{0:HH:mm}'}" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Description}" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                            
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </ScrollView>
-
         <!-- Add Lesson Button -->
-        <Button Text="Add Lesson" Command="{Binding GoToAddLessonCommand}" />
+        <Button Text="Add Lesson" Command="{Binding GoToAddLessonCommand}" VerticalOptions="End"/>
+
+
+
 
     </VerticalStackLayout>
+    
 </ContentPage>
