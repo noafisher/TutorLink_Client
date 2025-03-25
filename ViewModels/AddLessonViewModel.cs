@@ -111,18 +111,39 @@ namespace TutorLinkClient.ViewModels
             }
         }
 
-        // validation - date is in the future 
-        private DateTime timeOfLesson; 
-        public DateTime TimeOfLesson
+        #region  validation
+        private bool showSubjectError;
+
+        public bool ShowSubjectError
         {
-            get { return timeOfLesson; }
+            get => showSubjectError;
             set
             {
-                timeOfLesson = value;
+                showSubjectError = value;
+                OnPropertyChanged();
+            }
+        }
+        private string subjectError;
+
+        public string SubjectError
+
+        {
+            get => subjectError;
+            set
+            {
+                subjectError = value;
                 OnPropertyChanged();
             }
         }
 
+        private void ValidateSublect()
+        {
+            this.SubjectError = "Subject must be selected";
+            this.ShowSubjectError = Subject == null;
+        }
+        #endregion
+
+        
         // student - add validation
         private StudentDTO student;
         public StudentDTO Student
@@ -135,6 +156,51 @@ namespace TutorLinkClient.ViewModels
                 OnPropertyChanged();
             }
         }
+// validation - date is in the future 
+        private DateTime timeOfLesson; 
+        public DateTime TimeOfLesson
+        {
+            get { return timeOfLesson; }
+            set
+            {
+                timeOfLesson = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #region validation 
+
+        private bool showDateError;
+
+        public bool ShowDateError
+        {
+            get => showDateError;
+            set
+            {
+                showDateError = value;
+                OnPropertyChanged();
+            }
+        }
+        private string dateError;
+
+        public string DateError
+
+        {
+            get => dateError;
+            set
+            {
+                dateError = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void ValidateDate()
+        {
+            this.SubjectError = "Date must be in the future";
+            this.ShowSubjectError = timeOfLesson.;
+        }
+
+        #endregion
         private string studentName;
         public string StudentName
         {

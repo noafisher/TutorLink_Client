@@ -13,7 +13,7 @@
         <DatePicker Date="{Binding SelectedDate}" />
         <!-- Lessons Grid -->
         
-            <CollectionView ItemsSource="{Binding LessonsList}" HeightRequest="400">
+            <CollectionView ItemsSource="{Binding LessonsList}" HeightRequest="565">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame Padding="10" Margin="5" BackgroundColor="LightGray">
