@@ -99,7 +99,6 @@ namespace TutorLinkClient.ViewModels
                 OnPropertyChanged();
             }
         }
-        // add - validation
         private TeacherSubject subject;
         public TeacherSubject Subject
         {
@@ -156,7 +155,39 @@ namespace TutorLinkClient.ViewModels
                 OnPropertyChanged();
             }
         }
-// validation - date is in the future 
+        #region validation 
+        private bool showStudentError;
+
+        public bool ShowStudentError
+        {
+            get => showStudentError;
+            set
+            {
+                showStudentError = value;
+                OnPropertyChanged();
+            }
+        }
+        private string studentError;
+
+        public string StudentError
+
+        {
+            get => studentError;
+            set
+            {
+                studentError = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void ValidateStudent()
+        {
+            this.SubjectError = "Student must be selected";
+            this.ShowSubjectError = Student == null;
+        }
+    #endregion
+
+
         private DateTime timeOfLesson; 
         public DateTime TimeOfLesson
         {
@@ -197,7 +228,7 @@ namespace TutorLinkClient.ViewModels
         private void ValidateDate()
         {
             this.SubjectError = "Date must be in the future";
-            this.ShowSubjectError = timeOfLesson.;
+            this.ShowSubjectError = timeOfLesson > DateTime.Today;
         }
 
         #endregion
@@ -240,6 +271,10 @@ namespace TutorLinkClient.ViewModels
         private async void Save()
         {
             // validation actions 
+            ValidateDate();
+            ValidateLessonName();
+            ValidateStudent();
+            ValidateSublect();
 
             if (Student != null)
             {
@@ -254,12 +289,12 @@ namespace TutorLinkClient.ViewModels
                 lesson = await proxy.AddLessonAsync(lesson);
                 if (lesson != null)
                 {
-                    await Shell.Current.DisplayAlert("Add Lesson", "Leson was added successfully", "Ok");
+                    await Shell.Current.DisplayAlert("Add Lesson", "Lesson was added successfully", "Ok");
                     await Shell.Current.Navigation.PopAsync();
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Add Lesson", "Leson was NOT added!", "Ok");
+                    await Shell.Current.DisplayAlert("Add Lesson", "Lesson was NOT added!", "Ok");
 
                 }
 

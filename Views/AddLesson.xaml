@@ -1,15 +1,61 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutorLinkClient.Views.AddLesson"
-             Title="AddLesson">
-    <VerticalStackLayout>
-        <HorizontalStackLayout>
+<ContentPage
+    x:Class="TutorLinkClient.Views.AddLesson"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:TutorLinkClient.ViewModels"
+    xmlns:model="clr-namespace:TutorLinkClient.Models"
+    Title="Add Lesson">
+
+
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!--  Lesson Name  -->
+            <Label FontSize="Medium" Text="Lesson Name:" />
+            <Entry Placeholder="Enter lesson name" Text="{Binding LessonName}" />
             <Label
-             Text=" Select Subject:"   
-                Margin="5"
-                
-            />
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+                IsVisible="{Binding ShowLessonNameError}"
+                Text="{Binding LessonNameError}"
+                TextColor="Red" />
+
+            <!--  Subject Picker  -->
+            <Label FontSize="Medium" Text="Select Subject:" />
+            <Picker
+               
+                    x:DataType="model:SubjectDTO"
+    ItemDisplayBinding="{Binding SubjectName}"
+    ItemsSource="{Binding Subjects, Source={x:Reference scrlview}}"
+    SelectedItem="{Binding BindingContext.Subject, Source={x:Reference scrlview}}" />
+            <Label
+                IsVisible="{Binding ShowSubjectError}"
+                Text="{Binding SubjectError}"
+                TextColor="Red" />
+
+            <!--  Student Name Entry  -->
+            <Label FontSize="Medium" Text="Student Name:" />
+            <Entry Placeholder="Enter student name" Text="{Binding StudentName}" />
+            <Label
+                IsVisible="{Binding ShowStudentError}"
+                Text="{Binding StudentError}"
+                TextColor="Red" />
+
+            <!--  Date Picker  -->
+            <Label FontSize="Medium" Text="Select Date:" />
+            <DatePicker Date="{Binding TimeOfLesson}"/>
+            <Label
+                IsVisible="{Binding ShowDateError}"
+                Text="{Binding DateError}"
+                TextColor="Red" />
+
+            <!--  Add Lesson Button  -->
+            <Button
+                BackgroundColor="Green"
+                Command="{Binding AddLessonCommand}"
+                FontAttributes="Bold"
+                Text="Add Lesson"
+                TextColor="White" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

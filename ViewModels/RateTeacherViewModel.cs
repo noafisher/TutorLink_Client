@@ -11,6 +11,7 @@ public class RateTeacherViewModel : ViewModelBase
     private TutorLinkWebAPIProxy proxy;
     private IServiceProvider serviceProvider;
 
+    //
 
     private ICommand rateTeacher;
     public ICommand RateTeacher
