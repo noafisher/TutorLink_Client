@@ -54,19 +54,21 @@
              AutoSize="TextChanges"
              Placeholder="what is on your mind...?"
              Text="{Binding ReportText}" />
-
+        
+        </HorizontalStackLayout>
+        
             <Label
             IsVisible="{Binding ShowTextError}"
              Style="{StaticResource labelErrorStyle}"
                 Text="{Binding TextError}" />
 
 
-        </HorizontalStackLayout>
+       
 
         <Button
             BackgroundColor="MediumPurple"
             Command="{Binding ReportUserCommand}"
-            Text="Submit Rate"
+            Text="Submit Report"
             WidthRequest="200" 
         />
     </VerticalStackLayout>
