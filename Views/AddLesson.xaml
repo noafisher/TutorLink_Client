@@ -3,8 +3,8 @@
     x:Class="TutorLinkClient.Views.AddLesson"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:TutorLinkClient.ViewModels"
     xmlns:model="clr-namespace:TutorLinkClient.Models"
+    xmlns:vm="clr-namespace:TutorLinkClient.ViewModels"
     Title="Add Lesson">
 
 
@@ -23,11 +23,10 @@
             <!--  Subject Picker  -->
             <Label FontSize="Medium" Text="Select Subject:" />
             <Picker
-               
-                    x:DataType="model:SubjectDTO"
-    ItemDisplayBinding="{Binding SubjectName}"
-    ItemsSource="{Binding Subjects, Source={x:Reference scrlview}}"
-    SelectedItem="{Binding BindingContext.Subject, Source={x:Reference scrlview}}" />
+                x:DataType="model:SubjectDTO"
+                ItemDisplayBinding="{Binding SubjectName}"
+                ItemsSource="{Binding Subjects}"
+                SelectedItem="{Binding Subject}" />
             <Label
                 IsVisible="{Binding ShowSubjectError}"
                 Text="{Binding SubjectError}"
@@ -43,7 +42,7 @@
 
             <!--  Date Picker  -->
             <Label FontSize="Medium" Text="Select Date:" />
-            <DatePicker Date="{Binding TimeOfLesson}"/>
+            <DatePicker Date="{Binding TimeOfLesson}" />
             <Label
                 IsVisible="{Binding ShowDateError}"
                 Text="{Binding DateError}"
