@@ -9,7 +9,7 @@
 
 
 
-    <ScrollView>
+    <ScrollView x:Name="sv">
         <VerticalStackLayout Padding="20" Spacing="15">
 
             <!--  Lesson Name  -->
@@ -25,8 +25,8 @@
             <Picker
                 x:DataType="model:SubjectDTO"
                 ItemDisplayBinding="{Binding SubjectName}"
-                ItemsSource="{Binding Subjects}"
-                SelectedItem="{Binding Subject}" />
+                ItemsSource="{Binding BindingContext.Subjects, Source={x:Reference sv}}"
+                SelectedItem="{Binding BindingContext.Subject, Source={x:Reference sv}}" />
             <Label
                 IsVisible="{Binding ShowSubjectError}"
                 Text="{Binding SubjectError}"
