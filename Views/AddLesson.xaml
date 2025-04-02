@@ -12,18 +12,11 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
-            <!--  Lesson Name  -->
-            <Label FontSize="Medium" Text="Lesson Name:" />
-            <Entry Placeholder="Enter lesson name" Text="{Binding LessonName}" />
-            <Label
-                IsVisible="{Binding ShowLessonNameError}"
-                Text="{Binding LessonNameError}"
-                TextColor="Red" />
+
 
             <!--  Subject Picker  -->
             <Label FontSize="Medium" Text="Select Subject:" />
             <Picker
-                x:DataType="model:SubjectDTO"
                 ItemDisplayBinding="{Binding SubjectName}"
                 ItemsSource="{Binding Subjects}"
                 SelectedItem="{Binding Subject}" />
@@ -35,6 +28,18 @@
             <!--  Student Name Entry  -->
             <Label FontSize="Medium" Text="Student Name:" />
             <Entry Placeholder="Enter student name" Text="{Binding StudentName}" />
+            <CollectionView
+                ItemsSource="{Binding Students}"
+                SelectedItem="{Binding Student}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding DisplayName}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             <Label
                 IsVisible="{Binding ShowStudentError}"
                 Text="{Binding StudentError}"

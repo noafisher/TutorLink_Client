@@ -58,7 +58,7 @@
                 x:Name="cv"
                 ItemsSource="{Binding FilteredTeachersList}"
                 SelectionMode="None">
-                <CollectionView.ItemTemplate x:DataType="model:TeacherDTO">
+                <CollectionView.ItemTemplate x:DataType="model:TeacherDTO" EmptyView="No Teacher was found!">
                     <DataTemplate>
                         <SwipeView>
                             <SwipeView.LeftItems>
@@ -73,7 +73,7 @@
                                         CommandParameter="{Binding}"
                                         IconImageSource="rate.png"
                                         Text="Rate" />
-                                    
+
                                 </SwipeItems>
                             </SwipeView.LeftItems>
                             <StackLayout Padding="10" x:DataType="model:TeacherDTO">

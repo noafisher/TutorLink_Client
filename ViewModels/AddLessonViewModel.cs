@@ -151,7 +151,7 @@ namespace TutorLinkClient.ViewModels
             set
             {
                 student = value;
-
+                StudentName = student.DisplayName;
                 OnPropertyChanged();
             }
         }
@@ -239,7 +239,7 @@ namespace TutorLinkClient.ViewModels
             set
             {
                 studentName = value;
-                if (student != null && student.DisplayName != value)
+                if (student == null || student.DisplayName != value)
                 {
                     PopulateStudents();
                 }
