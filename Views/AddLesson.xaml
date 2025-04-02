@@ -53,6 +53,14 @@
                 Text="{Binding DateError}"
                 TextColor="Red" />
 
+            <!--  Hour Picker  -->
+            <Label FontSize="Medium" Text="Select Hour:" />
+            <TimePicker Time="{Binding Hour}" />
+            <Label
+                IsVisible="{Binding ShowHourError}"
+                Text="{Binding HourError}"
+                TextColor="Red" />
+
             <!--  Add Lesson Button  -->
             <Button
                 BackgroundColor="Green"

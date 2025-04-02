@@ -1,55 +1,72 @@
-
 <ContentPage
     x:Class="TutorLinkClient.Views.Register"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Register">
+    Title="Register"
+    BackgroundColor="#FFF0F5">
 
+    <ContentPage.Resources>
+        <Style x:Key="pinkEntryStyle" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="#FFEBF5" />
+            <Setter Property="TextColor" Value="#FF1493" />
+            <Setter Property="PlaceholderColor" Value="#FF69B4" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
 
+        <Style x:Key="pinkLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#FF1493" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+    </ContentPage.Resources>
 
-    <StackLayout VerticalOptions="FillAndExpand">
-
-
+    <StackLayout Padding="15" VerticalOptions="FillAndExpand">
 
         <Label
-            FontFamily="Kalam-Regular"
             FontSize="50"
             HorizontalOptions="Center"
             Text="Sign Up"
-            TextColor="MidnightBlue" />
-
+            TextColor="#FF1493" />
 
         <Label
-            FontFamily="Kalam-Regular"
             FontSize="30"
             HorizontalOptions="Center"
             Text="create your account!"
-            TextColor="LightSkyBlue" />
-
+            TextColor="#FF69B4" />
 
         <ScrollView
             HorizontalScrollBarVisibility="Always"
             VerticalOptions="FillAndExpand"
             VerticalScrollBarVisibility="Always">
-            <VerticalStackLayout>
-                <HorizontalStackLayout RadioButtonGroup.GroupName="RoleSelection" RadioButtonGroup.SelectedValue="{Binding IsStudent}">
-                    <Label Style="{StaticResource labelNameStyle}" Text="I am a " />
-                    <RadioButton
-                        x:Name="Teacher"
-                        Margin="5"
-                        Content="Teacher"
-                        GroupName="RoleSelection"
-                        Value="False" />
+            <VerticalStackLayout Padding="10" Spacing="5">
+                <Frame
+                    Margin="0,5,0,10"
+                    Padding="10"
+                    BackgroundColor="#FFEBF5"
+                    BorderColor="#FFB6C1"
+                    CornerRadius="10">
+                    <HorizontalStackLayout RadioButtonGroup.GroupName="RoleSelection" RadioButtonGroup.SelectedValue="{Binding IsStudent}">
+                        <Label
+                            Style="{StaticResource labelNameStyle}"
+                            Text="I am a "
+                            TextColor="#FF1493" />
+                        <RadioButton
+                            x:Name="Teacher"
+                            Margin="5"
+                            Content="Teacher"
+                            GroupName="RoleSelection"
+                            TextColor="#FF1493"
+                            Value="False" />
 
-                    <RadioButton
-                        x:Name="Student"
-                        Margin="5"
-                        Content="Student"
-                        GroupName="RoleSelection"
-                        Value="True" />
+                        <RadioButton
+                            x:Name="Student"
+                            Margin="5"
+                            Content="Student"
+                            GroupName="RoleSelection"
+                            TextColor="#FF1493"
+                            Value="True" />
+                    </HorizontalStackLayout>
+                </Frame>
 
-
-                </HorizontalStackLayout>
                 <!--  First Name  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -59,17 +76,22 @@
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource labelNameStyle}"
-                        Text="First Name:" />
+                        Text="First Name:"
+                        TextColor="#FF1493" />
                     <Label
                         Grid.Column="1"
                         IsVisible="{Binding ShowFirstNameError}"
                         Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding FirstNameError}" />
+                        Text="{Binding FirstNameError}"
+                        TextColor="#FF0066" />
                 </Grid>
                 <Entry
+                    BackgroundColor="#FFEBF5"
                     Placeholder="Type First Name"
+                    PlaceholderColor="#FF69B4"
                     Style="{StaticResource entryStyle}"
-                    Text="{Binding FirstName}" />
+                    Text="{Binding FirstName}"
+                    TextColor="#FF1493" />
 
                 <!--  Last Name  -->
                 <Grid>
@@ -80,17 +102,22 @@
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource labelNameStyle}"
-                        Text="Last Name:" />
+                        Text="Last Name:"
+                        TextColor="#FF1493" />
                     <Label
                         Grid.Column="1"
                         IsVisible="{Binding ShowLastNameError}"
                         Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding LastNameError}" />
+                        Text="{Binding LastNameError}"
+                        TextColor="#FF0066" />
                 </Grid>
                 <Entry
+                    BackgroundColor="#FFEBF5"
                     Placeholder="Type Last Name"
+                    PlaceholderColor="#FF69B4"
                     Style="{StaticResource entryStyle}"
-                    Text="{Binding LastName}" />
+                    Text="{Binding LastName}"
+                    TextColor="#FF1493" />
 
                 <!--  Email  -->
                 <Grid>
@@ -101,17 +128,22 @@
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource labelNameStyle}"
-                        Text="Email:" />
+                        Text="Email:"
+                        TextColor="#FF1493" />
                     <Label
                         Grid.Column="1"
                         IsVisible="{Binding ShowEmailError}"
                         Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding EmailError}" />
+                        Text="{Binding EmailError}"
+                        TextColor="#FF0066" />
                 </Grid>
                 <Entry
+                    BackgroundColor="#FFEBF5"
                     Placeholder="Type Email"
+                    PlaceholderColor="#FF69B4"
                     Style="{StaticResource entryStyle}"
-                    Text="{Binding Email}" />
+                    Text="{Binding Email}"
+                    TextColor="#FF1493" />
 
                 <!--  Password  -->
                 <Grid>
@@ -122,17 +154,23 @@
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource labelNameStyle}"
-                        Text="Password:" />
+                        Text="Password:"
+                        TextColor="#FF1493" />
                     <Label
                         Grid.Column="1"
                         IsVisible="{Binding ShowPasswordError}"
                         Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding PasswordError}" />
+                        Text="{Binding PasswordError}"
+                        TextColor="#FF0066" />
                 </Grid>
                 <Entry
+                    BackgroundColor="#FFEBF5"
+                    IsPassword="True"
                     Placeholder="Type Password"
+                    PlaceholderColor="#FF69B4"
                     Style="{StaticResource entryStyle}"
-                    Text="{Binding Password}" />
+                    Text="{Binding Password}"
+                    TextColor="#FF1493" />
 
                 <!--  Address  -->
                 <Grid>
@@ -143,159 +181,220 @@
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource labelNameStyle}"
-                        Text="Address:" />
+                        Text="Address:"
+                        TextColor="#FF1493" />
                     <Label
                         Grid.Column="1"
                         IsVisible="{Binding ShowAddressError}"
                         Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding AddressError}" />
+                        Text="{Binding AddressError}"
+                        TextColor="#FF0066" />
                 </Grid>
                 <Entry
+                    BackgroundColor="#FFEBF5"
                     Placeholder="Type Address"
+                    PlaceholderColor="#FF69B4"
                     Style="{StaticResource entryStyle}"
-                    Text="{Binding Address}" />
+                    Text="{Binding Address}"
+                    TextColor="#FF1493" />
 
-                <!--  These filds are visible for students only  -->
+                <!--  These fields are visible for students only  -->
                 <VerticalStackLayout IsVisible="{Binding IsStudent}">
-                    <!--  current class  -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label
-                            Grid.Column="0"
-                            Style="{StaticResource labelNameStyle}"
-                            Text="Class:" />
-                        <Label
-                            Grid.Column="1"
-                            IsVisible="{Binding ShowCurrentClassError}"
-                            Style="{StaticResource labelErrorStyle}"
-                            Text="{Binding CurrentClassError}" />
-                    </Grid>
-                    <Entry
-                        Placeholder="Type class"
-                        Style="{StaticResource entryStyle}"
-                        Text="{Binding CurrentClass}" />
+                    <Frame
+                        Margin="0,5"
+                        Padding="10"
+                        BackgroundColor="#FFEBF5"
+                        BorderColor="#FFB6C1"
+                        CornerRadius="10">
+                        <!--  current class  -->
+                        <VerticalStackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    Style="{StaticResource labelNameStyle}"
+                                    Text="Class:"
+                                    TextColor="#FF1493" />
+                                <Label
+                                    Grid.Column="1"
+                                    IsVisible="{Binding ShowCurrentClassError}"
+                                    Style="{StaticResource labelErrorStyle}"
+                                    Text="{Binding CurrentClassError}"
+                                    TextColor="#FF0066" />
+                            </Grid>
+                            <Entry
+                                BackgroundColor="#FFF0F5"
+                                Placeholder="Type class"
+                                PlaceholderColor="#FF69B4"
+                                Style="{StaticResource entryStyle}"
+                                Text="{Binding CurrentClass}"
+                                TextColor="#FF1493" />
+                        </VerticalStackLayout>
+                    </Frame>
                 </VerticalStackLayout>
 
-                <!--  These filds are visible for teachers only  -->
-
+                <!--  These fields are visible for teachers only  -->
                 <VerticalStackLayout IsVisible="{Binding IsTeacher}">
+                    <Frame
+                        Margin="0,5"
+                        Padding="10"
+                        BackgroundColor="#FFEBF5"
+                        BorderColor="#FFB6C1"
+                        CornerRadius="10">
+                        <VerticalStackLayout>
+                            <!--  Max Distance  -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    Style="{StaticResource labelNameStyle}"
+                                    Text="Distance:"
+                                    TextColor="#FF1493" />
+                                <Label
+                                    Grid.Column="1"
+                                    IsVisible="{Binding ShowMaxDistanceError}"
+                                    Style="{StaticResource labelErrorStyle}"
+                                    Text="{Binding MaxDistanceError}"
+                                    TextColor="#FF0066" />
+                            </Grid>
+                            <Entry
+                                BackgroundColor="#FFF0F5"
+                                Placeholder="Type the max distance"
+                                PlaceholderColor="#FF69B4"
+                                Style="{StaticResource entryStyle}"
+                                Text="{Binding MaxDistance}"
+                                TextColor="#FF1493" />
 
-                    <!--  Max Distance  -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label
-                            Grid.Column="0"
-                            Style="{StaticResource labelNameStyle}"
-                            Text="Distance:" />
-                        <Label
-                            Grid.Column="1"
-                            IsVisible="{Binding ShowMaxDistanceError}"
-                            Style="{StaticResource labelErrorStyle}"
-                            Text="{Binding MaxDistanceError}" />
-                    </Grid>
-                    <Entry
-                        Placeholder="Type the max distance"
-                        Style="{StaticResource entryStyle}"
-                        Text="{Binding MaxDistance}" />
+                            <!--  Vetek  -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    Style="{StaticResource labelNameStyle}"
+                                    Text="Seniority:"
+                                    TextColor="#FF1493" />
+                                <Label
+                                    Grid.Column="1"
+                                    IsVisible="{Binding ShowVetekError}"
+                                    Style="{StaticResource labelErrorStyle}"
+                                    Text="{Binding VetekError}"
+                                    TextColor="#FF0066" />
+                            </Grid>
+                            <Entry
+                                BackgroundColor="#FFF0F5"
+                                Placeholder="Type seniority"
+                                PlaceholderColor="#FF69B4"
+                                Style="{StaticResource entryStyle}"
+                                Text="{Binding Vetek}"
+                                TextColor="#FF1493" />
 
+                            <!--  price per hour  -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    Style="{StaticResource labelNameStyle}"
+                                    Text="Price per hour:"
+                                    TextColor="#FF1493" />
+                                <Label
+                                    Grid.Column="1"
+                                    IsVisible="{Binding ShowPricePerHourError}"
+                                    Style="{StaticResource labelErrorStyle}"
+                                    Text="{Binding PricePerHourError}"
+                                    TextColor="#FF0066" />
+                            </Grid>
+                            <Entry
+                                BackgroundColor="#FFF0F5"
+                                Placeholder="Type price"
+                                PlaceholderColor="#FF69B4"
+                                Style="{StaticResource entryStyle}"
+                                Text="{Binding PricePerHour}"
+                                TextColor="#FF1493" />
 
-                    <!--  Vetek  -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label
-                            Grid.Column="0"
-                            Style="{StaticResource labelNameStyle}"
-                            Text="Seniority:" />
-                        <Label
-                            Grid.Column="1"
-                            IsVisible="{Binding ShowVetekError}"
-                            Style="{StaticResource labelErrorStyle}"
-                            Text="{Binding VetekError}" />
-                    </Grid>
-                    <Entry
-                        Placeholder="Type seniority"
-                        Style="{StaticResource entryStyle}"
-                        Text="{Binding Vetek}" />
-
-
-                    <!--  price per hour  -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label
-                            Grid.Column="0"
-                            Style="{StaticResource labelNameStyle}"
-                            Text="Price per hour::" />
-                        <Label
-                            Grid.Column="1"
-                            IsVisible="{Binding ShowPricePerHourError}"
-                            Style="{StaticResource labelErrorStyle}"
-                            Text="{Binding PricePerHourError}" />
-                    </Grid>
-                    <Entry
-                        Placeholder="Type price"
-                        Style="{StaticResource entryStyle}"
-                        Text="{Binding PricePerHour}" />
-
-                    <!--  price per hour  -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label
-                            Grid.Column="0"
-                            Style="{StaticResource labelNameStyle}"
-                            Text="I Teach at:" />
-                        <Label
-                            Grid.Column="1"
-                            IsVisible="{Binding ShowTeachAtError}"
-                            Style="{StaticResource labelErrorStyle}"
-                            Text="{Binding TeachAtError}" />
-                    </Grid>
-                    <HorizontalStackLayout>
-                        <Label Style="{StaticResource labelNameStyle}" Text="My Home" />
-                        <CheckBox IsChecked="{Binding TeachAtHome}" />
-                        <Label Style="{StaticResource labelNameStyle}" Text="Student Home" />
-                        <CheckBox IsChecked="{Binding GoToStudent}" />
-                    </HorizontalStackLayout>
+                            <!--  Teaching location  -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    Style="{StaticResource labelNameStyle}"
+                                    Text="I Teach at:"
+                                    TextColor="#FF1493" />
+                                <Label
+                                    Grid.Column="1"
+                                    IsVisible="{Binding ShowTeachAtError}"
+                                    Style="{StaticResource labelErrorStyle}"
+                                    Text="{Binding TeachAtError}"
+                                    TextColor="#FF0066" />
+                            </Grid>
+                            <HorizontalStackLayout>
+                                <Label
+                                    Style="{StaticResource labelNameStyle}"
+                                    Text="My Home"
+                                    TextColor="#FF1493" />
+                                <CheckBox IsChecked="{Binding TeachAtHome}" Color="#FF1493" />
+                                <Label
+                                    Style="{StaticResource labelNameStyle}"
+                                    Text="Student Home"
+                                    TextColor="#FF1493" />
+                                <CheckBox IsChecked="{Binding GoToStudent}" Color="#FF1493" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
                 </VerticalStackLayout>
 
-
-                <Image
-                    x:Name="theImageBug"
-                    HeightRequest="150"
-                    Source="{Binding PhotoURL}" />
-                <Label
-                    HorizontalOptions="Center"
-                    Text="Click Here To Upload Photo!"
-                    TextColor="MidnightBlue"
-                    VerticalOptions="End">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UploadPictureCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                <Frame
+                    Margin="0,10"
+                    Padding="10"
+                    BackgroundColor="#FFEBF5"
+                    BorderColor="#FFB6C1"
+                    CornerRadius="10">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Image
+                            x:Name="theImageBug"
+                            HeightRequest="150"
+                            Source="{Binding PhotoURL}" />
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Click Here To Upload Photo!"
+                            TextColor="#FF1493"
+                            VerticalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UploadPictureCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </VerticalStackLayout>
+                </Frame>
 
                 <Button
+                    Margin="0,10"
+                    BackgroundColor="#FF69B4"
+                    BorderColor="#FF1493"
+                    BorderWidth="1"
                     Command="{Binding RegisterCommand}"
+                    CornerRadius="20"
+                    HorizontalOptions="Center"
                     IsEnabled="{Binding NotInServerCall}"
                     Style="{StaticResource buttonStyle}"
                     Text="Create Account"
+                    TextColor="White"
                     WidthRequest="250" />
             </VerticalStackLayout>
-
         </ScrollView>
     </StackLayout>
-
 </ContentPage>

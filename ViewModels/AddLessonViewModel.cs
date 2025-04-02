@@ -155,7 +155,7 @@ namespace TutorLinkClient.ViewModels
                 OnPropertyChanged();
             }
         }
-        #region validation 
+         #region validation 
         private bool showStudentError;
 
         public bool ShowStudentError
@@ -199,8 +199,54 @@ namespace TutorLinkClient.ViewModels
             }
         }
 
-        #region validation 
+        // hour 
+        private TimeOnly hour;
 
+        public TimeOnly Hour
+        {
+            get { return hour; }
+            set
+            {
+                hour = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        #region validation date
+
+        private bool showHourError;
+
+        public bool ShowHourError
+        {
+            get => showHourError;
+            set
+            {
+                showHourError = value;
+                OnPropertyChanged();
+            }
+        }
+        private string hourError;
+
+        public string HourError
+
+        {
+            get => hourError;
+            set
+            {
+                hourError = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void ValidateHour()
+        { 
+            this.SubjectError = "Hour must be selected";
+            this.ShowSubjectError = hour == null;
+        }
+
+        #endregion
+
+        #region hour validation
         private bool showDateError;
 
         public bool ShowDateError
@@ -231,7 +277,7 @@ namespace TutorLinkClient.ViewModels
             this.ShowSubjectError = timeOfLesson > DateTime.Today;
         }
 
-        #endregion
+        #endregion 
         private string studentName;
         public string StudentName
         {
@@ -276,6 +322,8 @@ namespace TutorLinkClient.ViewModels
             ValidateStudent();
             ValidateSublect();
 
+            DateTime combinedDateTime = TimeOfLesson.Date.Add(Hour.ToTimeSpan());
+
             if (Student != null)
             {
                 Lesson lesson = new Lesson()
@@ -283,7 +331,7 @@ namespace TutorLinkClient.ViewModels
                     StudentId = Student.StudentId,
                     TeacherId = ((App)Application.Current).LoggedInTeacher.TeacherId,
                     SubjectId = Subject.SubjectId,
-                    TimeOfLesson = TimeOfLesson
+                    TimeOfLesson = combinedDateTime
                 };
 
                 lesson = await proxy.AddLessonAsync(lesson);

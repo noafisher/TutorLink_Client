@@ -1,86 +1,138 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:TutorLinkClient.ViewModels"
-             x:Class="TutorLinkClient.Views.Login"
-             x:DataType="viewmodels:LoginViewModel"
-             Title="Login">
-    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" RadioButtonGroup.GroupName="RoleSelection" RadioButtonGroup.SelectedValue="{Binding IsStudent}">
+<ContentPage
+    x:Class="TutorLinkClient.Views.Login"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:TutorLinkClient.ViewModels"
+    Title="Login"
+    x:DataType="viewmodels:LoginViewModel"
+    BackgroundColor="#FFF0F5">
 
-        <Label
-        FontFamily="Kalam-Regular"
-        FontSize="70"
+    <ContentPage.Resources>
+        <Style x:Key="pinkButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#FF69B4" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="Margin" Value="0,8" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="BorderColor" Value="#FF1493" />
+            <Setter Property="BorderWidth" Value="1" />
+        </Style>
+
+        <Style x:Key="pinkEntryStyle" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="#FFEBF5" />
+            <Setter Property="TextColor" Value="#FF1493" />
+            <Setter Property="PlaceholderColor" Value="#FF69B4" />
+            <Setter Property="Margin" Value="0,10" />
+            <Setter Property="MaxLength" Value="50" />
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout
+        Margin="20"
         HorizontalOptions="Center"
-        Text="Tutor Link"
-        />
-        
-        <Label
-        FontFamily="Kalam-Regular"
-        FontSize="50"
-        HorizontalOptions="Center"
-        Text="Login Page"
-        TextColor="LightSkyBlue" />
+        RadioButtonGroup.GroupName="RoleSelection"
+        RadioButtonGroup.SelectedValue="{Binding IsStudent}"
+        Spacing="10"
+        VerticalOptions="CenterAndExpand"
+        WidthRequest="300">
 
-        <Entry 
-        Placeholder="Enter email"
-        PlaceholderColor="MidnightBlue"
-        Text="{Binding Email}"
-        IsEnabled="{Binding NotInServerCall}"       
-        />
+        <Frame
+            Margin="0,0,0,20"
+            Padding="15"
+            BackgroundColor="#FFEBF5"
+            BorderColor="#FF69B4"
+            CornerRadius="15">
+            <VerticalStackLayout>
+                <Label
+                    FontSize="40"
+                    HorizontalOptions="Center"
+                    Text="Tutor Link"
+                    TextColor="#FF1493"
+                    VerticalOptions="Center" />
 
-        <Entry 
-        IsPassword="True"
-        Placeholder="Enter password"
-        PlaceholderColor="MidnightBlue"
-        Text="{Binding Password}"
-          IsEnabled="{Binding NotInServerCall}"      
-               />
+                <Label
+                    FontSize="40"
+                    HorizontalOptions="Center"
+                    Text="Login Page"
+                    TextColor="#FF69B4"
+                    VerticalOptions="Center" />
+            </VerticalStackLayout>
+        </Frame>
 
-        <RadioButton
-            x:Name="Teacher"
-            Margin="5"
-            GroupName="RoleSelection"
-            Content="Teacher" 
-            Value="false"
-            />
+        <Entry
+            IsEnabled="{Binding NotInServerCall}"
+            Placeholder="Enter email"
+            Style="{StaticResource pinkEntryStyle}"
+            Text="{Binding Email}" />
 
-        <RadioButton
-            x:Name="Student"
-            Margin="5"
-            GroupName="RoleSelection"
-            Content="Student" 
-            Value="true"
+        <Entry
+            IsEnabled="{Binding NotInServerCall}"
+            IsPassword="True"
+            Placeholder="Enter password"
+            Style="{StaticResource pinkEntryStyle}"
+            Text="{Binding Password}" />
 
-            />    
-
-
-        <Button  
-        x:Name="login"
-        Command="{Binding LoginCommand}"
-        Text="Login"
-        WidthRequest="150"
-        IsEnabled="{Binding NotInServerCall}"
-                Style="{StaticResource buttonStyle}"
-
-            
-         
-            />
+        <Frame
+            Margin="0,10"
+            Padding="10"
+            BackgroundColor="#FFEBF5"
+            BorderColor="#FFB6C1"
+            CornerRadius="10">
+            <VerticalStackLayout>
+                <Label
+                    Margin="0,0,0,5"
+                    FontAttributes="Bold"
+                    Text="Select your role:"
+                    TextColor="#FF1493" />
+                <RadioButton
+                    x:Name="Teacher"
+                    Margin="5"
+                    Content="Teacher"
+                    GroupName="RoleSelection"
+                    TextColor="#FF1493"
+                    Value="false" />
+                <RadioButton
+                    x:Name="Student"
+                    Margin="5"
+                    Content="Student"
+                    GroupName="RoleSelection"
+                    TextColor="#FF1493"
+                    Value="true" />
+            </VerticalStackLayout>
+        </Frame>
 
         <Button
-    Grid.Row="7"
-    Grid.Column="0"
-    Grid.ColumnSpan="2"
-    Text="Don't have an account? create!"
-    Command="{Binding RegisterCommand}"
-    Style="{StaticResource buttonStyle}"
-    />
+            x:Name="login"
+            BackgroundColor="#FF69B4"
+            BorderColor="#FF1493"
+            BorderWidth="1"
+            Command="{Binding LoginCommand}"
+            CornerRadius="20"
+            HorizontalOptions="Center"
+            IsEnabled="{Binding NotInServerCall}"
+            Style="{StaticResource buttonStyle}"
+            Text="Login"
+            TextColor="White"
+            WidthRequest="150" />
 
-        <Label Text="{Binding ErrorMsg}"     Style="{StaticResource labelErrorStyle}" />
+        <Button
+            BackgroundColor="#FF69B4"
+            BorderColor="#FF1493"
+            BorderWidth="1"
+            Command="{Binding RegisterCommand}"
+            CornerRadius="20"
+            FontSize="Small"
+            HorizontalOptions="Center"
+            Style="{StaticResource buttonStyle}"
+            Text="Don't have an account? create!"
+            TextColor="White" />
 
+        <Label
+            Style="{StaticResource labelErrorStyle}"
+            Text="{Binding ErrorMsg}"
+            TextColor="#FF0066" />
 
-
-        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="RoyalBlue"></ActivityIndicator>
-
-
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="#FF1493" />
     </VerticalStackLayout>
 </ContentPage>

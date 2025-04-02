@@ -6,98 +6,181 @@
     xmlns:model="clr-namespace:TutorLinkClient.Models"
     xmlns:vm="clr-namespace:TutorLinkClient.ViewModels"
     Title="TeachersList"
-    x:DataType="vm:TeachersListViewModel">
+    x:DataType="vm:TeachersListViewModel"
+    BackgroundColor="#FFF5FA">
+
+    <ContentPage.Resources>
+        <Style x:Key="pinkFilterLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#D81B60" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="10,5" />
+        </Style>
+
+        <Style x:Key="pinkFilterFrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="#FCE4EC" />
+            <Setter Property="BorderColor" Value="#EC407A" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="5,3" />
+        </Style>
+    </ContentPage.Resources>
 
     <ScrollView x:Name="scrlview">
-        <VerticalStackLayout>
+        <VerticalStackLayout Padding="10" Spacing="8">
+            <Label
+                Margin="0,10,0,20"
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="Find Your Perfect Tutor"
+                TextColor="#C2185B" />
 
-            <HorizontalStackLayout>
-                <Label
-                    Margin="5"
-                    Text="Filter by Subjet:"
-                    TextColor="MidnightBlue" />
-                <Picker
-                    x:DataType="model:SubjectDTO"
-                    ItemDisplayBinding="{Binding SubjectName}"
-                    ItemsSource="{Binding BindingContext.SubjectList, Source={x:Reference scrlview}}"
-                    SelectedItem="{Binding BindingContext.SelectedSubject, Source={x:Reference scrlview}}" />
+            <!--  Filter Section  -->
+            <Frame Margin="5,0,5,15" Style="{StaticResource pinkFilterFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Filter Options"
+                        TextColor="#C2185B" />
 
-            </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Subject:" />
+                        <Picker
+                            x:DataType="model:SubjectDTO"
+                            BackgroundColor="#FFF0F5"
+                            ItemDisplayBinding="{Binding SubjectName}"
+                            ItemsSource="{Binding BindingContext.SubjectList, Source={x:Reference scrlview}}"
+                            SelectedItem="{Binding BindingContext.SelectedSubject, Source={x:Reference scrlview}}"
+                            TextColor="#AD1457"
+                            TitleColor="#C2185B"
+                            WidthRequest="180" />
+                    </HorizontalStackLayout>
 
-            <HorizontalStackLayout>
-                <Label
-                    Margin="5"
-                    Text="Filter by Price:"
-                    TextColor="MidnightBlue" />
-                <Slider
-                    Maximum="400"
-                    Minimum="0"
-                    WidthRequest="200"
-                    Value="{Binding MaxPrice}" />
-                <Label
-                    Margin="5"
-                    Text="{Binding MaxPrice}"
-                    TextColor="MidnightBlue" />
-            </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Max Price:" />
+                        <Slider
+                            Maximum="400"
+                            MaximumTrackColor="#F8BBD0"
+                            Minimum="0"
+                            MinimumTrackColor="#F06292"
+                            ThumbColor="#C2185B"
+                            WidthRequest="140"
+                            Value="{Binding MaxPrice}" />
+                        <Label
+                            Margin="5"
+                            FontAttributes="Bold"
+                            Text="{Binding MaxPrice}"
+                            TextColor="#C2185B"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
 
-            <HorizontalStackLayout>
-                <Label
-                    Margin="5"
-                    Text="Filter by senority:"
-                    TextColor="MidnightBlue" />
+                    <HorizontalStackLayout>
+                        <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Seniority:" />
+                        <Entry
+                            BackgroundColor="#FFF0F5"
+                            Placeholder="Enter seniority"
+                            PlaceholderColor="#EC407A"
+                            Text="{Binding Senority}"
+                            TextColor="#AD1457"
+                            WidthRequest="180" />
+                    </HorizontalStackLayout>
 
-                <Entry Placeholder="Enter senority" Text="{Binding Senority}" />
-            </HorizontalStackLayout>
+                    <Button
+                        Margin="0,5,0,0"
+                        BackgroundColor="#C2185B"
+                        BorderColor="#880E4F"
+                        BorderWidth="1"
+                        Command="{Binding FilterCommand}"
+                        CornerRadius="15"
+                        HorizontalOptions="Center"
+                        Text="Apply Filters"
+                        TextColor="White"
+                        WidthRequest="200" />
+                </VerticalStackLayout>
+            </Frame>
 
-            <Button
-                BackgroundColor="MediumPurple"
-                Command="{Binding FilterCommand}"
-                Text="Filter"
-                WidthRequest="200" />
+            <!--  Results Section  -->
+            <Label
+                Margin="0,0,0,10"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="Available Tutors"
+                TextColor="#C2185B" />
+
             <CollectionView
                 x:Name="cv"
+                EmptyView="No teachers match your criteria"
                 ItemsSource="{Binding FilteredTeachersList}"
                 SelectionMode="None">
-                <CollectionView.ItemTemplate x:DataType="model:TeacherDTO" EmptyView="No Teacher was found!">
+                <CollectionView.ItemTemplate x:DataType="model:TeacherDTO">
                     <DataTemplate>
                         <SwipeView>
                             <SwipeView.LeftItems>
                                 <SwipeItems>
                                     <SwipeItem
+                                        BackgroundColor="#F06292"
                                         Command="{Binding BindingContext.GotoChatCommand, Source={x:Reference cv}}"
                                         CommandParameter="{Binding}"
                                         IconImageSource="chat.png"
                                         Text="Chat" />
                                     <SwipeItem
+                                        BackgroundColor="#EC407A"
                                         Command="{Binding BindingContext.GotoRateCommand, Source={x:Reference cv}}"
                                         CommandParameter="{Binding}"
                                         IconImageSource="rate.png"
                                         Text="Rate" />
-
                                 </SwipeItems>
                             </SwipeView.LeftItems>
-                            <StackLayout Padding="10" x:DataType="model:TeacherDTO">
-                                <HorizontalStackLayout>
-                                    <Image Source="{Binding ImageURL}" />
-                                    <Label
-                                        Padding="5,0"
-                                        FontAttributes="Bold"
-                                        FontSize="Medium"
-                                        Text="{Binding FirstName}" />
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="Medium"
-                                        Text="{Binding LastName}" />
-                                </HorizontalStackLayout>
-                                <Label
-                                    FontAttributes="Italic"
-                                    FontSize="Small"
-                                    Text="{Binding Subjects, StringFormat='Subjects: {0}'}" />
-                                <Label
-                                    FontAttributes="Italic"
-                                    FontSize="Small"
-                                    Text="{Binding PricePerHour, StringFormat='Price per hour: {0}'}" />
-                            </StackLayout>
+
+                            <Frame
+                                Margin="5"
+                                Padding="10"
+                                BackgroundColor="#FFF0F5"
+                                BorderColor="#F06292"
+                                CornerRadius="10">
+                                <StackLayout Padding="5" x:DataType="model:TeacherDTO">
+                                    <HorizontalStackLayout>
+                                        <Frame
+                                            Padding="0"
+                                            BorderColor="#F48FB1"
+                                            CornerRadius="30"
+                                            HeightRequest="60"
+                                            IsClippedToBounds="True"
+                                            WidthRequest="60">
+                                            <Image Aspect="AspectFill" Source="{Binding ImageURL}" />
+                                        </Frame>
+                                        <VerticalStackLayout Padding="10,0,0,0">
+                                            <HorizontalStackLayout>
+                                                <Label
+                                                    Padding="0,0,5,0"
+                                                    FontAttributes="Bold"
+                                                    FontSize="Medium"
+                                                    Text="{Binding FirstName}"
+                                                    TextColor="#AD1457" />
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="Medium"
+                                                    Text="{Binding LastName}"
+                                                    TextColor="#AD1457" />
+                                            </HorizontalStackLayout>
+                                            <Label
+                                                FontAttributes="Italic"
+                                                FontSize="Small"
+                                                Text="{Binding Subjects, StringFormat='Subjects: {0}'}"
+                                                TextColor="#C2185B" />
+                                            <Label
+                                                FontAttributes="Italic"
+                                                FontSize="Small"
+                                                Text="{Binding PricePerHour, StringFormat='Price per hour: {0}'}"
+                                                TextColor="#C2185B" />
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                            </Frame>
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -105,4 +188,3 @@
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
-
