@@ -29,6 +29,7 @@
     <ScrollView x:Name="scrlview">
         <VerticalStackLayout Padding="10" Spacing="8">
             <Label
+                FontFamily="SofadiOne-Regular"
                 Margin="0,10,0,20"
                 FontAttributes="Bold"
                 FontSize="24"

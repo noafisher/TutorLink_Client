@@ -22,6 +22,7 @@
     <StackLayout Padding="15" VerticalOptions="FillAndExpand">
 
         <Label
+            FontFamily="SofadiOne-Regular"
             FontSize="50"
             HorizontalOptions="Center"
             Text="Sign Up"

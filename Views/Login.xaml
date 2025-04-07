@@ -45,6 +45,7 @@
             CornerRadius="15">
             <VerticalStackLayout>
                 <Label
+                    FontFamily="SofadiOne-Regular"
                     FontSize="40"
                     HorizontalOptions="Center"
                     Text="Tutor Link"
@@ -52,6 +53,7 @@
                     VerticalOptions="Center" />
 
                 <Label
+                    FontFamily="SofadiOne-Regular"
                     FontSize="40"
                     HorizontalOptions="Center"
                     Text="Login Page"

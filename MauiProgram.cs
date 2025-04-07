@@ -22,6 +22,7 @@ namespace TutorLinkClient
                     fonts.AddFont("miriwin-webfont.ttf", "miriwin-webfont");
                     fonts.AddFont("Overlock-Regular.ttf", "Overlock-Regular");
                     fonts.AddFont("MarkaziText-VariableFont_wght.ttf", "MarkaziText-VariableFont_wght");
+                    fonts.AddFont("SofadiOne-Regular.ttf", "SofadiOne-Regular");
 
 
 
