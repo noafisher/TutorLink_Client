@@ -27,6 +27,23 @@ public class RateTeacherViewModel : ViewModelBase
         }
 
     }
+
+    private ICommand setRatingCommand;
+    public ICommand SetRatingCommand
+    {
+        get
+        {
+            if (setRatingCommand == null)
+            {
+                setRatingCommand = new Command<string>((rating) =>
+                {
+                    Stars = int.Parse(rating);
+                    // No need to call ValidateStars() as it's called in the Stars setter
+                });
+            }
+            return setRatingCommand;
+        }
+    }
     private string errorMsg;
     private int stars;
     public int Stars 

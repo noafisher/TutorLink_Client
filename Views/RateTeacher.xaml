@@ -4,63 +4,162 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:TutorLinkClient.Models"
-    Title="RateTeacher">
-    <VerticalStackLayout x:Name="stck">
-        <Label
-            FontFamily="Kalam-Regular"
-            FontSize="50"
-            HorizontalOptions="Center"
-            Text="Rate your teacher!"
-            TextColor="MidnightBlue" />
+    Title="RateTeacher"
+    BackgroundColor="#FFF5FA">
 
-        <HorizontalStackLayout>
-            <Label Margin="5" Text="Teacher name:" />
+    <ContentPage.Resources>
+        <Style x:Key="pinkFilterLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#D81B60" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="10,5" />
+        </Style>
 
-            <Picker
-                x:DataType="model:TeacherDTO"
-                ItemDisplayBinding="{Binding DisplayName}"
-                ItemsSource="{Binding BindingContext.TeachersList, Source={x:Reference stck}}"
-                SelectedItem="{Binding BindingContext.SelectedTeacher, Source={x:Reference stck}}" />
+        <Style x:Key="pinkFilterFrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="#FCE4EC" />
+            <Setter Property="BorderColor" Value="#EC407A" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="5,3" />
+        </Style>
 
+        <Style x:Key="labelErrorStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#D50000" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="15,0,0,10" />
+        </Style>
+
+        <Style x:Key="starButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="#FFEB3B" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="WidthRequest" Value="40" />
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="Text" Value="★" />
+            <Setter Property="BorderWidth" Value="0" />
+        </Style>
+
+        <Style x:Key="emptyStarButtonStyle" TargetType="Button" BasedOn="{StaticResource starButtonStyle}">
+            <Setter Property="TextColor" Value="#FFE0B2" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView x:Name="stck">
+        <VerticalStackLayout Padding="15" Spacing="8">
             <Label
-                IsVisible="{Binding ShowTeacherNameError}"
-                Style="{StaticResource labelErrorStyle}"
-                Text="{Binding TeacherNameError}" />
-        </HorizontalStackLayout>
+                FontFamily="SofadiOne-Regular"
+                Margin="0,10,0,20"
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="Rate Your Teacher"
+                TextColor="#C2185B" />
 
-        <HorizontalStackLayout>
-            <Label Margin="5" Text="Rate your teacher:" />
+            <!-- Rating Form Section -->
+            <Frame Margin="5,0,5,15" Style="{StaticResource pinkFilterFrameStyle}">
+                <VerticalStackLayout Spacing="12">
+                    <!-- Teacher Selection -->
+                    <Label 
+                        Text="Select Teacher:" 
+                        Style="{StaticResource pinkFilterLabelStyle}" 
+                        Margin="0,5" />
+                    <Picker
+                        x:DataType="model:TeacherDTO"
+                        BackgroundColor="#FFF0F5"
+                        ItemDisplayBinding="{Binding DisplayName}"
+                        ItemsSource="{Binding BindingContext.TeachersList, Source={x:Reference stck}}"
+                        SelectedItem="{Binding BindingContext.SelectedTeacher, Source={x:Reference stck}}"
+                        TextColor="#AD1457"
+                        Margin="0,0,0,5" />
+                    <Label
+                        IsVisible="{Binding ShowTeacherNameError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding TeacherNameError}" />
 
-            <Entry Placeholder="Enter your rate, a number between 1-5" Text="{Binding Stars}" />
+                    <!-- Star Rating System -->
+                    <Label 
+                        Text="Rate your teacher:" 
+                        Style="{StaticResource pinkFilterLabelStyle}" 
+                        Margin="0,10,0,5" />
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                        <Button 
+                            Style="{StaticResource starButtonStyle}"
+                            TextColor="{Binding Stars, Converter={StaticResource IntToColorConverter}, ConverterParameter=1}"
+                            Command="{Binding SetRatingCommand}" 
+                            CommandParameter="1" />
+                        <Button 
+                            Style="{StaticResource starButtonStyle}"
+                            TextColor="{Binding Stars, Converter={StaticResource IntToColorConverter}, ConverterParameter=2}"
+                            Command="{Binding SetRatingCommand}" 
+                            CommandParameter="2" />
+                        <Button 
+                            Style="{StaticResource starButtonStyle}"
+                            TextColor="{Binding Stars, Converter={StaticResource IntToColorConverter}, ConverterParameter=3}"
+                            Command="{Binding SetRatingCommand}" 
+                            CommandParameter="3" />
+                        <Button 
+                            Style="{StaticResource starButtonStyle}"
+                            TextColor="{Binding Stars, Converter={StaticResource IntToColorConverter}, ConverterParameter=4}"
+                            Command="{Binding SetRatingCommand}" 
+                            CommandParameter="4" />
+                        <Button 
+                            Style="{StaticResource starButtonStyle}"
+                            TextColor="{Binding Stars, Converter={StaticResource IntToColorConverter}, ConverterParameter=5}"
+                            Command="{Binding SetRatingCommand}" 
+                            CommandParameter="5" />
+                    </HorizontalStackLayout>
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="{Binding Stars, StringFormat='Rating: {0}/5'}"
+                        TextColor="#AD1457"
+                        FontAttributes="Bold"
+                        Margin="0,5,0,0"/>
+                    <Label
+                        IsVisible="{Binding ShowStarsError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding StarsError}"
+                        HorizontalOptions="Center" />
 
-            <Label
-                IsVisible="{Binding ShowStarsError}"
-                Style="{StaticResource labelErrorStyle}"
-                Text="{Binding StarsError}" />
+                    <!-- Review Text -->
+                    <Label 
+                        Text="Write your review:" 
+                        Style="{StaticResource pinkFilterLabelStyle}" 
+                        Margin="0,10,0,5" />
+                    <Frame
+                        BackgroundColor="#FFF0F5"
+                        BorderColor="#F48FB1"
+                        CornerRadius="6"
+                        Padding="5">
+                        <Editor
+                            AutoSize="TextChanges"
+                            Placeholder="Share your experience with this teacher..."
+                            PlaceholderColor="#EC407A"
+                            Text="{Binding ReviewText}"
+                            TextColor="#AD1457"
+                            HeightRequest="120" />
+                    </Frame>
+                    <Label
+                        IsVisible="{Binding ShowTextError}"
+                        Style="{StaticResource labelErrorStyle}"
+                        Text="{Binding TextError}" />
 
-        </HorizontalStackLayout>
-
-        <HorizontalStackLayout>
-            <Label Margin="5" Text="Write your review:" />
-
-            <Editor
-                AutoSize="TextChanges"
-                Placeholder="what is on your mind...?"
-                Text="{Binding ReviewText}" />
-
-            <Label
-                IsVisible="{Binding ShowTextError}"
-                Style="{StaticResource labelErrorStyle}"
-                Text="{Binding TextError}" />
-
-        </HorizontalStackLayout>
-
-        <Button
-            BackgroundColor="MediumPurple"
-            Command="{Binding RateTeacher}"
-            Text="Submit Rate"
-            WidthRequest="200" />
-
-
-    </VerticalStackLayout>
+                    <!-- Submit Button -->
+                    <Button
+                        Margin="0,10,0,5"
+                        BackgroundColor="#C2185B"
+                        BorderColor="#880E4F"
+                        BorderWidth="1"
+                        Command="{Binding RateTeacher}"
+                        CornerRadius="15"
+                        HorizontalOptions="Center"
+                        Text="Submit Rating"
+                        TextColor="White"
+                        WidthRequest="200" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

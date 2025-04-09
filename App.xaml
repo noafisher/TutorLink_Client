@@ -2,6 +2,7 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TutorLinkClient"
+             xmlns:converters="clr-namespace:TutorLinkClient.Converters"
              x:Class="TutorLinkClient.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -28,6 +29,8 @@
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="Margin" Value="10" />
             </Style>
+            <converters:StarRatingConverter x:Key="StarConverter" />
+            <converters:RatingToColorConverter x:Key="RatingToColorConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
