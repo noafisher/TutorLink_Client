@@ -32,7 +32,7 @@ namespace TutorLinkClient.Converters
             catch
             {
                 // Default color in case of errors
-                return Colors.Gray;
+                return Colors.DeepPink;
             }
         }
 

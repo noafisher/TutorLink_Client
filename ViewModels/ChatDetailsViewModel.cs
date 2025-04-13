@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,8 +60,10 @@ namespace TutorLinkClient.ViewModels
         public Command SendCommand { get; set; }
         private void OnSend()
         {
-            AppShellViewModel vm = (AppShellViewModel)(Shell.Current.BindingContext);
+            if (string.IsNullOrWhiteSpace(NewMessage))
+                return;
 
+            AppShellViewModel vm = (AppShellViewModel)(Shell.Current.BindingContext);
             ChatMessageDTO message = new ChatMessageDTO()
             {
                 StudentId = TheStudent.StudentId,
@@ -69,9 +72,10 @@ namespace TutorLinkClient.ViewModels
                 MessageText = NewMessage,
                 TextTime = DateTime.Now,
             };
-
             vm.SendMessage(message);
             Messages.Add(message);
+            NewMessage = string.Empty; // Clear message input
+            ScrollToLatestMessage();
         }
 
         public ChatDetailsViewModel()
@@ -80,6 +84,46 @@ namespace TutorLinkClient.ViewModels
             Messages = new ObservableCollection<ChatMessageDTO>();
             TheStudent = new StudentDTO();
             TheTeacher = new TeacherDTO();
+        }
+
+
+        public bool IsUserSender
+        {
+            get
+            {
+                AppShellViewModel vm = (AppShellViewModel)(Shell.Current.BindingContext);
+                return true; // This is used with the converter
+            }
+        }
+
+        public bool IsUserReceiver
+        {
+            get
+            {
+                AppShellViewModel vm = (AppShellViewModel)(Shell.Current.BindingContext);
+                return true; // This is used with the converter
+            }
+        }
+
+        public void ScrollToLatestMessage()
+        {
+            try
+            {
+                // This will be called from code-behind after a new message is added
+                if (Messages.Count > 0)
+                {
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        // Give UI time to update before scrolling
+                        await Task.Delay(100);
+                        MessagingCenter.Send(this, "ScrollToBottom");
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error scrolling to latest message: {ex.Message}");
+            }
         }
     }
 }
