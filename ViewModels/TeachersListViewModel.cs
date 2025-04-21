@@ -29,7 +29,9 @@ public class TeachersListViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
     private int senority;
     public int Senority
     {
