@@ -9,7 +9,7 @@
     Shell.FlyoutBehavior="Flyout">
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="tabs">
-        
+
         <ShellContent
             Title="Teachers"
             ContentTemplate="{DataTemplate views:TeachersList}"
@@ -22,15 +22,15 @@
             Icon="report.png"
             Route="ReportUser" />
         <ShellContent
-    Title="Chat"
-    ContentTemplate="{DataTemplate views:ChatTeacher}"
-    Icon="chat.png"
-    IsVisible="{Binding IsTeacher}"
-    Route="ChatTeacher" />
+            Title="Chat"
+            ContentTemplate="{DataTemplate views:ChatTeacher}"
+            Icon="chat.png"
+            IsVisible="{Binding IsTeacher}"
+            Route="ChatTeacher" />
         <ShellContent
             Title="Calendar"
             ContentTemplate="{DataTemplate views:Calendar}"
-            Icon="calender.png"
+            Icon="calendar.png"
             IsVisible="{Binding IsTeacher}"
             Route="Calendar" />
 

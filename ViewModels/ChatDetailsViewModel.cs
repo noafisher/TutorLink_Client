@@ -25,14 +25,14 @@ namespace TutorLinkClient.ViewModels
         public StudentDTO TheStudent
         {
             get { return theStudent; }
-            set { theStudent = value; OnPropertyChanged(); }
+            set { theStudent = value; OnPropertyChanged(); OnPropertyChanged("ChatWithName"); }
         }
 
         private TeacherDTO theTeacher;
         public TeacherDTO TheTeacher
         {
             get { return theTeacher; }
-            set { theTeacher = value; OnPropertyChanged(); }
+            set { theTeacher = value; OnPropertyChanged(); OnPropertyChanged("ChatWithName"); }
         }
 
         private string newMessage;

@@ -61,7 +61,6 @@
 	  <None Remove="Resources\Fonts\MarkaziText-VariableFont_wght.ttf" />
 	  <None Remove="Resources\Fonts\miriwin-webfont.ttf" />
 	  <None Remove="Resources\Fonts\Overlock-Regular.ttf" />
-	  <None Remove="Resources\Images\calander.png" />
 	  <None Remove="Resources\Images\chat.png" />
 	  <None Remove="Resources\Images\list.png" />
 	  <None Remove="Resources\Images\rate.png" />

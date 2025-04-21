@@ -5,69 +5,195 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:TutorLinkClient.Models"
     xmlns:vm="clr-namespace:TutorLinkClient.ViewModels"
-    Title="Add Lesson">
+    Title="Add Lesson"
+    BackgroundColor="#FFF5FA">
 
+    <ContentPage.Resources>
+        <Style x:Key="pinkLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#D81B60" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="Margin" Value="0,5,0,0" />
+        </Style>
 
+        <Style x:Key="pinkEntryStyle" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="#FFF0F5" />
+            <Setter Property="TextColor" Value="#AD1457" />
+            <Setter Property="PlaceholderColor" Value="#EC407A" />
+        </Style>
+
+        <Style x:Key="pinkPickerStyle" TargetType="Picker">
+            <Setter Property="BackgroundColor" Value="#FFF0F5" />
+            <Setter Property="TextColor" Value="#AD1457" />
+            <Setter Property="TitleColor" Value="#C2185B" />
+        </Style>
+
+        <Style x:Key="pinkDatePickerStyle" TargetType="DatePicker">
+            <Setter Property="BackgroundColor" Value="#FFF0F5" />
+            <Setter Property="TextColor" Value="#AD1457" />
+        </Style>
+
+        <Style x:Key="pinkTimePickerStyle" TargetType="TimePicker">
+            <Setter Property="BackgroundColor" Value="#FFF0F5" />
+            <Setter Property="TextColor" Value="#AD1457" />
+        </Style>
+    </ContentPage.Resources>
 
     <ScrollView x:Name="sv">
         <VerticalStackLayout Padding="20" Spacing="15">
-
-
-
-            <!--  Subject Picker  -->
-            <Label FontSize="Medium" Text="Select Subject:" />
-            <Picker
-                ItemDisplayBinding="{Binding SubjectName}"
-                ItemsSource="{Binding BindingContext.Subjects, Source={x:Reference sv}}"
-                SelectedItem="{Binding BindingContext.Subject, Source={x:Reference sv}}" />
             <Label
-                IsVisible="{Binding ShowSubjectError}"
-                Text="{Binding SubjectError}"
-                TextColor="Red" />
+                Margin="0,10,0,20"
+                FontAttributes="Bold"
+                FontFamily="SofadiOne-Regular"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="Schedule New Lesson"
+                TextColor="#C2185B" />
 
-            <!--  Student Name Entry  -->
-            <Label FontSize="Medium" Text="Student Name:" />
-            <Entry Placeholder="Enter student name" Text="{Binding StudentName}" />
-            <CollectionView
-                ItemsSource="{Binding Students}"
-                SelectedItem="{Binding Student}"
-                SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding DisplayName}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Label
-                IsVisible="{Binding ShowStudentError}"
-                Text="{Binding StudentError}"
-                TextColor="Red" />
+            <!--  Subject Section  -->
+            <Frame
+                Margin="0,0,0,5"
+                Padding="15"
+                BackgroundColor="#FCE4EC"
+                BorderColor="#EC407A"
+                CornerRadius="8">
+                <VerticalStackLayout Spacing="10">
+                    <!--  Subject Picker  -->
+                    <Label Style="{StaticResource pinkLabelStyle}" Text="Select Subject:" />
+                    <Picker
+                        ItemDisplayBinding="{Binding SubjectName}"
+                        ItemsSource="{Binding BindingContext.Subjects, Source={x:Reference sv}}"
+                        SelectedItem="{Binding BindingContext.Subject, Source={x:Reference sv}}"
+                        Style="{StaticResource pinkPickerStyle}" />
+                    <Label
+                        FontSize="14"
+                        IsVisible="{Binding ShowSubjectError}"
+                        Text="{Binding SubjectError}"
+                        TextColor="#D50000" />
+                </VerticalStackLayout>
+            </Frame>
 
-            <!--  Date Picker  -->
-            <Label FontSize="Medium" Text="Select Date:" />
-            <DatePicker Date="{Binding TimeOfLesson}" />
-            <Label
-                IsVisible="{Binding ShowDateError}"
-                Text="{Binding DateError}"
-                TextColor="Red" />
+            <!--  Student Section  -->
+            <Frame
+                Margin="0,0,0,5"
+                Padding="15"
+                BackgroundColor="#FCE4EC"
+                BorderColor="#EC407A"
+                CornerRadius="8">
+                <VerticalStackLayout Spacing="10">
+                    <!--  Student Name Entry  -->
+                    <Label Style="{StaticResource pinkLabelStyle}" Text="Student Name:" />
+                    <Entry
+                        Placeholder="Enter student name"
+                        Style="{StaticResource pinkEntryStyle}"
+                        Text="{Binding StudentName}" />
+                    <CollectionView
+                        BackgroundColor="#FFF0F5"
+                        HeightRequest="100"
+                        ItemsSource="{Binding Students}"
+                        SelectedItem="{Binding Student}"
+                        SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Margin="2"
+                                    Padding="10"
+                                    BackgroundColor="#FFF0F5"
+                                    BorderColor="#F8BBD0"
+                                    CornerRadius="5">
+                                    <Label Text="{Binding DisplayName}" TextColor="#AD1457" />
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Label
+                        FontSize="14"
+                        IsVisible="{Binding ShowStudentError}"
+                        Text="{Binding StudentError}"
+                        TextColor="#D50000" />
+                </VerticalStackLayout>
+            </Frame>
 
-            <!--  Hour Picker  -->
-            <Label FontSize="Medium" Text="Select Hour:" />
-            <TimePicker Time="{Binding Hour}" />
-            <Label
-                IsVisible="{Binding ShowHourError}"
-                Text="{Binding HourError}"
-                TextColor="Red" />
+            <!--  Date & Time Section  -->
+            <Frame
+                Margin="0,0,0,5"
+                Padding="15"
+                BackgroundColor="#FCE4EC"
+                BorderColor="#EC407A"
+                CornerRadius="8">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+                    <!--  Date Picker  -->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{StaticResource pinkLabelStyle}"
+                        Text="Select Date:" />
+                    <DatePicker
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Date="{Binding TimeOfLesson}"
+                        Style="{StaticResource pinkDatePickerStyle}" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        FontSize="14"
+                        IsVisible="{Binding ShowDateError}"
+                        Text="{Binding DateError}"
+                        TextColor="#D50000" />
+
+                    <!--  Hour Picker  -->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Style="{StaticResource pinkLabelStyle}"
+                        Text="Select Time:" />
+                    <TimePicker
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Style="{StaticResource pinkTimePickerStyle}"
+                        Time="{Binding Hour}" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        FontSize="14"
+                        IsVisible="{Binding ShowHourError}"
+                        Text="{Binding HourError}"
+                        TextColor="#D50000" />
+                </Grid>
+            </Frame>
+
+            <!--  Lesson Description  -->
+            <Frame
+                Margin="0,0,0,5"
+                Padding="15"
+                BackgroundColor="#FCE4EC"
+                BorderColor="#EC407A"
+                CornerRadius="8">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{StaticResource pinkLabelStyle}" Text="Lesson Description:" />
+                    <Editor
+                        BackgroundColor="#FFF0F5"
+                        HeightRequest="100"
+                        Placeholder="Enter lesson details (optional)"
+                        PlaceholderColor="#EC407A"
+                        Text="{Binding Description}"
+                        TextColor="#AD1457" />
+                </VerticalStackLayout>
+            </Frame>
 
             <!--  Add Lesson Button  -->
             <Button
-                BackgroundColor="Green"
+                Margin="0,15,0,10"
+                BackgroundColor="#C2185B"
+                BorderColor="#880E4F"
+                BorderWidth="1"
                 Command="{Binding AddLessonCommand}"
+                CornerRadius="15"
                 FontAttributes="Bold"
+                HorizontalOptions="Center"
                 Text="Add Lesson"
-                TextColor="White" />
+                TextColor="White"
+                WidthRequest="200" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

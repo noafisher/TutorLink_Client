@@ -1,81 +1,93 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutorLinkClient.Views.ChatStudent"
-             xmlns:model="clr-namespace:TutorLinkClient.Models"
-             Title="ChatStudent"
-             BackgroundColor="#FFF5FA">
+<ContentPage
+    x:Class="TutorLinkClient.Views.ChatStudent"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:TutorLinkClient.Models"
+    xmlns:vm="clr-namespace:TutorLinkClient.ViewModels"
+    Title="ChatStudent"
+    BackgroundColor="#FFF5FA">
 
     <ContentPage.Resources>
-        <Style x:Key="chatHeaderStyle" TargetType="Label">
-            <Setter Property="FontFamily" Value="SofadiOne-Regular" />
+        <Style x:Key="pinkFilterLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#D81B60" />
             <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="FontSize" Value="24" />
-            <Setter Property="HorizontalOptions" Value="Center" />
-            <Setter Property="TextColor" Value="#C2185B" />
-            <Setter Property="Margin" Value="0,10,0,20" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="10,5" />
+        </Style>
+
+        <Style x:Key="pinkFilterFrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="#FCE4EC" />
+            <Setter Property="BorderColor" Value="#EC407A" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="5,3" />
         </Style>
     </ContentPage.Resources>
 
-    <Grid Padding="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="8">
+            <Label
+                Margin="0,10,0,20"
+                FontAttributes="Bold"
+                FontFamily="SofadiOne-Regular"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="Your Conversations"
+                TextColor="#C2185B" />
 
-        <Label 
-            Text="Your Conversations"
-            Style="{StaticResource chatHeaderStyle}"
-            />
+            <CollectionView
+                x:Name="cv"
+                EmptyView="No conversations yet"
+                ItemsSource="{Binding Messages}"
+                SelectedItem="{Binding SelectedTeacher}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Margin="5"
+                            Padding="10"
+                            BackgroundColor="#FFF0F5"
+                            StrokeShape="RoundRectangle 15,15,15,15">
 
-        <CollectionView Grid.Row="1"
-            x:Name="cv"
-            ItemsSource="{Binding Messages}"
-            SelectionMode="Single" 
-            SelectedItem="{Binding SelectedTeacher}"
-            EmptyView="No conversations yet">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame 
-                        Margin="5"
-                        Padding="10"
-                        BackgroundColor="#FFF0F5"
-                        BorderColor="#F06292"
-                        CornerRadius="10">
-                        <HorizontalStackLayout Padding="5">
-                            <Frame
-                                Padding="0"
-                                BorderColor="#F48FB1"
-                                CornerRadius="30"
-                                HeightRequest="60"
-                                IsClippedToBounds="True"
-                                WidthRequest="60">
-                                <Image Aspect="AspectFill" Source="{Binding Teacher.ImageURL}" />
-                            </Frame>
-                            <VerticalStackLayout Padding="10,0,0,0">
+
+                            <StackLayout Padding="5">
                                 <HorizontalStackLayout>
-                                    <Label
-                                        Padding="0,0,5,0"
-                                        FontAttributes="Bold"
-                                        FontSize="Medium"
-                                        Text="{Binding Teacher.FirstName}"
-                                        TextColor="#AD1457" />
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="Medium"
-                                        Text="{Binding Teacher.LastName}"
-                                        TextColor="#AD1457" />
+                                    <Frame
+                                        Padding="0"
+                                        BorderColor="#F48FB1"
+                                        CornerRadius="30"
+                                        HeightRequest="60"
+                                        IsClippedToBounds="True"
+                                        WidthRequest="60">
+                                        <Image Aspect="AspectFill" Source="{Binding Teacher.ImageURL}" />
+                                    </Frame>
+                                    <VerticalStackLayout Padding="10,0,0,0">
+                                        <HorizontalStackLayout>
+                                            <Label
+                                                Padding="0,0,5,0"
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                Text="{Binding Teacher.FirstName}"
+                                                TextColor="#AD1457" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                Text="{Binding Teacher.LastName}"
+                                                TextColor="#AD1457" />
+                                        </HorizontalStackLayout>
+                                        <Label
+                                            FontAttributes="Italic"
+                                            FontSize="Small"
+                                            Text="{Binding NumMessages, StringFormat='Messages: {0}'}"
+                                            TextColor="#C2185B" />
+                                    </VerticalStackLayout>
                                 </HorizontalStackLayout>
-                                <Label
-                                    FontAttributes="Italic"
-                                    FontSize="Small"
-                                    Text="{Binding NumMessages, StringFormat='Messages: {0}'}"
-                                    TextColor="#C2185B" />
-                            </VerticalStackLayout>
-                        </HorizontalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Grid>
+                            </StackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
