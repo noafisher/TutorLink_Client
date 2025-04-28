@@ -13,6 +13,8 @@ namespace TutorLinkClient.Models
         public int StudentId { get; set; }
         public bool ReportedByStudent { get; set; }
         public string? ReportText { get; set; }
+        public bool IsProcessed { get; set; }
+
 
         public ReportDTO() { }
     }

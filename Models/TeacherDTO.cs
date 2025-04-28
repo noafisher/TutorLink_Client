@@ -18,6 +18,8 @@ public class TeacherDTO
     public int Vetek { get; set; }
     public int PricePerHour { get; set; }
     public string ProfileImagePath { get; set; }
+    public bool IsBlocked { get; set; }
+
 
     public string ImageURL
     {

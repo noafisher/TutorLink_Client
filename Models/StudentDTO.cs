@@ -27,6 +27,8 @@ namespace TutorLinkClient.Models
                 return $"{LastName}, {FirstName}";
             }
         }
+        public bool IsBlocked { get; set; }
+
         public StudentDTO() { }
     }
 }
