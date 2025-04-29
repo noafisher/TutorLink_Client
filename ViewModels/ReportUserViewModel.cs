@@ -243,7 +243,9 @@ public class ReportUserViewModel : ViewModelBase
         ReportDTO reportDTO = new ReportDTO()
         {
             TeacherId = SelectedTeacher.TeacherId,
+            Teacher = SelectedTeacher,
             StudentId = SelectedStudent.StudentId,
+            Student = SelectedStudent,
             ReportText = reportText
         };
 

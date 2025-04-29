@@ -11,6 +11,18 @@ namespace TutorLinkClient.ViewModels
 {
     public class AppShellViewModel : ViewModelBase
     {
+        public bool IsAdmin
+        {
+            get
+            {
+                if (IsTeacher)
+                {
+                    return ((App)Application.Current).LoggedInTeacher.IsAdmin;
+                }
+                else
+                    return ((App)Application.Current).LoggedInStudent.IsAdmin;
+            }
+        }
         public bool IsTeacher { get; set; }
         public bool IsStudent { get => !IsTeacher; }
         private IServiceProvider serviceProvider;

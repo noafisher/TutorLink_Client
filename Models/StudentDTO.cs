@@ -17,7 +17,7 @@ namespace TutorLinkClient.Models
         {
             get
             {
-                return TutorLinkWebAPIProxy.BaseAddress + this.ProfileImagePath;
+                return TutorLinkWebAPIProxy.ImageBaseAddress + this.ProfileImagePath;
             }
         }
         public string DisplayName
@@ -28,6 +28,7 @@ namespace TutorLinkClient.Models
             }
         }
         public bool IsBlocked { get; set; }
+        public bool IsAdmin { get; set; }
 
         public StudentDTO() { }
     }

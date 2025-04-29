@@ -19,13 +19,14 @@ public class TeacherDTO
     public int PricePerHour { get; set; }
     public string ProfileImagePath { get; set; }
     public bool IsBlocked { get; set; }
+    public bool IsAdmin { get; set; }
 
 
     public string ImageURL
     {
         get
         {
-            return TutorLinkWebAPIProxy.BaseAddress + this.ProfileImagePath;
+            return TutorLinkWebAPIProxy.ImageBaseAddress + this.ProfileImagePath;
         }
     }
     public List<TeacherSubject>? TeacherSubjects { get; set; }

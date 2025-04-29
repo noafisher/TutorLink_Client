@@ -14,8 +14,34 @@ namespace TutorLinkClient.Models
         public bool ReportedByStudent { get; set; }
         public string? ReportText { get; set; }
         public bool IsProcessed { get; set; }
-
+        public StudentDTO Student { get; set; }
+        public TeacherDTO Teacher { get; set; }
 
         public ReportDTO() { }
+
+        public string ImageURL
+        {
+            get
+            {
+                if (this.ReportedByStudent)
+                    return this.Teacher.ImageURL;
+                else 
+                    return this.Student.ImageURL;
+            }
+        }
+
+        public string DisplayName
+        {
+            get
+            {
+                if (this.ReportedByStudent)
+                    return this.Teacher.DisplayName;
+                else
+                    return this.Student.DisplayName;
+            }
+        }
+
+
+
     }
 }

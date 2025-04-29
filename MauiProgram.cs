@@ -53,7 +53,10 @@ namespace TutorLinkClient
             builder.Services.AddTransient<ChatDetails>();
             builder.Services.AddTransient<ChatDetailsViewModel>();
             builder.Services.AddTransient<ProfilePage>();
-            builder.Services.AddTransient<ProfilePageViewModel>();
+            builder.Services.AddTransient<ProfilePageViewModel>(); 
+            builder.Services.AddTransient<Admin>();
+            builder.Services.AddTransient<AdminViewModel>();
+            
 
             builder.Services.AddSingleton<TutorLinkWebAPIProxy>();
             builder.Services.AddSingleton<ChatProxy>();

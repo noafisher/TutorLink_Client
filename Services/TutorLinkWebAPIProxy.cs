@@ -29,7 +29,7 @@ namespace TutorLinkClient.Services
         private HttpClient client;
         private string baseUrl;
         public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/";
+        public static string ImageBaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/";
 
         #endregion
 
@@ -594,10 +594,10 @@ namespace TutorLinkClient.Services
             }
         }
 
-        public async Task BlockStudent(int id)
+        public async Task<bool> ProcessReport(int id)
         {
             //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
-            string url = $"{this.baseUrl}BlockStudent";
+            string url = $"{this.baseUrl}ProcessReport?id={id}";
             try
             {
 
@@ -605,30 +605,24 @@ namespace TutorLinkClient.Services
                 //Check status
                 if (response.IsSuccessStatusCode)
                 {
-                    //Extract the content as string
-                    string resContent = await response.Content.ReadAsStringAsync();
-                    //Desrialize result
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
-                    return;
+
+                    return true;
                 }
                 else
                 {
-                    return;
+                    return false;
                 }
             }
             catch (Exception ex)
             {
-                return;
+                return false;
             }
         }
 
-        public async Task BlockTeacher(int id)
+        public async Task<bool> BlockStudent(int id)
         {
             //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
-            string url = $"{this.baseUrl}BlockTeacher";
+            string url = $"{this.baseUrl}BlockStudent?id={id}";
             try
             {
 
@@ -636,23 +630,42 @@ namespace TutorLinkClient.Services
                 //Check status
                 if (response.IsSuccessStatusCode)
                 {
-                    //Extract the content as string
-                    string resContent = await response.Content.ReadAsStringAsync();
-                    //Desrialize result
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
-                    return;
+                    
+                    return true;
                 }
                 else
                 {
-                    return;
+                    return false;
                 }
             }
             catch (Exception ex)
             {
-                return;
+                return false;
+            }
+        }
+
+        public async Task<bool> BlockTeacher(int id)
+        {
+            //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
+            string url = $"{this.baseUrl}BlockTeacher?id={id}";
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(url);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return true;
             }
         }
 

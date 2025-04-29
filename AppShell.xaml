@@ -44,12 +44,20 @@
 
 
 
+
+
         <ShellContent
             Title="Rate"
             ContentTemplate="{DataTemplate views:RateTeacher}"
             Icon="rate.png"
             IsVisible="{Binding IsStudent}"
             Route="RateTeacher" />
+        <ShellContent
+            Title="Admin"
+            ContentTemplate="{DataTemplate views:Admin}"
+            Icon="chat.png"
+            IsVisible="{Binding IsAdmin}"
+            Route="Admin" />
 
     </FlyoutItem>
     <MenuItem Command="{Binding LogoutCommand}" Text="Logout" />
