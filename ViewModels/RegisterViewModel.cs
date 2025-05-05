@@ -586,7 +586,6 @@ public class RegisterViewModel : ViewModelBase
         ErrorMsg = "";
         Email = "";
         Password = "";
-        IsStudent = true;
         InServerCall = false;
     }
 
@@ -596,7 +595,7 @@ public class RegisterViewModel : ViewModelBase
     private async void OnRegister()
     {
         InServerCall = true;
-        //Call the server to login - student 
+        //Call the server to register - student 
         if (IsStudent)
         {
             await OnRegisterStudent();

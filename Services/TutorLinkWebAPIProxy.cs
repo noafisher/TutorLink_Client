@@ -669,7 +669,64 @@ namespace TutorLinkClient.Services
             }
         }
 
+        //This method call the UpdateUser web API on the server and return true if the call was successful
+        //or false if the call fails
+        public async Task<bool> UpdateStudent(StudentDTO student)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}UpdateStudent";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(student);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
+
+        //This method call the UpdateUser web API on the server and return true if the call was successful
+        //or false if the call fails
+        public async Task<bool> UpdateTeacher(TeacherDTO teacher)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}UpdateTeacher";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(teacher);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+    }
 
 
 

@@ -2,11 +2,80 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TutorLinkClient.Views.ProfilePage"
-             Title="ProfilePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Profile Page"
+             xmlns:viewmodels="clr-namespace:TutorLinkClient.ViewModels"
+             x:DataType="viewmodels:ProfilePageViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Profile Picture -->
+            <Image Source="{Binding PhotoURL}" HeightRequest="120" WidthRequest="120" HorizontalOptions="Center"/>
+            <Button Text="Upload Photo" Command="{Binding UploadPictureCommand}" />
+
+            <!-- First Name -->
+            <Label Text="First Name" />
+            <Entry Text="{Binding FirstName}" Placeholder="Enter first name" />
+            <Label Text="{Binding FirstNameError}" TextColor="Red" IsVisible="{Binding ShowFirstNameError}" />
+
+            <!-- Last Name -->
+            <Label Text="Last Name" />
+            <Entry Text="{Binding LastName}" Placeholder="Enter last name" />
+            <Label Text="{Binding LastNameError}" TextColor="Red" IsVisible="{Binding ShowLastNameError}" />
+
+            <!-- Email -->
+            <Label Text="Email" />
+            <Entry Text="{Binding Email}" Placeholder="Enter email" Keyboard="Email" />
+            <Label Text="{Binding EmailError}" TextColor="Red" IsVisible="{Binding ShowEmailError}" />
+
+            <!-- Password -->
+            <Label Text="Password" />
+            <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Enter password" />
+            <Label Text="{Binding PasswordError}" TextColor="Red" IsVisible="{Binding ShowPasswordError}" />
+
+            <!-- Address -->
+            <Label Text="Address" />
+            <Entry Text="{Binding Address}" Placeholder="Enter address" />
+            <Label Text="{Binding AddressError}" TextColor="Red" IsVisible="{Binding ShowAddressError}" />
+
+            <!-- Conditional UI: Student -->
+            <StackLayout IsVisible="{Binding IsStudent}">
+                <Label Text="Current Class" />
+                <Entry Text="{Binding CurrentClass}" Keyboard="Numeric" />
+                <Label Text="{Binding CurrentClassError}" TextColor="Red" IsVisible="{Binding ShowCurrentClassError}" />
+            </StackLayout>
+
+            <!-- Conditional UI: Teacher -->
+            <StackLayout IsVisible="{Binding IsTeacher}">
+                <Label Text="Years of Experience" />
+                <Entry Text="{Binding Vetek}" Keyboard="Numeric" />
+                <Label Text="{Binding VetekError}" TextColor="Red" IsVisible="{Binding ShowVetekError}" />
+
+                <Label Text="Max Distance (km)" />
+                <Entry Text="{Binding MaxDistance}" Keyboard="Numeric" />
+                <Label Text="{Binding MaxDistanceError}" TextColor="Red" IsVisible="{Binding ShowMaxDistanceError}" />
+
+                <Label Text="Price Per Hour" />
+                <Entry Text="{Binding PricePerHour}" Keyboard="Numeric" />
+                <Label Text="{Binding PricePerHourError}" TextColor="Red" IsVisible="{Binding ShowPricePerHourError}" />
+
+                <Label Text="Teaching Options" />
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding TeachAtHome}" />
+                    <Label Text="Teach at Home" />
+                    <CheckBox IsChecked="{Binding GoToStudent}" />
+                    <Label Text="Go to Student" />
+                </StackLayout>
+                <Label Text="{Binding TeachAtError}" TextColor="Red" IsVisible="{Binding ShowTeachAtError}" />
+            </StackLayout>
+
+            <!-- Error Message -->
+            <Label Text="{Binding ErrorMsg}" TextColor="Red" HorizontalOptions="Center" />
+
+            <!-- Update Button -->
+            <Button Text="Update Profile" Command="{Binding UpdateUser}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

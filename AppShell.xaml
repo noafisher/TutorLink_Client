@@ -55,9 +55,15 @@
         <ShellContent
             Title="Admin"
             ContentTemplate="{DataTemplate views:Admin}"
-            Icon="chat.png"
+            Icon="manager.png"
             IsVisible="{Binding IsAdmin}"
             Route="Admin" />
+
+        <ShellContent
+        Title="Profile "
+        ContentTemplate="{DataTemplate views:ProfilePage}"
+        Icon="profile.png"
+        Route="ProfilePage" />
 
     </FlyoutItem>
     <MenuItem Command="{Binding LogoutCommand}" Text="Logout" />

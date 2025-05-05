@@ -60,11 +60,19 @@ public class LoginViewModel : ViewModelBase
             }
             else
             {
-                ErrorMsg = "";
-                //Navigate to the main page
-                AppShell shell = serviceProvider.GetService<AppShell>();
-                ((App)Application.Current).MainPage = shell;
-                Shell.Current.FlyoutIsPresented = false;
+                if (u.IsBlocked)
+                {
+                    ErrorMsg = "This user is blocked from the system";
+                }
+
+                else
+                {
+                    ErrorMsg = "";
+                    //Navigate to the main page
+                    AppShell shell = serviceProvider.GetService<AppShell>();
+                    ((App)Application.Current).MainPage = shell;
+                    Shell.Current.FlyoutIsPresented = false;
+                }
                 
             }
         }
@@ -82,11 +90,19 @@ public class LoginViewModel : ViewModelBase
             }
             else
             {
-                ErrorMsg = "";
-                //Navigate to the main page
-                AppShell shell = serviceProvider.GetService<AppShell>();
-                ((App)Application.Current).MainPage = shell;
-                Shell.Current.FlyoutIsPresented = false;
+                if (u.IsBlocked)
+                {
+                    ErrorMsg = "This user is blocked from the system";
+                }
+
+                else
+                {
+                    ErrorMsg = "";
+                    //Navigate to the main page
+                    AppShell shell = serviceProvider.GetService<AppShell>();
+                    ((App)Application.Current).MainPage = shell;
+                    Shell.Current.FlyoutIsPresented = false;
+                }
             }
 
         }
