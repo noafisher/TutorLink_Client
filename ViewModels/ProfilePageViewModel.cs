@@ -9,12 +9,26 @@ using System.Windows.Input;
 
 namespace TutorLinkClient.ViewModels
 {
+    [QueryProperty("TheUserObject", "TheUserObject")]
     public class ProfilePageViewModel : ViewModelBase
     {
         private TutorLinkWebAPIProxy proxy; 
         private IServiceProvider serviceProvider;
 
         //all users
+        private Object theUserObject;
+        public Object TheUserObject
+        {
+            get
+            {
+                return this.theUserObject;
+            }
+            set
+            {
+                theUserObject = value;
+                InitData();
+            }
+        }
 
         #region FirstName
         private bool showFirstNameError;
@@ -557,11 +571,7 @@ namespace TutorLinkClient.ViewModels
 
           set 
           {
-             if (((App)Application.Current).LoggedInStudent != null)
-             {
-                    isStudent = true;
-                    value = isStudent;
-             }
+             isStudent = value;
              OnPropertyChanged();
              OnPropertyChanged("IsTeacher");
           } 
@@ -609,14 +619,54 @@ namespace TutorLinkClient.ViewModels
             this.proxy = proxy;
             this.serviceProvider = serviceProvider;
             ErrorMsg = "";
-            IsAdmin = false;
             this.UpdateUser = new Command(OnUpdateUser);
             this.UploadPictureCommand = new Command(OnUploadPhoto);
-
-
+            if (((App)Application.Current).LoggedInStudent != null)
+                TheUserObject = ((App)Application.Current).LoggedInStudent;
+            else
+                TheUserObject = ((App)Application.Current).LoggedInTeacher;
 
         }
 
+        private void InitData()
+        {
+            if (TheUserObject is StudentDTO)
+            {
+                StudentDTO student = (StudentDTO)TheUserObject;
+                IsStudent = true;
+                IsAdmin = student.IsAdmin;
+                FirstName = student.FirstName;
+                LastName = student.LastName;
+                Email = student.Email;
+                Address = student.UserAddress;
+                CurrentClass = student.CurrentClass;
+                Password = student.Pass;
+                PhotoURL = student.ImageURL;
+                LocalPhotoPath = null;
+                userId = student.StudentId;
+            }
+            else
+            {
+                TeacherDTO teacher = (TeacherDTO)TheUserObject;
+                IsStudent = false;
+                IsAdmin = teacher.IsAdmin;
+                FirstName = teacher.FirstName;
+                LastName = teacher.LastName;
+                Email = teacher.Email;
+                Address = teacher.UserAddress;
+                Password = teacher.Pass;
+                PhotoURL = teacher.ImageURL;
+                LocalPhotoPath = null;
+                MaxDistance = teacher.MaxDistance;
+                GoToStudent = teacher.GoToStudent;
+                Vetek = teacher.Vetek;
+                TeachAtHome = teacher.TeachAtHome;
+                userId = teacher.TeacherId;
+            }
+                
+            
+
+        }
         private async void OnUpdateUser()
         {
             if (IsStudent)
@@ -633,10 +683,12 @@ namespace TutorLinkClient.ViewModels
 
         }
 
+        private int userId;
         private async Task OnUpdateStudent()
         {
             StudentDTO studentDTO = new StudentDTO()
             {
+                StudentId = userId,
                 FirstName = FirstName,
                 LastName = LastName,
                 Email = Email,
@@ -653,21 +705,16 @@ namespace TutorLinkClient.ViewModels
 
             //Set the application logged in user to be whatever user returned (null or real user)
 
-            if (success)
+            if (!success)
             {
                 ErrorMsg = "Update Failed!";
             }
             else
             {
-                ErrorMsg = "";
+                ErrorMsg = "The Update Was Successful";
                 //check if photo was selected
                 if (!string.IsNullOrEmpty(LocalPhotoPath))
                 {
-                    await proxy.LoginStudentAsync(new LoginInfoDTO()
-                    {
-                        Email = theStudent.Email,
-                        Password = theStudent.Pass
-                    });
                     theStudent = await proxy.UploadProfileImageStudent(LocalPhotoPath);
                     if (theStudent == null)
                     {
@@ -681,55 +728,52 @@ namespace TutorLinkClient.ViewModels
             }
         }
 
-            private async Task OnUpdateTeacher()
+        private async Task OnUpdateTeacher()
+        {
+            TeacherDTO teacherDTO = new TeacherDTO()
             {
-                TeacherDTO teacherDTO = new TeacherDTO()
-                 {
+                TeacherId = userId,
                 FirstName = FirstName,
                 LastName = LastName,
                 Email = Email,
                 UserAddress = Address,
                 Pass = Password,
+                Vetek = Vetek,
                 MaxDistance = MaxDistance,
                 GoToStudent = GoToStudent,
                 TeachAtHome = TeachAtHome,
                 ProfileImagePath = ""
-                 };
+            };
 
-                 bool success = await proxy.UpdateTeacher(teacherDTO);
+            bool success = await proxy.UpdateTeacher(teacherDTO);
 
 
-                 TeacherDTO theTeacher = ((App)Application.Current).LoggedInTeacher;
+            TeacherDTO theTeacher = ((App)Application.Current).LoggedInTeacher;
 
-                 //Set the application logged in user to be whatever user returned (null or real user)
+            //Set the application logged in user to be whatever user returned (null or real user)
 
-                 if (success)
-                 {
-                      ErrorMsg = "Update Failed!";
-                 }
-                  else
-                  {
-                        ErrorMsg = "";
-                        //check if photo was selected
-                        if (!string.IsNullOrEmpty(LocalPhotoPath))
-                        {
-                            await proxy.LoginStudentAsync(new LoginInfoDTO()
-                            {
-                                Email = theTeacher.Email,
-                                Password = theTeacher.Pass
-                            });
-                            theTeacher = await proxy.UploadProfileImageTeacher(LocalPhotoPath);
-                            if (theTeacher == null)
-                            {
-                                ErrorMsg = "Update Succeeded but the profile image was not updated!";
-                            }
-                            else
-                            {
-                                ((App)Application.Current).LoggedInTeacher = theTeacher;
-                            }
-                        }
-                  }
+            if (!success)
+            {
+                ErrorMsg = "Update Failed!";
             }
+            else
+            {
+                ErrorMsg = "The Update Was Successful";
+                //check if photo was selected
+                if (!string.IsNullOrEmpty(LocalPhotoPath))
+                {
+                    theTeacher = await proxy.UploadProfileImageTeacher(LocalPhotoPath);
+                    if (theTeacher == null)
+                    {
+                        ErrorMsg = "Update Succeeded but the profile image was not updated!";
+                    }
+                    else
+                    {
+                        ((App)Application.Current).LoggedInTeacher = theTeacher;
+                    }
+                }
+            }
+        }
 
         //upload profile picture on the register page
         private async void OnUploadPhoto()
@@ -752,13 +796,6 @@ namespace TutorLinkClient.ViewModels
             {
             }
 
-        }
-
-        private void UpdatePhotoURL(string virtualPath)
-        {
-            Random r = new Random();
-            PhotoURL = proxy.GetImagesBaseAddress() + virtualPath + "?v=" + r.Next();
-            LocalPhotoPath = "";
         }
 
 
