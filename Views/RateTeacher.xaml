@@ -88,27 +88,27 @@
                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
                         <Button 
                             Style="{StaticResource starButtonStyle}"
-                            TextColor="{Binding Stars, Converter={StaticResource IntToColorConverter}, ConverterParameter=1}"
+                            TextColor="{Binding Stars, Converter={StaticResource RatingToColorConverter }, ConverterParameter=1}"
                             Command="{Binding SetRatingCommand}" 
                             CommandParameter="1" />
                         <Button 
                             Style="{StaticResource starButtonStyle}"
-                            TextColor="{Binding Stars, Converter={StaticResource IntToColorConverter}, ConverterParameter=2}"
+                            TextColor="{Binding Stars, Converter={StaticResource RatingToColorConverter }, ConverterParameter=2}"
                             Command="{Binding SetRatingCommand}" 
                             CommandParameter="2" />
                         <Button 
                             Style="{StaticResource starButtonStyle}"
-                            TextColor="{Binding Stars, Converter={StaticResource IntToColorConverter}, ConverterParameter=3}"
+                            TextColor="{Binding Stars, Converter={StaticResource RatingToColorConverter }, ConverterParameter=3}"
                             Command="{Binding SetRatingCommand}" 
                             CommandParameter="3" />
                         <Button 
                             Style="{StaticResource starButtonStyle}"
-                            TextColor="{Binding Stars, Converter={StaticResource IntToColorConverter}, ConverterParameter=4}"
+                            TextColor="{Binding Stars, Converter={StaticResource RatingToColorConverter }, ConverterParameter=4}"
                             Command="{Binding SetRatingCommand}" 
                             CommandParameter="4" />
                         <Button 
                             Style="{StaticResource starButtonStyle}"
-                            TextColor="{Binding Stars, Converter={StaticResource IntToColorConverter}, ConverterParameter=5}"
+                            TextColor="{Binding Stars, Converter={StaticResource RatingToColorConverter }, ConverterParameter=5}"
                             Command="{Binding SetRatingCommand}" 
                             CommandParameter="5" />
                     </HorizontalStackLayout>
