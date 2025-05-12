@@ -22,44 +22,110 @@
     </ContentPage.Resources>
 
     <ScrollView x:Name="scrlview">
-        <VerticalStackLayout Padding="10" Spacing="8">
-            <Label
-                Margin="0,10,0,20"
-                FontAttributes="Bold"
-                FontFamily="SofadiOne-Regular"
-                FontSize="24"
-                HorizontalOptions="Center"
-                Text="Reports"
-                TextColor="#C2185B" />
+        <VerticalStackLayout>
+            <VerticalStackLayout Padding="10" Spacing="8">
+                <Label
+                    Margin="0,10,0,20"
+                    FontAttributes="Bold"
+                    FontFamily="SofadiOne-Regular"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    Text="Reports"
+                    TextColor="#C2185B" />
 
 
 
-            <!--  Results Section  -->
+                <!--  Results Section  -->
 
-            <CollectionView
-                x:Name="cv"
-                EmptyView="No reports found"
-                ItemsSource="{Binding Reports}"
-                SelectionMode="None">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItems>
-                                    <SwipeItem
-                                        BackgroundColor="#F06292"
-                                        Command="{Binding BindingContext.BlockUser, Source={x:Reference cv}}"
-                                        CommandParameter="{Binding}"
-                                        IconImageSource="chat.png"
-                                        Text="Chat" />
-                                    <SwipeItem
-                                        BackgroundColor="#EC407A"
-                                        Command="{Binding BindingContext.DeleteReport, Source={x:Reference cv}}"
-                                        CommandParameter="{Binding}"
-                                        IconImageSource="rate.png"
-                                        Text="Rate" />
-                                </SwipeItems>
-                            </SwipeView.LeftItems>
+                <CollectionView
+                    x:Name="cv"
+                    EmptyView="No reports found"
+                    ItemsSource="{Binding Reports}"
+                    SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="#F06292"
+                                            Command="{Binding BindingContext.BlockUser, Source={x:Reference cv}}"
+                                            CommandParameter="{Binding}"
+                                            IconImageSource="chat.png"
+                                            Text="Chat" />
+                                        <SwipeItem
+                                            BackgroundColor="#EC407A"
+                                            Command="{Binding BindingContext.DeleteReport, Source={x:Reference cv}}"
+                                            CommandParameter="{Binding}"
+                                            IconImageSource="rate.png"
+                                            Text="Rate" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+
+                                <Frame
+                                    Margin="5"
+                                    Padding="10"
+                                    BackgroundColor="#FFF0F5"
+                                    BorderColor="#F06292"
+                                    CornerRadius="10">
+                                    <StackLayout Padding="5">
+                                        <HorizontalStackLayout>
+                                            <Frame
+                                                Padding="0"
+                                                BorderColor="#F48FB1"
+                                                CornerRadius="30"
+                                                HeightRequest="60"
+                                                IsClippedToBounds="True"
+                                                WidthRequest="60">
+                                                <Image Aspect="AspectFill" Source="{Binding ImageURL}" />
+                                            </Frame>
+                                            <VerticalStackLayout Padding="10,0,0,0">
+                                                <HorizontalStackLayout>
+                                                    <Label
+                                                        Padding="0,0,5,0"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Medium"
+                                                        Text="{Binding DisplayName}"
+                                                        TextColor="#AD1457" />
+
+                                                </HorizontalStackLayout>
+                                                <Label
+                                                    FontAttributes="Italic"
+                                                    FontSize="Small"
+                                                    Text="{Binding ReportText, StringFormat='{0}'}"
+                                                    TextColor="#C2185B" />
+                                            </VerticalStackLayout>
+                                        </HorizontalStackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+            <VerticalStackLayout Padding="10" Spacing="8">
+                <Label
+                    Margin="0,10,0,20"
+                    FontAttributes="Bold"
+                    FontFamily="SofadiOne-Regular"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    Text="Students"
+                    TextColor="#C2185B" />
+
+
+
+                <!--  Results Section  -->
+
+                <CollectionView
+                    EmptyView="No students found"
+                    ItemsSource="{Binding Students}"
+                    SelectedItem="{Binding SelectedStudent}"
+                    SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+
 
                             <Frame
                                 Margin="5"
@@ -88,19 +154,77 @@
                                                     TextColor="#AD1457" />
 
                                             </HorizontalStackLayout>
-                                            <Label
-                                                FontAttributes="Italic"
-                                                FontSize="Small"
-                                                Text="{Binding ReportText, StringFormat='{0}'}"
-                                                TextColor="#C2185B" />
+
                                         </VerticalStackLayout>
                                     </HorizontalStackLayout>
                                 </StackLayout>
                             </Frame>
-                        </SwipeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+            <VerticalStackLayout Padding="10" Spacing="8">
+                <Label
+                    Margin="0,10,0,20"
+                    FontAttributes="Bold"
+                    FontFamily="SofadiOne-Regular"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    Text="Teachers"
+                    TextColor="#C2185B" />
+
+
+
+                <!--  Results Section  -->
+
+                <CollectionView
+                    EmptyView="No teachers found"
+                    ItemsSource="{Binding Teachers}"
+                    SelectedItem="{Binding SelectedTeacher}"
+                    SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+
+
+                            <Frame
+                                Margin="5"
+                                Padding="10"
+                                BackgroundColor="#FFF0F5"
+                                BorderColor="#F06292"
+                                CornerRadius="10">
+                                <StackLayout Padding="5">
+                                    <HorizontalStackLayout>
+                                        <Frame
+                                            Padding="0"
+                                            BorderColor="#F48FB1"
+                                            CornerRadius="30"
+                                            HeightRequest="60"
+                                            IsClippedToBounds="True"
+                                            WidthRequest="60">
+                                            <Image Aspect="AspectFill" Source="{Binding ImageURL}" />
+                                        </Frame>
+                                        <VerticalStackLayout Padding="10,0,0,0">
+                                            <HorizontalStackLayout>
+                                                <Label
+                                                    Padding="0,0,5,0"
+                                                    FontAttributes="Bold"
+                                                    FontSize="Medium"
+                                                    Text="{Binding DisplayName}"
+                                                    TextColor="#AD1457" />
+
+                                            </HorizontalStackLayout>
+
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                            </Frame>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

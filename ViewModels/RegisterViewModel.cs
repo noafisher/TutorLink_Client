@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TutorLinkClient.Models;
 using TutorLinkClient.Services;
@@ -535,6 +536,41 @@ public class RegisterViewModel : ViewModelBase
     }
 
     #endregion
+
+    private ObservableCollection<SubjectDTO> subjects;
+    public ObservableCollection<SubjectDTO> Subjects
+    {
+        get
+        {
+            return subjects;
+        }
+        set
+        {
+            subjects = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private ObservableCollection<SubjectDTO> selectedSubjects;
+    public ObservableCollection<SubjectDTO> SelectedSubjects
+    {
+        get
+        {
+            return selectedSubjects;
+        }
+        set
+        {
+            selectedSubjects = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public Command SelectionCommand { get; set; }
+    private void OnSelectionChanged(SelectionChangedEventArgs args)
+    {
+        // Update SelectedSubjects with the selected items
+        SelectedSubjects = new ObservableCollection<SubjectDTO>(args.CurrentSelection.Cast<SubjectDTO>());
+    }
     //Other properties
     private bool isStudent;
 
@@ -583,9 +619,13 @@ public class RegisterViewModel : ViewModelBase
         GoBackCommand = new Command(OnGoBack);
         RegisterCommand = new Command(OnRegister);
         UploadPictureCommand = new Command(OnUploadPhoto);
+        SelectionCommand = new Command<SelectionChangedEventArgs>(OnSelectionChanged);
         ErrorMsg = "";
         Email = "";
         Password = "";
+        SelectedSubjects = new ObservableCollection<SubjectDTO>();
+        List<SubjectDTO> s = ((App)Application.Current).Subjects;
+        Subjects = new ObservableCollection<SubjectDTO>(s);
         InServerCall = false;
     }
 

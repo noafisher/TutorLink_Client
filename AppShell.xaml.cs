@@ -12,6 +12,7 @@ namespace TutorLinkClient
            this.BindingContext = vm;
             InitializeComponent();
             Routing.RegisterRoute("ChatDetails", typeof(ChatDetails));
+            Routing.RegisterRoute("AdminProfile", typeof(ProfilePage));
         }
     }
 }

@@ -25,6 +25,7 @@ namespace TutorLinkClient.ViewModels
             Students = new ObservableCollection<StudentDTO>();
             addLessonCommand = new Command(Save);
             Subjects = new List<TeacherSubject>();
+            TimeOfLesson = DateTime.Now.Date;
             ReadSubjects();
         }
         #region lesson name

@@ -54,8 +54,9 @@ public class CalendarViewModel : ViewModelBase
 		this.serviceProvider = serviceProvider;
 		LessonsList = new ObservableCollection<Lesson>();
 		Dates = new ObservableCollection<DateTime>();
-		//GetAllLessons(DateOnly.FromDateTime(DateTime.Now));
-		GoToAddLessonCommand = new Command(GoToAddLesson);
+        SelectedDate = DateTime.Now.Date;
+        GetAllLessons();
+        GoToAddLessonCommand = new Command(GoToAddLesson);
 	}
 
 	//

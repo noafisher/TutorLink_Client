@@ -194,7 +194,7 @@ public class ReportUserViewModel : ViewModelBase
 
     private void ValidateStudent()
     {
-        this.TeacherNameError = "Teacher must be selected";
+        this.TeacherNameError = "Student must be selected";
         this.ShowStudentNameError = SelectedStudent == null;
     }
 
@@ -228,6 +228,7 @@ public class ReportUserViewModel : ViewModelBase
         ReportUserCommand = new Command(OnReport);
         ValidateStudent();
         SelectedTeacher = null;
+        SelectedStudent = null;
         ValidateText();
         GetAllStudents();
         GetAllTeachers();

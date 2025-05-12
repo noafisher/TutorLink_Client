@@ -65,7 +65,7 @@
                         <Slider
                             Maximum="400"
                             MaximumTrackColor="#F8BBD0"
-                            Minimum="0"
+                            Minimum="1"
                             MinimumTrackColor="#F06292"
                             ThumbColor="#C2185B"
                             WidthRequest="140"
@@ -80,13 +80,20 @@
 
                     <HorizontalStackLayout>
                         <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Seniority:" />
-                        <Entry
-                            BackgroundColor="#FFF0F5"
-                            Placeholder="Enter seniority"
-                            PlaceholderColor="#EC407A"
+                        <Slider
+                            Maximum="30"
+                            MaximumTrackColor="#F8BBD0"
+                            Minimum="0"
+                            MinimumTrackColor="#F06292"
+                            ThumbColor="#C2185B"
+                            WidthRequest="140"
+                            Value="{Binding Senority}" />
+                        <Label
+                            Margin="5"
+                            FontAttributes="Bold"
                             Text="{Binding Senority}"
-                            TextColor="#AD1457"
-                            WidthRequest="180" />
+                            TextColor="#C2185B"
+                            VerticalOptions="Center" />
                     </HorizontalStackLayout>
 
                     <Button
@@ -168,6 +175,11 @@
                                                     Text="{Binding LastName}"
                                                     TextColor="#AD1457" />
                                             </HorizontalStackLayout>
+                                            <Label
+                                                FontAttributes="Italic"
+                                                FontSize="Small"
+                                                Text="{Binding Vetek, StringFormat='Seniority: {0} Years'}"
+                                                TextColor="#C2185B" />
                                             <Label
                                                 FontAttributes="Italic"
                                                 FontSize="Small"

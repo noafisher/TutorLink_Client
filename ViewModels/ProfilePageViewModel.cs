@@ -9,11 +9,41 @@ using System.Windows.Input;
 
 namespace TutorLinkClient.ViewModels
 {
-    [QueryProperty("TheUserObject", "TheUserObject")]
+    [QueryProperty("TheStudentObject", "TheStudentObject")]
+    [QueryProperty("TheTeacherObject", "TheTeacherObject")]
     public class ProfilePageViewModel : ViewModelBase
     {
         private TutorLinkWebAPIProxy proxy; 
         private IServiceProvider serviceProvider;
+
+        private StudentDTO theStudentObject;
+        public StudentDTO TheStudentObject
+        {
+            get
+            {
+                return this.theStudentObject;
+            }
+            set
+            {
+                theStudentObject = value;
+                TheUserObject = theStudentObject;
+            }
+        }
+
+        private TeacherDTO theTeacherObject;
+        public TeacherDTO TheTeacherObject
+        {
+            get
+            {
+                return this.theTeacherObject;
+            }
+            set
+            {
+                theTeacherObject = value;
+                TheUserObject = theTeacherObject;
+            }
+        }
+
 
         //all users
         private Object theUserObject;

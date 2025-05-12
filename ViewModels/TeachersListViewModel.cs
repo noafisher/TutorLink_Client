@@ -62,8 +62,8 @@ public class TeachersListViewModel : ViewModelBase
             SubjectId = 0,
             SubjectName = "All"
         });
-        
-        MaxPrice = 0;
+        SelectedSubject = SubjectList[0];
+        MaxPrice = 400;
         GetAllTeachers();
         GetAllSubjects();
     }
@@ -114,7 +114,7 @@ public class TeachersListViewModel : ViewModelBase
             {
                 if (MaxPrice == 0 || t.PricePerHour <= MaxPrice)
                 {
-                    if(senority == 0 || t.Vetek <= senority)
+                    if(senority == 0 || t.Vetek >= senority)
                     { 
                         FilteredTeachersList.Add(t);
                     }
