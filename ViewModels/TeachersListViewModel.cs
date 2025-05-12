@@ -66,7 +66,7 @@ public class TeachersListViewModel : ViewModelBase
         GetAllTeachers();
         GetAllSubjects();
     }
-
+    //
     private SubjectDTO selectedSubject;
     public SubjectDTO SelectedSubject
     {
