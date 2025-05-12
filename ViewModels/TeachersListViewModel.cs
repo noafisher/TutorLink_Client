@@ -53,7 +53,6 @@ public class TeachersListViewModel : ViewModelBase
         this.GotoChatCommand = new Command<TeacherDTO>(OnGotoChat);
         this.FilterCommand = new Command(Filter);
         this.GotoRateCommand = new Command<TeacherDTO>(OnGotoRate);
-        this.GotoReportCommand = new Command<TeacherDTO>(OnGotoReport);
         TeachersList = new ObservableCollection<TeacherDTO>();
         FilteredTeachersList = new ObservableCollection<TeacherDTO>();
         SubjectList = new ObservableCollection<SubjectDTO>();
@@ -153,12 +152,7 @@ public class TeachersListViewModel : ViewModelBase
         
 
     } 
-    public ICommand GotoReportCommand { get; set; }
-    private async void OnGotoReport(TeacherDTO t)
-    {
-        await Shell.Current.GoToAsync("//ReportUser");
-
-    }
+    
 
 
 }
