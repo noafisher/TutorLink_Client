@@ -173,31 +173,7 @@
                     Text="{Binding Password}"
                     TextColor="#FF1493" />
 
-                <!--  Address  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Grid.Column="0"
-                        Style="{StaticResource labelNameStyle}"
-                        Text="Address:"
-                        TextColor="#FF1493" />
-                    <Label
-                        Grid.Column="1"
-                        IsVisible="{Binding ShowAddressError}"
-                        Style="{StaticResource labelErrorStyle}"
-                        Text="{Binding AddressError}"
-                        TextColor="#FF0066" />
-                </Grid>
-                <Entry
-                    BackgroundColor="#FFEBF5"
-                    Placeholder="Type Address"
-                    PlaceholderColor="#FF69B4"
-                    Style="{StaticResource entryStyle}"
-                    Text="{Binding Address}"
-                    TextColor="#FF1493" />
+
 
                 <!--  These fields are visible for students only  -->
                 <VerticalStackLayout IsVisible="{Binding IsStudent}">
@@ -246,31 +222,7 @@
                         BorderColor="#FFB6C1"
                         CornerRadius="10">
                         <VerticalStackLayout>
-                            <!--  Max Distance  -->
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Label
-                                    Grid.Column="0"
-                                    Style="{StaticResource labelNameStyle}"
-                                    Text="Distance:"
-                                    TextColor="#FF1493" />
-                                <Label
-                                    Grid.Column="1"
-                                    IsVisible="{Binding ShowMaxDistanceError}"
-                                    Style="{StaticResource labelErrorStyle}"
-                                    Text="{Binding MaxDistanceError}"
-                                    TextColor="#FF0066" />
-                            </Grid>
-                            <Entry
-                                BackgroundColor="#FFF0F5"
-                                Placeholder="Type the max distance"
-                                PlaceholderColor="#FF69B4"
-                                Style="{StaticResource entryStyle}"
-                                Text="{Binding MaxDistance}"
-                                TextColor="#FF1493" />
+
 
                             <!--  Vetek  -->
                             <Grid>
@@ -357,13 +309,14 @@
                             <!--  Subjects  -->
                             <Label
                                 Style="{StaticResource pinkLabelStyle}"
-                                Text="Subjects:"
+                                Text="Select your subjects:"
                                 TextColor="#FF1493" />
 
                             <CollectionView
                                 Margin="0,5,0,10"
                                 BackgroundColor="#FFEBF5"
                                 ItemsSource="{Binding Subjects}"
+                                SelectedItems="{Binding SelectedSubjects}"
                                 SelectionChangedCommand="{Binding SelectionCommand}"
                                 SelectionMode="Multiple">
                                 <CollectionView.ItemTemplate>

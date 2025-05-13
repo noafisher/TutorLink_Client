@@ -78,7 +78,7 @@
                             SelectedItem="{Binding BindingContext.SelectedStudent, Source={x:Reference stck}}"
                             TextColor="#AD1457" />
                         <Label
-                            IsVisible="{Binding ShowStudentNameError}"
+                            IsVisible="{Binding ShowStudentNameError, Mode=TwoWay}"
                             Style="{StaticResource labelErrorStyle}"
                             Text="{Binding StudentNameError}" />
                     </VerticalStackLayout>

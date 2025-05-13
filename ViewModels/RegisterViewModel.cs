@@ -551,8 +551,8 @@ public class RegisterViewModel : ViewModelBase
         }
     }
 
-    private ObservableCollection<SubjectDTO> selectedSubjects;
-    public ObservableCollection<SubjectDTO> SelectedSubjects
+    private ObservableCollection<Object> selectedSubjects;
+    public ObservableCollection<Object> SelectedSubjects
     {
         get
         {
@@ -566,10 +566,9 @@ public class RegisterViewModel : ViewModelBase
     }
 
     public Command SelectionCommand { get; set; }
-    private void OnSelectionChanged(SelectionChangedEventArgs args)
+    private void OnSelectionChanged()
     {
-        // Update SelectedSubjects with the selected items
-        SelectedSubjects = new ObservableCollection<SubjectDTO>(args.CurrentSelection.Cast<SubjectDTO>());
+        
     }
     //Other properties
     private bool isStudent;
@@ -619,11 +618,11 @@ public class RegisterViewModel : ViewModelBase
         GoBackCommand = new Command(OnGoBack);
         RegisterCommand = new Command(OnRegister);
         UploadPictureCommand = new Command(OnUploadPhoto);
-        SelectionCommand = new Command<SelectionChangedEventArgs>(OnSelectionChanged);
+        SelectionCommand = new Command(OnSelectionChanged);
         ErrorMsg = "";
         Email = "";
         Password = "";
-        SelectedSubjects = new ObservableCollection<SubjectDTO>();
+        SelectedSubjects = new ObservableCollection<Object>();
         List<SubjectDTO> s = ((App)Application.Current).Subjects;
         Subjects = new ObservableCollection<SubjectDTO>(s);
         InServerCall = false;
@@ -716,6 +715,23 @@ public class RegisterViewModel : ViewModelBase
 
         };
 
+        teacherDTO.TeacherSubjects = new List<TeacherSubject>();
+        foreach (Object obj in SelectedSubjects)
+        {
+            if (obj is SubjectDTO)
+            {
+                SubjectDTO subject = (SubjectDTO)obj;
+                teacherDTO.TeacherSubjects.Add(new TeacherSubject()
+                {
+                    SubjectId = subject.SubjectId,
+                    SubjectName = subject.SubjectName,
+                    MinClass = 1,
+                    MaxClass = 12 //Default value
+                });
+            }
+            
+        }
+        //Call the server to register - teacher
         TeacherDTO? theTeacher = await proxy.RegisterTeacherAsync(teacherDTO);
         InServerCall = false;
 

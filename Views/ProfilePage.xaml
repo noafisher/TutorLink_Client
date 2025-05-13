@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TutorLinkClient.Views.ProfilePage"
-             Title="Profile"
-             BackgroundColor="#FFF5FA">
+<ContentPage
+    x:Class="TutorLinkClient.Views.ProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Profile"
+    BackgroundColor="#FFF5FA">
 
     <ContentPage.Resources>
         <Style x:Key="pinkFilterLabelStyle" TargetType="Label">
@@ -48,7 +49,7 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="5">
-            <!-- Page Title -->
+            <!--  Page Title  -->
             <Label
                 Margin="0,10,0,20"
                 FontAttributes="Bold"
@@ -58,7 +59,7 @@
                 Text="Your Profile"
                 TextColor="#C2185B" />
 
-            <!-- Profile Image -->
+            <!--  Profile Image  -->
             <Frame
                 Margin="0,0,0,15"
                 Padding="0"
@@ -71,97 +72,199 @@
                 <Image Aspect="AspectFill" Source="{Binding PhotoURL}" />
             </Frame>
 
-            <Button Text="Change Photo" Command="{Binding UploadPictureCommand}" Style="{StaticResource pinkButtonStyle}" />
+            <Button
+                Command="{Binding UploadPictureCommand}"
+                Style="{StaticResource pinkButtonStyle}"
+                Text="Change Photo" />
 
-            <!-- Personal Information Section -->
-            <Frame Style="{StaticResource pinkFilterFrameStyle}" Margin="0,15,0,10">
+            <!--  Personal Information Section  -->
+            <Frame Margin="0,15,0,10" Style="{StaticResource pinkFilterFrameStyle}">
                 <VerticalStackLayout Spacing="5">
                     <Label
+                        Margin="0,0,0,10"
                         FontAttributes="Bold"
                         FontSize="18"
                         HorizontalOptions="Center"
                         Text="Personal Information"
-                        TextColor="#C2185B"
-                        Margin="0,0,0,10" />
+                        TextColor="#C2185B" />
 
-                    <Label Text="First Name" Style="{StaticResource pinkFilterLabelStyle}" />
-                    <Entry Text="{Binding FirstName}" Placeholder="Enter First Name" Style="{StaticResource pinkEntryStyle}" />
-                    <Label Text="{Binding FirstNameError}" Style="{StaticResource errorLabelStyle}" IsVisible="{Binding ShowFirstNameError}" />
+                    <Label Style="{StaticResource pinkFilterLabelStyle}" Text="First Name" />
+                    <Entry
+                        Placeholder="Enter First Name"
+                        Style="{StaticResource pinkEntryStyle}"
+                        Text="{Binding FirstName}" />
+                    <Label
+                        IsVisible="{Binding ShowFirstNameError}"
+                        Style="{StaticResource errorLabelStyle}"
+                        Text="{Binding FirstNameError}" />
 
-                    <Label Text="Last Name" Style="{StaticResource pinkFilterLabelStyle}" />
-                    <Entry Text="{Binding LastName}" Placeholder="Enter Last Name" Style="{StaticResource pinkEntryStyle}" />
-                    <Label Text="{Binding LastNameError}" Style="{StaticResource errorLabelStyle}" IsVisible="{Binding ShowLastNameError}" />
+                    <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Last Name" />
+                    <Entry
+                        Placeholder="Enter Last Name"
+                        Style="{StaticResource pinkEntryStyle}"
+                        Text="{Binding LastName}" />
+                    <Label
+                        IsVisible="{Binding ShowLastNameError}"
+                        Style="{StaticResource errorLabelStyle}"
+                        Text="{Binding LastNameError}" />
 
-                    <Label Text="Email" Style="{StaticResource pinkFilterLabelStyle}" />
-                    <Entry Text="{Binding Email}" Placeholder="Enter Email" Style="{StaticResource pinkEntryStyle}" />
-                    <Label Text="{Binding EmailError}" Style="{StaticResource errorLabelStyle}" IsVisible="{Binding ShowEmailError}" />
+                    <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Email" />
+                    <Entry
+                        Placeholder="Enter Email"
+                        Style="{StaticResource pinkEntryStyle}"
+                        Text="{Binding Email}" />
+                    <Label
+                        IsVisible="{Binding ShowEmailError}"
+                        Style="{StaticResource errorLabelStyle}"
+                        Text="{Binding EmailError}" />
 
-                    <Label Text="Password" Style="{StaticResource pinkFilterLabelStyle}" />
-                    <Entry Text="{Binding Password}" Placeholder="Enter Password" IsPassword="True" Style="{StaticResource pinkEntryStyle}" />
-                    <Label Text="{Binding PasswordError}" Style="{StaticResource errorLabelStyle}" IsVisible="{Binding ShowPasswordError}" />
+                    <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Password" />
+                    <Entry
+                        IsPassword="True"
+                        Placeholder="Enter Password"
+                        Style="{StaticResource pinkEntryStyle}"
+                        Text="{Binding Password}" />
+                    <Label
+                        IsVisible="{Binding ShowPasswordError}"
+                        Style="{StaticResource errorLabelStyle}"
+                        Text="{Binding PasswordError}" />
 
-                    <Label Text="Address" Style="{StaticResource pinkFilterLabelStyle}" />
-                    <Entry Text="{Binding Address}" Placeholder="Enter Address" Style="{StaticResource pinkEntryStyle}" />
-                    <Label Text="{Binding AddressError}" Style="{StaticResource errorLabelStyle}" IsVisible="{Binding ShowAddressError}" />
+
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- Student Section -->
-            <Frame Style="{StaticResource pinkFilterFrameStyle}" IsVisible="{Binding IsStudent}" Margin="0,5,0,10">
+            <!--  Student Section  -->
+            <Frame
+                Margin="0,5,0,10"
+                IsVisible="{Binding IsStudent}"
+                Style="{StaticResource pinkFilterFrameStyle}">
                 <VerticalStackLayout Spacing="5">
                     <Label
+                        Margin="0,0,0,10"
                         FontAttributes="Bold"
                         FontSize="18"
                         HorizontalOptions="Center"
                         Text="Student Information"
-                        TextColor="#C2185B"
-                        Margin="0,0,0,10" />
+                        TextColor="#C2185B" />
 
-                    <Label Text="Current Class" Style="{StaticResource pinkFilterLabelStyle}" />
-                    <Entry Text="{Binding CurrentClass}" Keyboard="Numeric" Placeholder="Enter Current Class (1-12)" Style="{StaticResource pinkEntryStyle}" />
-                    <Label Text="{Binding CurrentClassError}" Style="{StaticResource errorLabelStyle}" IsVisible="{Binding ShowCurrentClassError}" />
+                    <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Current Class" />
+                    <Entry
+                        Keyboard="Numeric"
+                        Placeholder="Enter Current Class (1-12)"
+                        Style="{StaticResource pinkEntryStyle}"
+                        Text="{Binding CurrentClass}" />
+                    <Label
+                        IsVisible="{Binding ShowCurrentClassError}"
+                        Style="{StaticResource errorLabelStyle}"
+                        Text="{Binding CurrentClassError}" />
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- Teacher Section -->
-            <Frame Style="{StaticResource pinkFilterFrameStyle}" IsVisible="{Binding IsTeacher}" Margin="0,5,0,10">
+            <!--  Teacher Section  -->
+            <Frame
+                Margin="0,5,0,10"
+                IsVisible="{Binding IsTeacher}"
+                Style="{StaticResource pinkFilterFrameStyle}">
                 <VerticalStackLayout Spacing="5">
                     <Label
+                        Margin="0,0,0,10"
                         FontAttributes="Bold"
                         FontSize="18"
                         HorizontalOptions="Center"
                         Text="Teacher Information"
-                        TextColor="#C2185B"
-                        Margin="0,0,0,10" />
+                        TextColor="#C2185B" />
 
-                    <Label Text="Maximum Distance" Style="{StaticResource pinkFilterLabelStyle}" />
-                    <Entry Text="{Binding MaxDistance}" Keyboard="Numeric" Placeholder="Enter Max Distance" Style="{StaticResource pinkEntryStyle}" />
-                    <Label Text="{Binding MaxDistanceError}" Style="{StaticResource errorLabelStyle}" IsVisible="{Binding ShowMaxDistanceError}" />
+
 
                     <HorizontalStackLayout Margin="0,5,0,5">
-                        <Label Text="Can Teache at The Student Home?" Style="{StaticResource pinkFilterLabelStyle}" />
-                        <Switch IsToggled="{Binding GoToStudent}" ThumbColor="#C2185B" OnColor="#F06292" Margin="10,0,0,0" />
+                        <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Can Teache at The Student Home?" />
+                        <Switch
+                            Margin="10,0,0,0"
+                            IsToggled="{Binding GoToStudent}"
+                            OnColor="#F06292"
+                            ThumbColor="#C2185B" />
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout Margin="0,5,0,5">
-                        <Label Text="Can Teach at Home?" Style="{StaticResource pinkFilterLabelStyle}" />
-                        <Switch IsToggled="{Binding TeachAtHome}" ThumbColor="#C2185B" OnColor="#F06292" Margin="10,0,0,0" />
+                        <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Can Teach at Home?" />
+                        <Switch
+                            Margin="10,0,0,0"
+                            IsToggled="{Binding TeachAtHome}"
+                            OnColor="#F06292"
+                            ThumbColor="#C2185B" />
                     </HorizontalStackLayout>
-                    <Label Text="{Binding TeachAtError}" Style="{StaticResource errorLabelStyle}" IsVisible="{Binding ShowTeachAtError}" />
+                    <Label
+                        IsVisible="{Binding ShowTeachAtError}"
+                        Style="{StaticResource errorLabelStyle}"
+                        Text="{Binding TeachAtError}" />
 
-                    <Label Text="Years of Experience" Style="{StaticResource pinkFilterLabelStyle}" />
-                    <Entry Text="{Binding Vetek}" Keyboard="Numeric" Placeholder="Enter Years of Experience" Style="{StaticResource pinkEntryStyle}" />
-                    <Label Text="{Binding VetekError}" Style="{StaticResource errorLabelStyle}" IsVisible="{Binding ShowVetekError}" />
+                    <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Years of Experience" />
+                    <Entry
+                        Keyboard="Numeric"
+                        Placeholder="Enter Years of Experience"
+                        Style="{StaticResource pinkEntryStyle}"
+                        Text="{Binding Vetek}" />
+                    <Label
+                        IsVisible="{Binding ShowVetekError}"
+                        Style="{StaticResource errorLabelStyle}"
+                        Text="{Binding VetekError}" />
 
-                    <Label Text="Price Per Hour" Style="{StaticResource pinkFilterLabelStyle}" />
-                    <Entry Text="{Binding PricePerHour}" Keyboard="Numeric" Placeholder="Enter Price Per Hour" Style="{StaticResource pinkEntryStyle}" />
-                    <Label Text="{Binding PricePerHourError}" Style="{StaticResource errorLabelStyle}" IsVisible="{Binding ShowPricePerHourError}" />
+                    <Label Style="{StaticResource pinkFilterLabelStyle}" Text="Price Per Hour" />
+                    <Entry
+                        Keyboard="Numeric"
+                        Placeholder="Enter Price Per Hour"
+                        Style="{StaticResource pinkEntryStyle}"
+                        Text="{Binding PricePerHour}" />
+                    <Label
+                        IsVisible="{Binding ShowPricePerHourError}"
+                        Style="{StaticResource errorLabelStyle}"
+                        Text="{Binding PricePerHourError}" />
+
+                    <!--  Subjects  -->
+                    <Label
+                        Style="{StaticResource pinkLabelStyle}"
+                        Text="Update your subjects:"
+                        TextColor="#FF1493" />
+
+                    <CollectionView
+                        Margin="0,5,0,10"
+                        BackgroundColor="#FFEBF5"
+                        ItemsSource="{Binding Subjects}"
+                        SelectedItems="{Binding SelectedSubjects}"
+                        SelectionChangedCommand="{Binding SelectionCommand}"
+                        SelectionMode="Multiple">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Margin="5"
+                                    Padding="5"
+                                    BackgroundColor="#FFEBF5"
+                                    BorderColor="#FFB6C1"
+                                    CornerRadius="10">
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Text="{Binding SubjectName}"
+                                        TextColor="#FF1493" />
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- Update Button and ErrorMsg -->
-            <Button Text="Update Profile" Command="{Binding UpdateUser}" Style="{StaticResource pinkButtonStyle}" Margin="0,15,0,5" />
-            <Label Text="{Binding ErrorMsg}" TextColor="#C62828" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,5,0,20" />
+            <!--  Update Button and ErrorMsg  -->
+            <Button
+                Margin="0,15,0,5"
+                Command="{Binding UpdateUser}"
+                Style="{StaticResource pinkButtonStyle}"
+                Text="Update Profile" />
+            <Label
+                Margin="0,5,0,20"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Text="{Binding ErrorMsg}"
+                TextColor="#C62828" />
 
         </VerticalStackLayout>
     </ScrollView>

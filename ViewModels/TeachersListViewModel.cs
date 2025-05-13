@@ -127,7 +127,26 @@ public class TeachersListViewModel : ViewModelBase
     {
         try
         {
-            await Shell.Current.GoToAsync("//ChatStudent");
+            ObservableCollection<MessagesFromTeacher> Messages = ((AppShellViewModel)(Shell.Current.BindingContext)).MessagesFromTeacher;
+            MessagesFromTeacher? teacher = Messages.Where(m => m.Teacher.TeacherId == t.TeacherId).FirstOrDefault();
+            if (teacher == null)
+            {
+                teacher = new MessagesFromTeacher()
+                {
+                    Teacher = t,
+                    Messages = new ObservableCollection<ChatMessageDTO>()
+                };
+                Messages.Add(teacher);
+            }
+            var navParam = new Dictionary<string, object>
+            {
+                    { "messages", teacher.Messages },
+                    { "teacher", teacher.Teacher},
+                    { "student", ((App)Application.Current).LoggedInStudent}
+            };
+            await Shell.Current.GoToAsync("ChatDetails", navParam);
+
+            //await Shell.Current.GoToAsync("//ChatStudent");
             
         }
         catch (Exception ex)

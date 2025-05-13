@@ -194,7 +194,7 @@ public class ReportUserViewModel : ViewModelBase
 
     private void ValidateStudent()
     {
-        this.TeacherNameError = "Student must be selected";
+        this.StudentNameError = "Student must be selected";
         this.ShowStudentNameError = SelectedStudent == null;
     }
 
@@ -207,8 +207,6 @@ public class ReportUserViewModel : ViewModelBase
         }
         set
         {
-            //if (IsStudent)
-            //    selectedStudent = ((App)Application.Current).LoggedInStudent;
 
             selectedStudent = value;
             ValidateStudent();
@@ -227,6 +225,7 @@ public class ReportUserViewModel : ViewModelBase
         StudentsList = new ObservableCollection<StudentDTO>();
         ReportUserCommand = new Command(OnReport);
         ValidateStudent();
+        ValidateTeacher();
         SelectedTeacher = null;
         SelectedStudent = null;
         ValidateText();

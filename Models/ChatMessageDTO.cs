@@ -16,7 +16,29 @@ namespace TutorLinkClient.Models
         public string? MessageText { get; set; }
 
         public DateTime TextTime { get; set; }
-        
+
+        public bool IsSender
+        {
+            get
+            {
+                TeacherDTO? t = ((App)Application.Current).LoggedInTeacher;
+                StudentDTO? s = ((App)Application.Current).LoggedInStudent;
+
+                return (t != null && IsTeacherSender) ||
+                    (s != null && !IsTeacherSender);
+            }
+        }
+
+        public bool IsNotSender
+        {
+            get
+            {
+                return !IsSender;
+            }
+        }
+
+
+
 
     }
 }

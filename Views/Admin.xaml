@@ -51,14 +51,14 @@
                                             BackgroundColor="#F06292"
                                             Command="{Binding BindingContext.BlockUser, Source={x:Reference cv}}"
                                             CommandParameter="{Binding}"
-                                            IconImageSource="chat.png"
-                                            Text="Chat" />
+                                            IconImageSource="block.png"
+                                            Text="Block User" />
                                         <SwipeItem
                                             BackgroundColor="#EC407A"
                                             Command="{Binding BindingContext.DeleteReport, Source={x:Reference cv}}"
                                             CommandParameter="{Binding}"
-                                            IconImageSource="rate.png"
-                                            Text="Rate" />
+                                            IconImageSource="delete.png"
+                                            Text="Delete Report" />
                                     </SwipeItems>
                                 </SwipeView.LeftItems>
 

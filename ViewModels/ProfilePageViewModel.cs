@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TutorLinkClient.Services;
 using TutorLinkClient.Models;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace TutorLinkClient.ViewModels
 {
@@ -587,6 +588,36 @@ namespace TutorLinkClient.ViewModels
         }
 
         #endregion
+
+        #region Subjects
+        private ObservableCollection<Object> selectedSubjects;
+        public ObservableCollection<Object> SelectedSubjects
+        {
+            get
+            {
+                return selectedSubjects;
+            }
+            set
+            {
+                selectedSubjects = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<SubjectDTO> subjects;
+        public ObservableCollection<SubjectDTO> Subjects
+        {
+            get
+            {
+                return subjects;
+            }
+            set
+            {
+                subjects = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
         //Other properties
         private bool isAdmin; 
         public bool IsAdmin { get { return isAdmin; } set { isAdmin = value; OnPropertyChanged(); } }
@@ -692,9 +723,26 @@ namespace TutorLinkClient.ViewModels
                 Vetek = teacher.Vetek;
                 TeachAtHome = teacher.TeachAtHome;
                 userId = teacher.TeacherId;
+                SelectedSubjects = new ObservableCollection<Object>();
+                Subjects = new ObservableCollection<SubjectDTO>(((App)Application.Current).Subjects);
+                //add the subjects that the teacher has to the selected subjects
+                if (teacher.TeacherSubjects != null)
+                {
+                    foreach (var subject in Subjects)
+                    {
+                        foreach (var teacherSubject in teacher.TeacherSubjects)
+                        {
+                            if (subject.SubjectId == teacherSubject.SubjectId)
+                            {
+                                SelectedSubjects.Add(subject);
+                            }
+                        }
+                    }
+                    
+                }
             }
-                
-            
+
+
 
         }
         private async void OnUpdateUser()
@@ -774,7 +822,22 @@ namespace TutorLinkClient.ViewModels
                 TeachAtHome = TeachAtHome,
                 ProfileImagePath = ""
             };
+            teacherDTO.TeacherSubjects = new List<TeacherSubject>();
+            foreach (Object obj in SelectedSubjects)
+            {
+                if (obj is SubjectDTO)
+                {
+                    SubjectDTO subject = (SubjectDTO)obj;
+                    teacherDTO.TeacherSubjects.Add(new TeacherSubject()
+                    {
+                        SubjectId = subject.SubjectId,
+                        SubjectName = subject.SubjectName,
+                        MinClass = 1,
+                        MaxClass = 12 //Default value
+                    });
+                }
 
+            }
             bool success = await proxy.UpdateTeacher(teacherDTO);
 
 

@@ -77,7 +77,7 @@
                     <DataTemplate x:DataType="model:ChatMessageDTO">
                         <StackLayout>
                             <!--  Outgoing Messages (Sent by current user)  -->
-                            <Frame IsVisible="{Binding Source={RelativeSource AncestorType={x:Type vm:ChatDetailsViewModel}}, Path=IsCurrentUserSender}" Style="{StaticResource outgoingMessageStyle}">
+                            <Frame IsVisible="{Binding IsSender}" Style="{StaticResource outgoingMessageStyle}">
                                 <StackLayout>
                                     <Label Style="{StaticResource outgoingTextStyle}" Text="{Binding MessageText}" />
                                     <Label
@@ -88,7 +88,7 @@
                             </Frame>
 
                             <!--  Incoming Messages (Received by current user)  -->
-                            <Frame IsVisible="{Binding Source={RelativeSource AncestorType={x:Type vm:ChatDetailsViewModel}}, Path=IsCurrentUserReceiver}" Style="{StaticResource incomingMessageStyle}">
+                            <Frame IsVisible="{Binding IsNotSender}" Style="{StaticResource incomingMessageStyle}">
                                 <StackLayout>
                                     <Label Style="{StaticResource incomingTextStyle}" Text="{Binding MessageText}" />
                                     <Label
