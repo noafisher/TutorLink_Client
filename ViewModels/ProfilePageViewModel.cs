@@ -622,6 +622,7 @@ namespace TutorLinkClient.ViewModels
         private bool isAdmin; 
         public bool IsAdmin { get { return isAdmin; } set { isAdmin = value; OnPropertyChanged(); } }
 
+
         private bool isStudent;
 
         public bool IsStudent 
@@ -675,6 +676,18 @@ namespace TutorLinkClient.ViewModels
         private string errorMsg;
         public string ErrorMsg { get { return errorMsg; } set { errorMsg = value; OnPropertyChanged(nameof(ErrorMsg)); } }
 
+        public bool LoggedInUserIsAdmin
+        {
+            get
+            {
+                if (IsTeacher)
+                {
+                    return ((App)Application.Current).LoggedInTeacher.IsAdmin;
+                }
+                else
+                    return ((App)Application.Current).LoggedInStudent.IsAdmin;
+            }
+        }
         public ProfilePageViewModel(TutorLinkWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
             this.proxy = proxy;
@@ -773,7 +786,8 @@ namespace TutorLinkClient.ViewModels
                 UserAddress = Address,
                 Pass = Password,
                 CurrentClass = CurrentClass,
-                ProfileImagePath = ""
+                ProfileImagePath = "",
+                IsAdmin= IsAdmin
             };
 
             bool success = await proxy.UpdateStudent(studentDTO);
@@ -798,11 +812,16 @@ namespace TutorLinkClient.ViewModels
                     {
                         ErrorMsg = "Update Succeeded but the profile image was not updated!";
                     }
-                    else
-                    {
-                        ((App)Application.Current).LoggedInStudent = theStudent;
-                    }
+                    
                 }
+                //Update the logged in user only if this is the user that made updates to himself
+                if (((App)Application.Current).LoggedInStudent != null &&
+                    theStudent.StudentId == ((App)Application.Current).LoggedInStudent.StudentId)
+                {
+                    //update the logged in student
+                    ((App)Application.Current).LoggedInStudent = theStudent;
+                }
+                
             }
         }
 
@@ -820,7 +839,8 @@ namespace TutorLinkClient.ViewModels
                 MaxDistance = MaxDistance,
                 GoToStudent = GoToStudent,
                 TeachAtHome = TeachAtHome,
-                ProfileImagePath = ""
+                ProfileImagePath = "",
+                IsAdmin = IsAdmin
             };
             teacherDTO.TeacherSubjects = new List<TeacherSubject>();
             foreach (Object obj in SelectedSubjects)
@@ -860,10 +880,15 @@ namespace TutorLinkClient.ViewModels
                     {
                         ErrorMsg = "Update Succeeded but the profile image was not updated!";
                     }
-                    else
-                    {
-                        ((App)Application.Current).LoggedInTeacher = theTeacher;
-                    }
+
+                }
+
+                //Update the logged in user only if this is the user that made updates to himself
+                if (((App)Application.Current).LoggedInTeacher != null &&
+                   theTeacher.TeacherId == ((App)Application.Current).LoggedInTeacher.TeacherId)
+                {
+                    //update the logged in student
+                    ((App)Application.Current).LoggedInTeacher = theTeacher;
                 }
             }
         }
