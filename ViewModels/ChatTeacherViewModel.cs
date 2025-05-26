@@ -52,7 +52,6 @@ public class ChatTeacherViewModel : ViewModelBase
     }
     private async void OnGoToChat()
     {
-        //TODO: Open the chat details page and transfer the selected object
         if (SelectedStudent != null)
         {
             var navParam = new Dictionary<string, object>

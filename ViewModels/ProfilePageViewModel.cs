@@ -17,6 +17,7 @@ namespace TutorLinkClient.ViewModels
         private TutorLinkWebAPIProxy proxy; 
         private IServiceProvider serviceProvider;
 
+        //the student or teacher that the profile page belongs to
         private StudentDTO theStudentObject;
         public StudentDTO TheStudentObject
         {
@@ -676,6 +677,7 @@ namespace TutorLinkClient.ViewModels
         private string errorMsg;
         public string ErrorMsg { get { return errorMsg; } set { errorMsg = value; OnPropertyChanged(nameof(ErrorMsg)); } }
 
+        ///Check if the logged in user is admin
         public bool LoggedInUserIsAdmin
         {
             get
@@ -702,6 +704,7 @@ namespace TutorLinkClient.ViewModels
 
         }
 
+        //this function will be used to initialize the data of the user that the profile page belongs to
         private void InitData()
         {
             if (TheUserObject is StudentDTO)

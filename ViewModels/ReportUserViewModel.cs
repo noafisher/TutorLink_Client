@@ -15,7 +15,7 @@ public class ReportUserViewModel : ViewModelBase
     private TutorLinkWebAPIProxy proxy;
     private IServiceProvider serviceProvider;
 
-   
+    //report properties
     #region report text 
     private string reportText;
     public string ReportText
@@ -91,6 +91,7 @@ public class ReportUserViewModel : ViewModelBase
     private string errorMsg;
     public string ErrorMsg { get; set; }
 
+    // for the selected teacher and student
     #region teacher name
     private ObservableCollection<TeacherDTO> teachersList;
     public ObservableCollection<TeacherDTO> TeachersList
@@ -276,8 +277,9 @@ public class ReportUserViewModel : ViewModelBase
 
     }
 
-   
 
+
+    //this function is called when the page is opened and it will get all the teachers from the server and add them to the list of teachers and used on the picker 
     private async void GetAllTeachers()
     {
         List<TeacherDTO> l = await proxy.GetAllTeachers();
@@ -293,6 +295,7 @@ public class ReportUserViewModel : ViewModelBase
         }
     }
 
+    //this function is called when the page is opened and it will get all the students from the server and add them to the list of students and used on the picker 
     private async void GetAllStudents()
     {
         List<StudentDTO> l = await proxy.GetAllStudents();

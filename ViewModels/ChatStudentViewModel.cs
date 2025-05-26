@@ -68,7 +68,6 @@ public class ChatStudentViewModel : ViewModelBase
             await Shell.Current.GoToAsync("ChatDetails", navParam);
 			SelectedTeacher = null;
         }
-        //TODO: Open the chat details page and transfer the selected object
         
     }
 

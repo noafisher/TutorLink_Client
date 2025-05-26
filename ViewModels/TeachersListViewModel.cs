@@ -66,7 +66,7 @@ public class TeachersListViewModel : ViewModelBase
         GetAllTeachers();
         GetAllSubjects();
     }
-    //
+    //the suject that is being selected by the user to filter the teachers
     private SubjectDTO selectedSubject;
     public SubjectDTO SelectedSubject
     {
@@ -81,6 +81,7 @@ public class TeachersListViewModel : ViewModelBase
         }
     }
 
+    // this function is called when the page is opened and it will get all the subjects from the server and add them to the list of subjects
     private async void GetAllSubjects()
     {
         List<SubjectDTO> l = await proxy.GetAllSubjects();
@@ -89,6 +90,7 @@ public class TeachersListViewModel : ViewModelBase
             SubjectList.Add(s);
         }
     }
+    // this function is called when the page is opened and it will get all the teachers from the server and add them to the list of teachers
     private async void GetAllTeachers()
     {
         List<TeacherDTO> l   = await proxy.GetAllTeachers();
@@ -104,6 +106,8 @@ public class TeachersListViewModel : ViewModelBase
     }
 
     public ICommand FilterCommand { get; set; }
+
+    //this function is called when the user clicks on the filter button and it will filter the teachers by the selected subject and the price they chose, also buy the senority of the teacher
     private void Filter()
     {
         FilteredTeachersList.Clear();
@@ -121,7 +125,9 @@ public class TeachersListViewModel : ViewModelBase
             }
         }
     }
-    
+
+
+    // the students can select a teacher and navigate to the chat page with the teacher and start chatting with him
     public ICommand GotoChatCommand { get; set; }
     private async void OnGotoChat(TeacherDTO t)
     {
@@ -157,6 +163,7 @@ public class TeachersListViewModel : ViewModelBase
 
     }
 
+    // the students can select a teacher and navigate to the rate page with the teacher and rate him
     public ICommand GotoRateCommand { get; set; }
     private async void OnGotoRate(TeacherDTO t)
     {

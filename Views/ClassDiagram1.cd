@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TutorLinkClient.ViewModels.AddLessonViewModel" Collapsed="true">
+    <Position X="16.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEKgFMAlYBAABMwUAIiKBACNAAABAAIAQCEiAEBjgAQ=</HashCode>
+      <FileName>ViewModels\AddLessonViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.AdminViewModel" Collapsed="true">
+    <Position X="16.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAIAAAAAAAQABAgAAARBAACCAAAAAggBAAAIIiACAAI=</HashCode>
+      <FileName>ViewModels\AdminViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.AppShellViewModel" Collapsed="true">
+    <Position X="18.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAJBEAAAAACCCAACgAECBABAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>ViewModels\AppShellViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.CalendarViewModel" Collapsed="true">
+    <Position X="18.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAABAgAAAQAAQAAAAABIAgAAAIAAAAiAAA=</HashCode>
+      <FileName>ViewModels\CalendarViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.ChatDetailsViewModel" Collapsed="true">
+    <Position X="18.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQQAAAAACAAAEAEAAQQAABBAAAAAABGAAAQQAAAAA=</HashCode>
+      <FileName>ViewModels\ChatDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.ChatStudentViewModel" Collapsed="true">
+    <Position X="16.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAgAAAUAAAABAAABAAABIAAAAQAAAAA=</HashCode>
+      <FileName>ViewModels\ChatStudentViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.ChatTeacherViewModel" Collapsed="true">
+    <Position X="18.75" Y="3.25" Width="1.5" />
+    <InheritanceLine Type="TutorLinkClient.ViewModels.ViewModelBase" FixedToPoint="true">
+      <Path>
+        <Point X="18.25" Y="1.312" />
+        <Point X="18.25" Y="3.096" />
+        <Point X="20.25" Y="3.096" />
+        <Point X="20.25" Y="3.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAEAAAABAAABAAgAIAAIAQAAAAA=</HashCode>
+      <FileName>ViewModels\ChatTeacherViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.LoginViewModel" Collapsed="true">
+    <Position X="18.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAGAAAAggAAAAAgAAAAABAACGQAAAAkCAAAA=</HashCode>
+      <FileName>ViewModels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.MessageDirectionConverter" Collapsed="true">
+    <Position X="21.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\MessageDirectionConverter .cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.ProfilePageViewModel" Collapsed="true">
+    <Position X="16.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>VKAIUciAimhIiBo4GugROkIhqRZVIhiSQCIQ28AEAAs=</HashCode>
+      <FileName>ViewModels\ProfilePageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.RateTeacherViewModel" Collapsed="true">
+    <Position X="18.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMAQAADAAAAEBAgFCAQAAAQCEFABAhAA4RAQAOSAEAQ=</HashCode>
+      <FileName>ViewModels\RateTeacherViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.RegisterViewModel" Collapsed="true">
+    <Position X="16.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>VKAIQciAmmhIiAo4GqgBOGIhoRJVIhmWQCIA2sAGAAs=</HashCode>
+      <FileName>ViewModels\RegisterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.ReportUserViewModel" Collapsed="true">
+    <Position X="16.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAQAAgCEAABCgFAAQACAQCGFABAhgAwZAoAMGQIAE=</HashCode>
+      <FileName>ViewModels\ReportUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.TeachersListViewModel" Collapsed="true">
+    <Position X="16.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQEAABAAAAAQAAgAAAEAAAAgABoBAAAQAQAABACQABQ=</HashCode>
+      <FileName>ViewModels\TeachersListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.ViewModels.ViewModelBase" Collapsed="true">
+    <Position X="17.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAABAAAAgQAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TutorLinkClient.Views.AddLesson" Collapsed="true">
+    <Position X="14.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\AddLesson.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Views.Admin" Collapsed="true">
+    <Position X="14.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Admin.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Views.Calendar" Collapsed="true">
+    <Position X="20.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Calendar.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Views.ChatDetails" Collapsed="true">
+    <Position X="20.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ChatDetails.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Views.ChatStudent" Collapsed="true">
+    <Position X="14.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ChatStudent.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Views.ChatTeacher" Collapsed="true">
+    <Position X="20.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ChatTeacher.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Views.Login" Collapsed="true">
+    <Position X="20.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Login.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Views.ProfilePage" Collapsed="true">
+    <Position X="14.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ProfilePage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Views.RateTeacher" Collapsed="true">
+    <Position X="20.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\RateTeacher.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Views.Register" Collapsed="true">
+    <Position X="14.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Register.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Views.ReportUser" Collapsed="true">
+    <Position X="14.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ReportUser.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Views.TeachersList" Collapsed="true">
+    <Position X="14.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TeachersList.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorLinkClient.Converters.RatingToColorConverter" Collapsed="true">
+    <Position X="23" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\RatingToColorConverter .cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TutorLinkClient.Converters.StarRatingConverter" Collapsed="true">
+    <Position X="24.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\StarRatingConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

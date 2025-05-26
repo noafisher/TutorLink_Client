@@ -64,9 +64,9 @@ public class CalendarViewModel : ViewModelBase
 	{
 		//create a fictive lesson
 		DateOnly date = DateOnly.FromDateTime(SelectedDate);
-		
-		
-		List<Lesson> l = await proxy.GetAllLessonsAsync(date);
+
+        //get all lessons for the selected date
+        List<Lesson> l = await proxy.GetAllLessonsAsync(date);
         List<Lesson> result = new List<Lesson>();
         if (l != null)
 		{

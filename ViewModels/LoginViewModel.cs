@@ -9,8 +9,8 @@ namespace TutorLinkClient.ViewModels;
 
 public class LoginViewModel : ViewModelBase
 {
-    //
-	private string email;
+    // properties 
+    private string email;
 	private string password;
     private bool isStudent;
 
@@ -107,7 +107,6 @@ public class LoginViewModel : ViewModelBase
 
         }
 
-        //Set the application logged in user to be whatever user returned (null or real user)
 
        
     }

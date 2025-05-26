@@ -12,6 +12,7 @@ namespace TutorLinkClient.ViewModels
 {
     public class AdminViewModel:ViewModelBase
     {
+        //reports
         private ObservableCollection<ReportDTO> reports;
         public ObservableCollection<ReportDTO> Reports
         {
@@ -26,6 +27,7 @@ namespace TutorLinkClient.ViewModels
             }
         }
 
+        //students and teachers
         private ObservableCollection<StudentDTO> students;
         public ObservableCollection<StudentDTO> Students
         {
@@ -59,6 +61,7 @@ namespace TutorLinkClient.ViewModels
 
         private async void OnDeleteReport(ReportDTO r)
         {
+            //this function calls the API to delete the report and if it is successful it will remove the report from the list
             bool success = await proxy.ProcessReport(r.ReportId);
             if (!success)
                 await Shell.Current.DisplayAlert("Error", "Report was not deleted. Try again later", "Ok");
@@ -67,6 +70,7 @@ namespace TutorLinkClient.ViewModels
         }
         private async void OnBlockUser(ReportDTO r)
         {
+            //this function calls the API to block the user and if it is successful it will remove the report from the list
             bool success = false;
             if (r.ReportedByStudent)
             {
@@ -89,6 +93,7 @@ namespace TutorLinkClient.ViewModels
 
         private async void ReadReports()
         {
+            //in this function we call the API to get the reports that are not processed and we add them to the list of reports
             List<ReportDTO> list = await proxy.GetReportsNotProcessed();
             if (list != null)
                 Reports = new ObservableCollection<ReportDTO>(list);
@@ -108,6 +113,7 @@ namespace TutorLinkClient.ViewModels
             ReadStudents();
         }
 
+        //select a student or teacher and navigate to the profile page of the selected user
         private StudentDTO selectedStudent;
         public StudentDTO SelectedStudent
         {
@@ -145,6 +151,7 @@ namespace TutorLinkClient.ViewModels
             }
         }
 
+        //calls the API to get students and teachers to add them to the list of students and teachers and than show it on the admin view
         private async void ReadStudents()
         {
             List<StudentDTO> s = await proxy.GetAllStudents();
@@ -157,6 +164,7 @@ namespace TutorLinkClient.ViewModels
             Teachers = new ObservableCollection<TeacherDTO>(t);
         }
 
+        //this function is called when the user selects a student or teacher and it will navigate to the profile page of the selected user
         private async void OnSelectedUser()
         {
             if (SelectedStudent != null)

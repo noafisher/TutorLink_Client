@@ -218,6 +218,7 @@ public class RateTeacherViewModel : ViewModelBase
         ValidateText();
     }
 
+    /// this function is called when the page is opened and it will get all the teachers from the server and add them to the list of teachers
     private async void GetAllTeachers()
     {
         List<TeacherDTO> l = await proxy.GetAllTeachers();
@@ -232,6 +233,7 @@ public class RateTeacherViewModel : ViewModelBase
         }
     }
 
+    /// this function is called when the user clicks on the rate button and it will call the server to save the review
     public async void OnRate()
     {
         InServerCall = true;

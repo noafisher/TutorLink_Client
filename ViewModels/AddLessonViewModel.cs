@@ -87,7 +87,7 @@ namespace TutorLinkClient.ViewModels
         }
         #endregion 
 
-        //subject teacher - 
+        //subject teacher 
 
         
         private List<TeacherSubject> subjects;
@@ -136,7 +136,7 @@ namespace TutorLinkClient.ViewModels
             }
         }
 
-        private void ValidateSublect()
+        private void ValidateSubject()
         {
             this.SubjectError = "Subject must be selected";
             this.ShowSubjectError = Subject == null;
@@ -144,7 +144,7 @@ namespace TutorLinkClient.ViewModels
         #endregion
 
         
-        // student - add validation
+        // student
         private StudentDTO student;
         public StudentDTO Student
         {
@@ -306,6 +306,7 @@ namespace TutorLinkClient.ViewModels
             }
         }
 
+        //this function is called when the user types in the student name field and it will search for the students that match the name 
         private async void PopulateStudents()
         {
             List<StudentDTO> list = await proxy.FindStudents(studentName);
@@ -321,12 +322,13 @@ namespace TutorLinkClient.ViewModels
             ValidateDate();
             ValidateLessonName();
             ValidateStudent();
-            ValidateSublect();
+            ValidateSubject();
 
             DateTime combinedDateTime = TimeOfLesson.Date.Add(Hour.ToTimeSpan());
 
             if (Student != null)
             {
+                // create lesson object and set the properties
                 Lesson lesson = new Lesson()
                 {
                     StudentId = Student.StudentId,
@@ -335,6 +337,7 @@ namespace TutorLinkClient.ViewModels
                     TimeOfLesson = combinedDateTime
                 };
 
+                // send the lesson to the server and check if it was added successfully
                 lesson = await proxy.AddLessonAsync(lesson);
                 if (lesson != null)
                 {
