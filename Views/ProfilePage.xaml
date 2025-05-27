@@ -136,6 +136,7 @@
                         />
 
                     <Switch
+                        IsVisible="{Binding LoggedInUserIsAdmin}"
                        Margin="10,0,0,0"
                        IsToggled="{Binding IsAdmin}"
                           OnColor="#F06292"
