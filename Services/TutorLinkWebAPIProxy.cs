@@ -150,7 +150,7 @@ namespace TutorLinkClient.Services
         public async Task<StudentDTO?> RegisterStudentAsync(StudentDTO student)
         {
             //Set URI to the specific function API - מחפש את הכתובת של הפעולה בשרת
-            string url = $"{this.baseUrl}RegisterStudent";
+            string url = $"{this.baseUrl}registerStudent";
             try
             {
                 //Call the server API - מעביר את האובייקט לשרת

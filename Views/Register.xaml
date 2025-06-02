@@ -362,7 +362,10 @@
                         </Label>
                     </VerticalStackLayout>
                 </Frame>
-
+                <Label
+                    Style="{StaticResource labelErrorStyle}"
+                    Text="{Binding ErrorMsg}"
+                 />  
                 <Button
                     Margin="0,10"
                     BackgroundColor="#FF69B4"

@@ -655,7 +655,7 @@ public class RegisterViewModel : ViewModelBase
             FirstName = FirstName,
             LastName = LastName,
             Email = Email,
-            UserAddress = Address,
+            UserAddress = "",
             Pass = Password,
             CurrentClass = CurrentClass,
             ProfileImagePath = ""
@@ -704,14 +704,15 @@ public class RegisterViewModel : ViewModelBase
             FirstName = FirstName,
             LastName = LastName,
             Email = Email,
-            UserAddress = Address,
+            UserAddress = "",
             Pass = Password,
-            MaxDistance = MaxDistance,
+            MaxDistance = 0,
             GoToStudent = GoToStudent,
             TeachAtHome = TeachAtHome,
             Vetek = Vetek,
             PricePerHour = PricePerHour,
-            ProfileImagePath = ""
+            ProfileImagePath = "",
+
 
         };
 
