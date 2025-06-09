@@ -59,11 +59,18 @@ public class CalendarViewModel : ViewModelBase
         GoToAddLessonCommand = new Command(GoToAddLesson);
 	}
 
+
+    public Command RefreshCommand => new Command(Refresh);
+    public void Refresh()
+    {
+        GetAllLessons();
+    }
 	//
     private async void GetAllLessons()
 	{
-		//create a fictive lesson
-		DateOnly date = DateOnly.FromDateTime(SelectedDate);
+        InServerCall = true;
+        //create a fictive lesson
+        DateOnly date = DateOnly.FromDateTime(SelectedDate);
 
         //get all lessons for the selected date
         List<Lesson> l = await proxy.GetAllLessonsAsync(date);
@@ -90,6 +97,7 @@ public class CalendarViewModel : ViewModelBase
         }
 		
 		LessonsList = new ObservableCollection<Lesson>(result);
+        InServerCall = false;
     }
 
     private void GoToAddLesson()

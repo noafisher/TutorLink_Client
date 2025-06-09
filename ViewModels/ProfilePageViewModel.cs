@@ -843,7 +843,8 @@ namespace TutorLinkClient.ViewModels
                 GoToStudent = GoToStudent,
                 TeachAtHome = TeachAtHome,
                 ProfileImagePath = "",
-                IsAdmin = IsAdmin
+                IsAdmin = IsAdmin,
+                PricePerHour = PricePerHour
             };
             teacherDTO.TeacherSubjects = new List<TeacherSubject>();
             foreach (Object obj in SelectedSubjects)

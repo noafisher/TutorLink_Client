@@ -23,9 +23,11 @@
             <Setter Property="Margin" Value="5,3" />
         </Style>
     </ContentPage.Resources>
+    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding InServerCall}">
 
-    <ScrollView x:Name="scrlview">
+        <ScrollView x:Name="scrlview">
         <VerticalStackLayout Padding="10" Spacing="8">
+            
             <Label
                 Margin="0,10,0,20"
                 FontAttributes="Bold"
@@ -155,5 +157,7 @@
                 TextColor="White"
                 WidthRequest="200" />
         </VerticalStackLayout>
+        
     </ScrollView>
+    </RefreshView>
 </ContentPage>

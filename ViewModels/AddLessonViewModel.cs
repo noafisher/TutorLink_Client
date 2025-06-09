@@ -201,9 +201,9 @@ namespace TutorLinkClient.ViewModels
         }
 
         // hour 
-        private TimeOnly hour;
+        private TimeSpan hour;
 
-        public TimeOnly Hour
+        public TimeSpan Hour
         {
             get { return hour; }
             set
@@ -324,7 +324,7 @@ namespace TutorLinkClient.ViewModels
             ValidateStudent();
             ValidateSubject();
 
-            DateTime combinedDateTime = TimeOfLesson.Date.Add(Hour.ToTimeSpan());
+            DateTime combinedDateTime = TimeOfLesson.Date.Add(Hour);
 
             if (Student != null)
             {

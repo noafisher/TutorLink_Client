@@ -13,21 +13,21 @@ namespace TutorLinkClient.Services
 
         #region without tunnel
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        //private static string serverIP = "localhost";
-        //private readonly HubConnection hubConnection;
-        //private string baseUrl;
-        //public static string BaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
-        //    DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5049/chatHub/" : $"http://{serverIP}:5049/chatHub/";
+        private static string serverIP = "localhost";
+        private readonly HubConnection hubConnection;
+        private string baseUrl;
+        public static string BaseAddress = (DeviceInfo.Platform == DevicePlatform.Android &&
+            DeviceInfo.DeviceType == DeviceType.Virtual) ? "http://10.0.2.2:5049/chatHub/" : $"http://{serverIP}:5049/chatHub/";
 
         #endregion
 
         #region with tunnel
 
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        private static string serverIP = "05smzxlj-5049.euw.devtunnels.ms";
-        private readonly HubConnection hubConnection;
-        private string baseUrl;
-        public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/chatHub/";
+        //private static string serverIP = "05smzxlj-5049.euw.devtunnels.ms";
+        //private readonly HubConnection hubConnection;
+        //private string baseUrl;
+        //public static string BaseAddress = "https://05smzxlj-5049.euw.devtunnels.ms/chatHub/";
 
         #endregion
 
